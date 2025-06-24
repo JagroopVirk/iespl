@@ -1,0 +1,12 @@
+---
+const { title, services, link, bgColor, textColor, linkColor } = Astro.props
+---
+
+<div class={`rounded-md shadow-md p-6 w-full md:w-64 ${bgColor} ${textColor}`}>
+  {/* // TODO: color and font variables */}
+  <h3 class="mb-3 text-lg font-semibold">{title}</h3>
+  <ul class="mb-4 space-y-1 text-sm">
+    {services.map((item) => <li>{item}</li>)}
+  </ul>
+  <a href={link} class={`${linkColor}`} target="_blank">View More Services +</a>
+</div>

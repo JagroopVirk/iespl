@@ -1,0 +1,23 @@
+---
+const { setStyle } = Astro.props;
+import { certifications } from '../../data/js/certifications';
+
+import Picture from 'astro/components/Picture.astro';
+---
+
+<section class="section w-full" style={`background: ${setStyle}`}>
+  <div class="maxwidth mx-auto max-w-6xl text-center">
+    <h2 class="mb-10 text-3xl font-bold">Certifications <span class="halfHeading">& Accreditations</span></h2>
+    <div class="flex flex-wrap justify-center gap-6">
+      {
+        certifications.map((cert, idx) => (
+          <a href={cert.link} class="rounded-xl border p-4 hover:bg-gray-50">
+            <Picture src={cert.logo} alt={cert.name} class="h-20 w-20" format="png" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  {/* TODO: try to call images from object to match name of service */}
+</section>

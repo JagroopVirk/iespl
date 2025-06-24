@@ -1,0 +1,422 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import '../../styles/global.css';
+
+// Importing SEO data for the About page
+import seoData from '@/data/js/services/validation';
+---
+
+<Layout
+  seo={{
+    title: `${seoData.meta.title} - Indivirtus`,
+    description: seoData.meta.description,
+    keywords: seoData.meta.keywords,
+    canonical: seoData.meta.canonicalUrl,
+    image: seoData.image.path.src,
+    url: seoData.pageLink,
+    schema: seoData.schema,
+  }}
+>
+  <article class="maxwidth px-4 py-12 sm:px-6">
+    <!-- Hero Section -->
+    <header class="bg-primary-light mb-16 rounded-xl px-6 py-16 text-center text-white">
+      <h1 class="mb-4 text-4xl font-bold">Validation & Qualification Services</h1>
+      <h2 class="mb-6 text-2xl font-semibold">Ensuring Compliant Operations Through Full-Cycle Validation</h2>
+      <div class="mx-auto max-w-3xl">
+        <p class="text-lg opacity-90">
+          From computerized systems to critical equipment and facilities, our validation services guarantee regulatory
+          compliance and operational excellence.
+        </p>
+      </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="mb-16 rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+      <div class="prose max-w-none">
+        <p>
+          In today's highly regulated pharmaceutical and healthcare environment, proper validation is critical for <strong
+            >patient safety</strong
+          >, <strong>product quality</strong>, and <strong>regulatory compliance</strong>. Our comprehensive validation
+          services cover:
+        </p>
+
+        <ul class="mt-4 list-disc space-y-2 pl-6">
+          <li><strong>Computer System Validation (CSV)</strong> compliant with 21 CFR Part 11 and EU Annex 11</li>
+          <li><strong>Equipment Qualification</strong> (IQ/OQ/PQ) for manufacturing and lab systems</li>
+          <li><strong>HVAC System Validation</strong> ensuring proper environmental controls</li>
+          <li><strong>Data Integrity</strong> assessments and remediation</li>
+        </ul>
+
+        <p class="mt-6">
+          Following <strong>GAMP 5</strong> principles and global regulatory requirements, we implement risk-based validation
+          strategies that balance compliance needs with operational efficiency.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="mb-16">
+      <h2 class="bg-primary-light mb-8 text-center text-3xl font-bold">Our Validation Services</h2>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- CSV -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 transition-colors group-hover:bg-blue-200"
+          >
+            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Computer System Validation</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>21 CFR Part 11/EU Annex 11 compliance</li>
+            <li>GAMP 5 category determination</li>
+            <li>Requirements traceability matrices</li>
+            <li>Data integrity assessments</li>
+          </ul>
+        </div>
+
+        <!-- Equipment Qualification -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 transition-colors group-hover:bg-green-200"
+          >
+            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-green-700">Equipment Qualification</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Installation Qualification (IQ)</li>
+            <li>Operational Qualification (OQ)</li>
+            <li>Performance Qualification (PQ)</li>
+            <li>Periodic requalification</li>
+          </ul>
+        </div>
+
+        <!-- HVAC Validation -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 transition-colors group-hover:bg-purple-200"
+          >
+            <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-purple-700">HVAC Validation</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Cleanroom certification</li>
+            <li>Airflow pattern studies</li>
+            <li>Particle monitoring</li>
+            <li>Temperature/humidity mapping</li>
+          </ul>
+        </div>
+
+        <!-- Process Validation -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 transition-colors group-hover:bg-red-200"
+          >
+            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-red-700">Process Validation</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>PPQ protocol development</li>
+            <li>Process performance qualification</li>
+            <li>Continued process verification</li>
+            <li>Cleaning validation</li>
+          </ul>
+        </div>
+
+        <!-- Data Integrity -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100 transition-colors group-hover:bg-yellow-200"
+          >
+            <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-yellow-700">Data Integrity</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>ALCOA+ assessments</li>
+            <li>Gap analysis and remediation</li>
+            <li>Electronic record/electronic signature (ERES)</li>
+            <li>Audit trail reviews</li>
+          </ul>
+        </div>
+
+        <!-- Compliance -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-100 transition-colors group-hover:bg-cyan-200"
+          >
+            <svg class="h-6 w-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-cyan-700">Regulatory Compliance</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>FDA/EMA/MHRA/WHO readiness</li>
+            <li>Mock inspections</li>
+            <li>Remediation support</li>
+            <li>Validation master planning</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Standards Section -->
+    <section class="mb-16 rounded-xl bg-blue-50 p-8">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Compliance With Global Standards</h2>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="flex items-center rounded-lg bg-white p-6 shadow-sm">
+          <div class="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+            <span class="font-bold text-blue-800">21</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800">21 CFR Part 11</h3>
+            <p class="text-gray-600">Electronic records & signatures</p>
+          </div>
+        </div>
+
+        <div class="flex items-center rounded-lg bg-white p-6 shadow-sm">
+          <img src="/icons/gamp.svg" alt="GAMP 5" class="mr-4 h-12 w-12" />
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800">GAMP 5</h3>
+            <p class="text-gray-600">Computerized system compliance</p>
+          </div>
+        </div>
+
+        <div class="flex items-center rounded-lg bg-white p-6 shadow-sm">
+          <div class="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
+            <span class="font-bold text-purple-800">EU</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800">EU Annex 11</h3>
+            <p class="text-gray-600">Computerized systems</p>
+          </div>
+        </div>
+
+        <div class="flex items-center rounded-lg bg-white p-6 shadow-sm">
+          <img src="/icons/iso.svg" alt="ISO" class="mr-4 h-12 w-12" />
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800">ISO 14644</h3>
+            <p class="text-gray-600">Cleanroom standards</p>
+          </div>
+        </div>
+
+        <div class="flex items-center rounded-lg bg-white p-6 shadow-sm">
+          <img src="/icons/fda.svg" alt="FDA" class="mr-4 h-12 w-12" />
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800">FDA Guidance</h3>
+            <p class="text-gray-600">Process validation</p>
+          </div>
+        </div>
+
+        <div class="flex items-center rounded-lg bg-white p-6 shadow-sm">
+          <img src="/icons/ema.svg" alt="EMA" class="mr-4 h-12 w-12" />
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800">EMA Guidelines</h3>
+            <p class="text-gray-600">Data integrity</p>
+          </div>
+        </div>
+
+        <div class="flex items-center rounded-lg bg-white p-6 shadow-sm">
+          <img src="/icons/who.svg" alt="WHO" class="mr-4 h-12 w-12" />
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800">WHO TRS</h3>
+            <p class="text-gray-600">GMP requirements</p>
+          </div>
+        </div>
+
+        <div class="flex items-center rounded-lg bg-white p-6 shadow-sm">
+          <img src="/icons/pic.svg" alt="PIC/S" class="mr-4 h-12 w-12" />
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800">PIC/S</h3>
+            <p class="text-gray-600">GMP compliance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="mb-16">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Our Validation Approach</h2>
+
+      <div class="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+        <div class="grid gap-8 md:grid-cols-4">
+          <div class="text-center">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
+              <svg class="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mb-2 text-lg font-semibold text-gray-800">Risk-Based</h3>
+            <p class="text-gray-600">Prioritize validation efforts based on product and patient risk</p>
+          </div>
+
+          <div class="text-center">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+              <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mb-2 text-lg font-semibold text-gray-800">Science-Driven</h3>
+            <p class="text-gray-600">Rooted in sound scientific principles and data</p>
+          </div>
+
+          <div class="text-center">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-100">
+              <svg class="h-8 w-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mb-2 text-lg font-semibold text-gray-800">Efficient</h3>
+            <p class="text-gray-600">Right-sized documentation without over-engineering</p>
+          </div>
+
+          <div class="text-center">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-cyan-100">
+              <svg class="h-8 w-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mb-2 text-lg font-semibold text-gray-800">Compliant</h3>
+            <p class="text-gray-600">Meets all regulatory expectations</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="bg-primary-light mb-16 rounded-xl p-12 text-white">
+      <h2 class="mb-8 text-center text-3xl font-bold">Benefits of Our Validation Services</h2>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Regulatory Confidence</h3>
+            <p class="text-blue-100">Comprehensive documentation that stands up to regulatory scrutiny</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Reduced Risk</h3>
+            <p class="text-blue-100">Minimize compliance findings and avoid costly remediation</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Operational Efficiency</h3>
+            <p class="text-blue-100">Streamlined validation processes that don't hinder operations</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Data Integrity</h3>
+            <p class="text-blue-100">ALCOA+ principles embedded in all validated systems</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="mb-16 text-center">
+      <div class="bg-primary-light inline-block max-w-2xl rounded-xl p-8 text-white shadow-lg">
+        <h3 class="mb-4 text-2xl font-bold">Ready to Strengthen Your Validation Program?</h3>
+        <p class="mb-6 text-lg opacity-90">
+          Our validation experts will help you achieve and maintain compliance with global standards.
+        </p>
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+          <a href="/contact-us" class="button"> Get Started </a>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>

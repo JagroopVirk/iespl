@@ -1,0 +1,335 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import '../../styles/global.css';
+
+// Importing SEO data for the About page
+import seoData from '@/data/js/services/riskAssessment';
+---
+
+<Layout
+  seo={{
+    title: `${seoData.meta.title} - Indivirtus`,
+    description: seoData.meta.description,
+    keywords: seoData.meta.keywords,
+    canonical: seoData.meta.canonicalUrl,
+    image: seoData.image.path.src,
+    url: seoData.pageLink,
+    schema: seoData.schema,
+  }}
+>
+  <article class="maxwidth px-4 py-12 sm:px-6">
+    <!-- Hero Section -->
+    <header class="bg-primary-light mb-16 rounded-xl px-6 py-16 text-center text-white">
+      <h1 class="mb-4 text-4xl font-bold">Chemical Impurity Risk Assessment</h1>
+      <h2 class="mb-6 text-2xl font-semibold">ICH M7 & Q3A/B Compliant Safety Evaluations</h2>
+      <div class="mx-auto max-w-3xl">
+        <p class="text-lg opacity-90">
+          Comprehensive toxicological evaluation of impurities to ensure patient safety and regulatory compliance
+          throughout drug development.
+        </p>
+      </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="mb-16 rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+      <div class="prose max-w-none">
+        <p>
+          Controlling potentially harmful impurities is critical for drug safety and regulatory compliance. Our
+          specialized impurity risk assessment services provide:
+        </p>
+
+        <ul class="mt-4 list-disc space-y-2 pl-6">
+          <li><strong>ICH M7-compliant</strong> evaluation of mutagenic impurities</li>
+          <li><strong>Q3A/B-aligned</strong> assessment of organic and inorganic impurities</li>
+          <li><strong>Structure-Activity Relationship (SAR)</strong> analysis for unknown compounds</li>
+          <li><strong>Exposure limit justification</strong> for regulatory submissions</li>
+        </ul>
+
+        <p class="mt-6">
+          Using <strong>computational toxicology</strong> and <strong>regulatory expertise</strong>, we help
+          pharmaceutical companies establish scientifically justified impurity limits that meet global requirements
+          while avoiding unnecessary development delays.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="mb-16">
+      <h2 class="bg-primary-light mb-8 text-center text-3xl font-bold">Our Impurity Assessment Services</h2>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Genotoxic Assessment -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 transition-colors group-hover:bg-blue-200"
+          >
+            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Genotoxic Impurity Assessment</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>ICH M7 compliant evaluations</li>
+            <li>Two complementary (Q)SAR methodologies</li>
+            <li>Class-based risk categorization</li>
+            <li>Permitted Daily Exposure (PDE) calculations</li>
+          </ul>
+        </div>
+
+        <!-- Non-Genotoxic Assessment -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 transition-colors group-hover:bg-green-200"
+          >
+            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016zM12 9v2m0 4h.01"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-green-700">Non-Genotoxic Impurity Assessment</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>ICH Q3A/B evaluations</li>
+            <li>Threshold of Toxicological Concern (TTC) approach</li>
+            <li>NOAEL/LOAEL-based assessments</li>
+            <li>Safety margin calculations</li>
+          </ul>
+        </div>
+
+        <!-- SAR Analysis -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 transition-colors group-hover:bg-purple-200"
+          >
+            <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              ></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-purple-700">SAR Analysis</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Structure-Activity Relationship evaluation</li>
+            <li>Expert review of (Q)SAR predictions</li>
+            <li>Structural alert identification</li>
+            <li>Read-across assessments</li>
+          </ul>
+        </div>
+
+        <!-- Extractables/Leachables -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 transition-colors group-hover:bg-red-200"
+          >
+            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-red-700">Extractables & Leachables</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Container closure system evaluations</li>
+            <li>Process equipment assessments</li>
+            <li>Risk-based safety evaluations</li>
+            <li>Migration potential analysis</li>
+          </ul>
+        </div>
+
+        <!-- Degradation Products -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100 transition-colors group-hover:bg-yellow-200"
+          >
+            <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-yellow-700">Degradation Products</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Forced degradation study support</li>
+            <li>Stability-indicating evaluations</li>
+            <li>Identification threshold assessments</li>
+            <li>Qualification threshold justifications</li>
+          </ul>
+        </div>
+
+        <!-- Regulatory Support -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-100 transition-colors group-hover:bg-cyan-200"
+          >
+            <svg class="h-6 w-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-cyan-700">Regulatory Support</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Impurity control strategy development</li>
+            <li>Regulatory submission packages</li>
+            <li>Agency query responses</li>
+            <li>Expert reports and justifications</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="mb-16 rounded-xl bg-blue-50 p-8">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Our Assessment Methodology</h2>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Data Collection</h3>
+          <p class="text-gray-700">
+            Gather all available chemical, structural, and toxicological data on the impurity including literature,
+            databases, and experimental results.
+          </p>
+        </div>
+
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">(Q)SAR Analysis</h3>
+          <p class="text-gray-700">
+            Perform computational assessments using two complementary ICH M7-recommended methodologies for genotoxic
+            potential.
+          </p>
+        </div>
+
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Expert Review</h3>
+          <p class="text-gray-700">
+            Our toxicologists evaluate all data sources, resolve discordant predictions, and apply professional
+            judgment.
+          </p>
+        </div>
+
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Risk Classification</h3>
+          <p class="text-gray-700">
+            Categorize impurities according to ICH M7 (Classes 1-5) or ICH Q3A/B thresholds based on toxicological
+            concern.
+          </p>
+        </div>
+
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Control Strategy</h3>
+          <p class="text-gray-700">
+            Recommend appropriate control measures including analytical methods and specification limits.
+          </p>
+        </div>
+
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Documentation</h3>
+          <p class="text-gray-700">
+            Prepare comprehensive reports suitable for regulatory submissions with clear rationales for all conclusions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="bg-primary-light mb-16 rounded-xl p-12 text-white">
+      <h2 class="mb-8 text-center text-3xl font-bold">Why Choose Our Impurity Assessment Services?</h2>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Regulatory Confidence</h3>
+            <p class="text-blue-100">Assessments fully aligned with ICH M7, Q3A, Q3B, and regional guidelines.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Scientific Rigor</h3>
+            <p class="text-blue-100">Combination of computational tools and expert toxicological review.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Risk Mitigation</h3>
+            <p class="text-blue-100">
+              Proactive identification of potential safety concerns before regulatory questions arise.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Efficiency</h3>
+            <p class="text-blue-100">Streamlined processes that integrate with your development timelines.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="mb-16 text-center">
+      <div class="bg-primary-light inline-block max-w-2xl rounded-xl p-8 text-white shadow-lg">
+        <h3 class="mb-4 text-2xl font-bold">Need Expert Impurity Risk Assessment?</h3>
+        <p class="mb-6 text-lg opacity-90">
+          Our toxicology team is ready to evaluate your impurities and support your regulatory submissions.
+        </p>
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+          <a href="/contact-us" class="button"> Request Assessment </a>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>

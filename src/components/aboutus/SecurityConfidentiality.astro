@@ -1,0 +1,39 @@
+---
+import { FaUserLock } from 'react-icons/fa6';
+
+const features = [
+  {
+    icon: FaUserLock,
+    text: 'We understand that the data of each and every client is very sensitive and confidential, and thus our team works on fully locked terminals which do not have floppy/CD/DVD drive and USB ports are disabled. We use the most advanced technology to handle the secrecy of data. The individual team member has restricted remote access to the client’s software application which cannot be accessed by any other team member. We have dedicated IT team to monitor possible online threats wherein our IT team proactively ensures physical as well as network security. The facility is physically guarded by the security professionals to prevent entry of unauthorized individuals with any data capture devices. We ensure 100% compliance with Health Insurance Portability and Accountability ACT (HIPPA) of 1996, Data, software, hardware and network in log ration ensures that information is exchanged in secured manner. All the modifications made by each and every individual are logged to ensure foolproof checks and balances, thereby ensuring complete data security.',
+  },
+];
+---
+
+<section class="section">
+  <div class="maxwidth">
+    <h3>Security and <span class="halfHeading">Confidentiality</span></h3>
+    <div class="text-center">
+      {
+        features.map((feature) => (
+          <div class="flex flex-col items-center p-6">
+            <div class="icon mb-4 animate-bounce rounded-full">
+              <feature.icon />
+            </div>
+            <p>{feature.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "tailwindcss";
+  .icon {
+    @apply text-6xl;
+    color: var(--color-secondary);
+  }
+  h3 {
+    @apply text-3xl md:text-5xl text-center mb-6;
+  }
+</style>

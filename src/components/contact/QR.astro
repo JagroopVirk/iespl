@@ -1,0 +1,13 @@
+---
+import Picture from 'astro/components/Picture.astro';
+
+import QRwhatsApp from '../../assets/QRwhatsApp.jpg';
+---
+
+<div class="flex flex-col items-center justify-center text-center">
+  <h2 class="leading-relaxed tracking-wider">
+    Scan QR to connect us on <br />
+    <span class="halfHeading">WhatsApp</span>
+  </h2>
+  <Picture src={QRwhatsApp} alt="QR code" width={300} />
+</div>

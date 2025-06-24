@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import CompanyCard from '../components/companies/CompanyCard.astro';
+import cards from '../data/js/companies.js';
+
+import '../styles/global.css';
+
+// Importing the default SEO and location schema
+// import { servicesPageSeo } from "../data/js/siteSeo.js";
+import { allServicesSchema } from '../data/js/seo/servicesSchemaSEO.js';
+
+//  seo={{ ...servicesPageSeo, canonical: servicesPageSeo.url, servicesSchema: allServicesSchema}}
+---
+
+<Layout seo={{ servicesSchema: allServicesSchema }}>
+  <section>
+    <div
+      class="maxwidth mx-auto mt-36 mb-12 grid grid-cols-1 justify-items-center gap-6 px-4 sm:grid-cols-2 md:grid-cols-3"
+    >
+      {cards.map((card) => <CompanyCard {...card} />)}
+    </div>
+  </section>
+</Layout>

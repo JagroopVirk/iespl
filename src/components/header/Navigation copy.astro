@@ -1,0 +1,267 @@
+---
+// Props: navItems (array of navigation items)
+const { navItems } = Astro.props
+
+const currentPath = Astro.url.pathname
+
+function isActive(href) {
+  return href === currentPath
+}
+---
+
+<nav class="navigation relative container mx-auto p-4">
+  <div class="flex items-center justify-between">
+    <!-- Hamburger Button -->
+    <button id="menu-toggle" class="relative flex h-8 w-8 flex-col items-center justify-center lg:hidden">
+      <span class="hamburger-line top-2"></span>
+      <span class="hamburger-line top-4"></span>
+      <span class="hamburger-line top-6"></span>
+    </button>
+  </div>
+
+  <!-- Desktop Menu -->
+  <ul class="top-0 left-0 z-50 hidden min-w-[280px] flex-col lg:flex lg:flex-row">
+    {
+      navItems.map((item) => (
+        <li class={'group menuItemLi relative' + (isActive(item.href) ? ' active' : '')}>
+          <a href={item.href || '#'} class="menuItem flex items-center transition-colors duration-300">
+            {item.name}
+            {item.submenu && <span class="menuItem ml-1">⯆</span>}
+          </a>
+
+          {item.submenu && (
+            <ul class="invisible absolute top-full left-0 z-50 min-w-[250px] transform rounded-md opacity-0 shadow-lg transition-all duration-300 ease-in-out group-hover:visible group-hover:translate-y-2 group-hover:opacity-100">
+              {item.submenu.map((sub) => (
+                <li class="group/submenu relative">
+                  <a
+                    href={sub.href || '#'}
+                    class="subMenuItem flex items-center justify-between transition-colors duration-300"
+                    target={
+                      sub.href && (sub.href.startsWith('http://') || sub.href.startsWith('https://'))
+                        ? '_blank'
+                        : undefined
+                    }
+                    rel={
+                      sub.href && (sub.href.startsWith('http://') || sub.href.startsWith('https://'))
+                        ? 'noopener noreferrer'
+                        : undefined
+                    }
+                  >
+                    {sub.name}
+                    {sub.submenu && (
+                      <span class="text-xs transition-transform duration-300 group-[.open]/mobile:rotate-180">⯆</span>
+                    )}
+                  </a>
+
+                  {sub.submenu && (
+                    <ul class="invisible absolute top-0 left-full min-w-[250px] transform rounded-md opacity-0 shadow-lg transition-all duration-300 ease-in-out group-hover/submenu:visible group-hover/submenu:translate-x-2 group-hover/submenu:opacity-100">
+                      {sub.submenu.map((subSub) => (
+                        <li>
+                          <a href={subSub.href || '#'} class="subMenuItem block transition-colors duration-300">
+                            {subSub.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="navigation fixed right-[-100%] z-50 flex h-full w-[250px] flex-col overflow-y-auto shadow-lg transition-all duration-300 lg:hidden"
+  >
+    <ul class="flex flex-col gap-y-4">
+      {
+        navItems.map((item, idx) => (
+          <li class="group/mobile relative" id={`menuItemLi-${idx}`}>
+            <button
+              type="button"
+              class="menuItem flex w-full items-center justify-between font-medium transition-colors duration-300"
+              data-submenu-toggle={`submenu-${idx}`}
+              data-parent-id={`menuItemLi-${idx}`}
+            >
+              {item.name}
+              {item.submenu && (
+                <span
+                  class="submenu-arrow text-xs transition-transform duration-300 group-[.open]/mobile:rotate-180"
+                  aria-hidden="true"
+                >
+                  ⯆
+                </span>
+              )}
+            </button>
+
+            {item.submenu && (
+              <ul class="mt-2 ml-4 hidden" id={`submenu-${idx}`}>
+                {item.submenu.map((sub, subIdx) => (
+                  <li class="group/submobile relative" id={`submenu-${idx}-${subIdx}`}>
+                    <a href={sub.href || '#'} class="subMenuItem flex items-center justify-between py-1">
+                      {sub.name}
+                      {sub.submenu && <span class="text-xs">⯈</span>}
+                    </a>
+
+                    {sub.submenu && (
+                      <ul class="mt-2 ml-4 hidden group-hover/submobile:block">
+                        {sub.submenu.map((subSub, i) => (
+                          <li key={i}>
+                            <a href={subSub.href || '#'} class="subMenuItem block py-1 font-normal">
+                              {subSub.name}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style>
+  @reference "tailwindcss";
+
+  <!-- Hamburger Animation -- > #menu-toggle {
+    position: relative;
+  }
+  .hamburger-line {
+    position: absolute;
+    right: 0;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+    margin: auto;
+    background-color: black;
+    width: 24px;
+    height: 2px;
+  }
+  .open .hamburger-line:nth-child(1) {
+    top: 12px;
+    transform: rotate(45deg);
+  }
+  .open .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .open .hamburger-line:nth-child(3) {
+    top: 12px;
+    transform: rotate(-45deg);
+  }
+
+  .navigation,
+  .navigation ul {
+    background-color: var(--color-white);
+    color: var(--color-black);
+  }
+
+  .navigation {
+    @apply gap-y-4 p-6;
+
+    ul {
+      @apply mt-4 md:gap-x-6 lg:mt-0;
+    }
+  }
+
+  .menuItem {
+    @apply font-semibold relative;
+
+    &:hover {
+      color: var(--color-menu-hover);
+    }
+  }
+
+  .subMenuItem {
+    @apply relative px-4 py-2;
+  }
+
+  .subMenuItem:hover {
+    color: var(--color-secondary);
+  }
+
+  .menuItemLi > a {
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: scaleY(2);
+      opacity: 0;
+      transition: 0.3s;
+      border-top: 2px solid var(--color-menu-hover);
+      border-bottom: 2px solid var(--color-menu-hover);
+      width: 100%;
+      height: 100%;
+      content: '';
+    }
+    &:after {
+      position: absolute;
+      top: 2px;
+      left: 0;
+      transform: scale(0);
+      opacity: 0;
+      z-index: -1;
+      transition: 0.3s;
+      background-color: var(--color-menu-hover);
+      width: 100%;
+      height: 100%;
+      content: '';
+    }
+    &:hover {
+      &:before {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+      &:after {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+  }
+
+  .active {
+    color: var(--color-menu-hover);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('menu-toggle')
+    const mobileMenu = document.getElementById('mobile-menu')
+
+    toggleBtn.addEventListener('click', () => {
+      // Slide Mobile Menu
+      mobileMenu.classList.toggle('right-0')
+      mobileMenu.classList.toggle('right-[-100%]')
+
+      // Animate Hamburger into X
+      toggleBtn.classList.toggle('open')
+    })
+
+    // Handle submenu toggling for mobile
+    document.querySelectorAll('[data-submenu-toggle]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const submenuId = button.getAttribute('data-submenu-toggle')
+        const parentId = button.getAttribute('data-parent-id')
+        const submenu = document.getElementById(submenuId)
+        const parentLi = document.getElementById(parentId)
+
+        if (submenu) {
+          submenu.classList.toggle('hidden')
+        }
+
+        if (parentLi) {
+          parentLi.classList.toggle('open')
+        }
+      })
+    })
+  })
+</script>

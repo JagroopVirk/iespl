@@ -1,0 +1,482 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import '../../styles/global.css';
+
+// Importing SEO data for the About page
+import seoData from '@/data/js/services/greenfieldBrownfield';
+---
+
+<Layout
+  seo={{
+    title: `${seoData.meta.title} - Indivirtus`,
+    description: seoData.meta.description,
+    keywords: seoData.meta.keywords,
+    canonical: seoData.meta.canonicalUrl,
+    image: seoData.image.path.src,
+    url: seoData.pageLink,
+    schema: seoData.schema,
+  }}
+>
+  <article class="maxwidth px-4 py-12 sm:px-6">
+    <!-- Hero Section -->
+    <header class="bg-primary-light mb-16 rounded-xl bg-gradient-to-r px-6 py-16 text-center text-white">
+      <h1 class="mb-4 text-4xl font-bold">Pharmaceutical Facility Project Management</h1>
+      <h2 class="mb-6 text-2xl font-semibold">End-to-End Solutions for Greenfield & Brownfield Projects</h2>
+      <div class="mx-auto max-w-3xl">
+        <p class="text-lg opacity-90">
+          From concept to validation, we deliver turnkey pharmaceutical facilities that meet global GMP standards, on
+          time and within budget.
+        </p>
+      </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="mb-16 rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+      <div class="prose max-w-none">
+        <p>
+          Building or renovating pharmaceutical facilities requires specialized expertise to balance regulatory
+          requirements, operational efficiency, and project timelines. Our comprehensive project management services
+          cover the <strong>entire facility lifecycle</strong>, ensuring:
+        </p>
+
+        <ul class="mt-4 list-disc space-y-2 pl-6">
+          <li><strong>Regulatory compliance</strong> with FDA, EMA, WHO, and other global standards</li>
+          <li><strong>GMP-ready designs</strong> that optimize workflows and minimize contamination risks</li>
+          <li><strong>Seamless validation</strong> from IQ/OQ to PQ and process validation</li>
+          <li><strong>Risk mitigation</strong> through phased execution and quality oversight</li>
+        </ul>
+
+        <p class="mt-6">
+          Whether you're constructing a new Greenfield facility or renovating existing Brownfield space, our <strong
+            >integrated approach</strong
+          > coordinates all stakeholders - architects, engineers, contractors, and quality teams - to deliver facilities
+          that meet both business and compliance objectives.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="mb-16">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Our End-to-End Project Services</h2>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Feasibility -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 transition-colors group-hover:bg-blue-200"
+          >
+            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Feasibility & Planning</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Site selection analysis</li>
+            <li>Regulatory pathway assessment</li>
+            <li>Capacity planning</li>
+            <li>Risk-based project strategy</li>
+          </ul>
+        </div>
+
+        <!-- Design -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 transition-colors group-hover:bg-green-200"
+          >
+            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-green-700">GMP Design Engineering</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Conceptual & detailed design</li>
+            <li>Cleanroom layouts</li>
+            <li>HVAC & utilities planning</li>
+            <li>Material flow optimization</li>
+          </ul>
+        </div>
+
+        <!-- Approvals -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 transition-colors group-hover:bg-purple-200"
+          >
+            <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-purple-700">Regulatory Approvals</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Construction permits</li>
+            <li>GMP compliance documentation</li>
+            <li>Pre-approval inspections</li>
+            <li>Agency communications</li>
+          </ul>
+        </div>
+
+        <!-- Construction -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 transition-colors group-hover:bg-red-200"
+          >
+            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-red-700">Construction Management</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Vendor qualification</li>
+            <li>GMP-compliant construction oversight</li>
+            <li>Change control management</li>
+            <li>Quality oversight</li>
+          </ul>
+        </div>
+
+        <!-- Commissioning -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100 transition-colors group-hover:bg-yellow-200"
+          >
+            <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-yellow-700">Commissioning</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Equipment qualification</li>
+            <li>System turnover packages</li>
+            <li>Performance testing</li>
+            <li>Handover documentation</li>
+          </ul>
+        </div>
+
+        <!-- Validation -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-100 transition-colors group-hover:bg-cyan-200"
+          >
+            <svg class="h-6 w-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-cyan-700">Validation</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>IQ/OQ/PQ execution</li>
+            <li>Process validation</li>
+            <li>Cleaning validation</li>
+            <li>Computer system validation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Lifecycle Section -->
+    <section class="bg-white px-4 py-16 sm:px-6">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="mb-12 text-center text-3xl font-bold text-blue-800">Pharmaceutical Project Lifecycle Management</h2>
+
+        <div class="relative">
+          <!-- Timeline line -->
+          <div
+            class="absolute left-1/2 hidden h-full w-1 -translate-x-1/2 transform bg-gradient-to-b from-blue-400 to-blue-600 md:block"
+          >
+          </div>
+
+          <!-- Process Steps -->
+          <div class="space-y-16 md:space-y-20">
+            <!-- Step 1 -->
+            <div class="relative flex flex-col items-center gap-8 md:flex-row">
+              <div class="order-2 md:order-1 md:w-1/2 md:pr-12 md:text-right">
+                <div class="mb-4 inline-flex items-center gap-4">
+                  <span
+                    class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-lg font-bold text-white"
+                    >1</span
+                  >
+                  <h3 class="text-2xl font-semibold text-gray-800">Concept & Feasibility</h3>
+                </div>
+                <p class="rounded-lg border border-blue-100 bg-blue-50 p-4 text-gray-600">
+                  Define project scope, regulatory requirements, and business objectives with comprehensive risk
+                  assessment.
+                </p>
+              </div>
+              <div class="order-1 flex justify-center md:order-2 md:w-1/2 md:pl-12">
+                <div
+                  class="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-blue-100 shadow-lg"
+                >
+                  <svg class="h-10 w-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="relative flex flex-col items-center gap-8 md:flex-row">
+              <div class="order-2 md:w-1/2 md:pl-12">
+                <div class="mb-4 inline-flex items-center gap-4">
+                  <span
+                    class="flex h-10 w-10 items-center justify-center rounded-full bg-green-600 text-lg font-bold text-white"
+                    >2</span
+                  >
+                  <h3 class="text-2xl font-semibold text-gray-800">Design & Engineering</h3>
+                </div>
+                <p class="rounded-lg border border-green-100 bg-green-50 p-4 text-gray-600">
+                  Develop GMP-compliant layouts, process flows, and technical specifications with contamination control
+                  strategies.
+                </p>
+              </div>
+              <div class="order-1 flex justify-center md:w-1/2 md:pr-12">
+                <div
+                  class="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-green-100 shadow-lg"
+                >
+                  <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative flex flex-col items-center gap-8 md:flex-row">
+              <div class="order-2 md:order-1 md:w-1/2 md:pr-12 md:text-right">
+                <div class="mb-4 inline-flex items-center gap-4">
+                  <span
+                    class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600 text-lg font-bold text-white"
+                    >3</span
+                  >
+                  <h3 class="text-2xl font-semibold text-gray-800">Construction & Installation</h3>
+                </div>
+                <p class="rounded-lg border border-purple-100 bg-purple-50 p-4 text-gray-600">
+                  GMP-compliant build with quality oversight, change control, and documentation management.
+                </p>
+              </div>
+              <div class="order-1 flex justify-center md:order-2 md:w-1/2 md:pl-12">
+                <div
+                  class="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-purple-100 shadow-lg"
+                >
+                  <svg class="h-10 w-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative flex flex-col items-center gap-8 md:flex-row">
+              <div class="order-2 md:w-1/2 md:pl-12">
+                <div class="mb-4 inline-flex items-center gap-4">
+                  <span
+                    class="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-600 text-lg font-bold text-white"
+                    >4</span
+                  >
+                  <h3 class="text-2xl font-semibold text-gray-800">Commissioning</h3>
+                </div>
+                <p class="rounded-lg border border-yellow-100 bg-yellow-50 p-4 text-gray-600">
+                  System testing, performance verification, and operational turnover with complete documentation.
+                </p>
+              </div>
+              <div class="order-1 flex justify-center md:w-1/2 md:pr-12">
+                <div
+                  class="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-yellow-100 shadow-lg"
+                >
+                  <svg class="h-10 w-10 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="relative flex flex-col items-center gap-8 md:flex-row">
+              <div class="order-2 md:order-1 md:w-1/2 md:pr-12 md:text-right">
+                <div class="mb-4 inline-flex items-center gap-4">
+                  <span
+                    class="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-lg font-bold text-white"
+                    >5</span
+                  >
+                  <h3 class="text-2xl font-semibold text-gray-800">Validation & Qualification</h3>
+                </div>
+                <p class="rounded-lg border border-red-100 bg-red-50 p-4 text-gray-600">
+                  Documented evidence of GMP compliance through IQ/OQ/PQ protocols and reports.
+                </p>
+              </div>
+              <div class="order-1 flex justify-center md:order-2 md:w-1/2 md:pl-12">
+                <div
+                  class="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-red-100 shadow-lg"
+                >
+                  <svg class="h-10 w-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Features -->
+        <div class="mt-16 grid gap-6 md:grid-cols-3">
+          <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold text-blue-700">
+              <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Regulatory Assurance
+            </h3>
+            <p class="text-gray-600">Built-in compliance with FDA, EMA, and WHO requirements at every phase.</p>
+          </div>
+
+          <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold text-blue-700">
+              <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Seamless Transition
+            </h3>
+            <p class="text-gray-600">Integrated handoffs between phases prevent gaps and delays.</p>
+          </div>
+
+          <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold text-blue-700">
+              <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Quality Built-In
+            </h3>
+            <p class="text-gray-600">Quality systems integrated from design through validation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="bg-primary-light mb-16 rounded-xl p-12 text-white">
+      <h2 class="mb-8 text-center text-3xl font-bold">Why Choose Our Project Management?</h2>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Regulatory-First Approach</h3>
+            <p class="text-blue-100">We design for compliance from day one, preventing costly rework and delays.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Integrated Teams</h3>
+            <p class="text-blue-100">
+              Our cross-functional teams include architects, engineers, and validation specialists.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Risk Mitigation</h3>
+            <p class="text-blue-100">Proactive identification and resolution of compliance risks.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Turnkey Solutions</h3>
+            <p class="text-blue-100">Single-point accountability from concept to validation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="mb-16 text-center">
+      <div class="bg-primary-light inline-block max-w-2xl rounded-xl p-8 text-white shadow-lg">
+        <h3 class="mb-4 text-2xl font-bold">Ready to Start Your Facility Project?</h3>
+        <p class="mb-6 text-lg opacity-90">
+          Our pharmaceutical project experts will guide you through every phase of your Greenfield or Brownfield
+          project.
+        </p>
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+          <a href="/contact-us" class="button"> Get Started </a>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>

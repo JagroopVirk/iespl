@@ -1,0 +1,11 @@
+---
+const { title, side } = Astro.props
+---
+
+<div
+  class={`relative bg-cyan-600 text-white px-4 py-3 rounded-full text-center text-sm font-semibold shadow-md w-64
+  ${side === 'left' ? 'before:right-[-2.5rem]' : 'before:left-[-2.5rem]'}
+  before:absolute before:top-1/2 before:w-10 before:h-1 before:bg-cyan-600 before:content-['']`}
+>
+  {title}
+</div>

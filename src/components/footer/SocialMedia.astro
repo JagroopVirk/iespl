@@ -1,0 +1,21 @@
+---
+import social from '../../data/js/social';
+---
+
+<div class="w-full pt-4 text-center">
+  <div class="flex justify-center gap-6">
+    {
+      social.map((item, idx) => (
+        <a
+          class="hover:text-primary rounded-full p-1.5 text-3xl transition-colors duration-300 hover:bg-white"
+          href={item.link}
+          target="_blank"
+          aria-label={item.label}
+          rel="noopener noreferrer"
+        >
+          <item.icon />
+        </a>
+      ))
+    }
+  </div>
+</div>

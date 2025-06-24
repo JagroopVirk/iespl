@@ -1,0 +1,30 @@
+---
+// Props: features = [{ title, description, icon }]
+const { features = [] } = Astro.props;
+const { setStyle } = Astro.props;
+---
+
+<section class="section px-6" style={`background: ${setStyle}`}>
+  <div class="maxwidth mx-auto text-center">
+    <h2 class="mb-10 text-3xl font-bold">Why Choose <span class="halfHeading">Us?</span></h2>
+    <div class="grid grid-cols-1 gap-8 text-left md:grid-cols-2 lg:grid-cols-3">
+      {
+        features.map((item, idx) => (
+          <div class="rounded-2xl bg-gray-50 p-6 shadow transition hover:shadow-md">
+            <div class="mb-4 flex items-start gap-4">
+              <div class="text-primaryBlue flex h-10 w-10 items-center justify-center text-2xl">
+                <item.icon />
+              </div>
+              <div>
+                <h3 class="">{item.title}</h3>
+                <p class="mt-1">{item.description}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  {/* TODO: color and size with variables */}
+  {/* TODO: background should be image not color or a little slanted bg */}
+</section>

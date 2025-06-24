@@ -1,0 +1,369 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import '../../styles/global.css';
+
+// Importing SEO data for the About page
+import seoData from '@/data/js/services/pharmacovigilance';
+---
+
+<Layout
+  seo={{
+    title: `${seoData.meta.title} - Indivirtus`,
+    description: seoData.meta.description,
+    keywords: seoData.meta.keywords,
+    canonical: seoData.meta.canonicalUrl,
+    image: seoData.image.path.src,
+    url: seoData.pageLink,
+    schema: seoData.schema,
+  }}
+>
+  <article class="maxwidth px-4 py-12 sm:px-6">
+    <!-- Hero Section -->
+    <header class="bg-primary-light mb-16 rounded-xl px-6 py-16 text-center text-white">
+      <h1 class="mb-4 text-4xl font-bold">Integrated Pharmacovigilance Solutions</h1>
+      <h2 class="mb-6 text-2xl font-semibold">Complete Drug Safety Monitoring Across the Product Lifecycle</h2>
+      <div class="mx-auto max-w-3xl">
+        <p class="text-lg opacity-90">
+          Ensure medication safety and regulatory compliance with our end-to-end pharmacovigilance services aligned with
+          global standards.
+        </p>
+      </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="mb-16 rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+      <div class="prose max-w-none">
+        <p>
+          In today's complex pharmaceutical landscape, robust pharmacovigilance systems are critical for <strong
+            >patient safety</strong
+          > and <strong>regulatory compliance</strong>. Our comprehensive solutions provide continuous monitoring of
+          medicinal products from clinical trials through post-marketing surveillance.
+        </p>
+
+        <p class="mt-4">
+          We help pharmaceutical companies and biotechs establish and maintain pharmacovigilance systems that meet the
+          stringent requirements of:
+        </p>
+
+        <ul class="mt-4 list-disc space-y-2 pl-6">
+          <li><strong>ICH E2 guidelines</strong> for safety data management</li>
+          <li><strong>EU GVP modules</strong> (EMA compliance)</li>
+          <li><strong>FDA 21 CFR Part 314</strong> postmarketing reporting</li>
+          <li><strong>CDSCO PVPI requirements</strong> for Indian market</li>
+        </ul>
+
+        <p class="mt-6">
+          Our <strong>risk-based approach</strong> combines advanced technology with deep regulatory expertise to identify,
+          assess, and mitigate drug safety risks throughout the product lifecycle.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="mb-16">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Our Pharmacovigilance Services</h2>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Case Processing -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 transition-colors group-hover:bg-blue-200"
+          >
+            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Case Processing</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Individual Case Safety Report (ICSR) management</li>
+            <li>Expedited and periodic reporting</li>
+            <li>MedDRA coding and quality review</li>
+            <li>E2B(R3) compliant submissions</li>
+          </ul>
+        </div>
+
+        <!-- Signal Detection -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 transition-colors group-hover:bg-green-200"
+          >
+            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-green-700">Signal Detection</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Quantitative signal detection methods</li>
+            <li>Qualitative signal assessment</li>
+            <li>Benefit-risk evaluation</li>
+            <li>Signal validation and tracking</li>
+          </ul>
+        </div>
+
+        <!-- Literature -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 transition-colors group-hover:bg-purple-200"
+          >
+            <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-purple-700">Literature Surveillance</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Systematic literature screening</li>
+            <li>Database monitoring (PubMed, Embase, etc.)</li>
+            <li>Case identification from literature</li>
+            <li>Risk information tracking</li>
+          </ul>
+        </div>
+
+        <!-- Aggregate Reports -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 transition-colors group-hover:bg-red-200"
+          >
+            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-red-700">Aggregate Reporting</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>PSUR/PBRER/DSUR preparation</li>
+            <li>Risk Management Plans (RMPs)</li>
+            <li>Periodic Benefit-Risk Evaluation Reports</li>
+            <li>Signal detection reports</li>
+          </ul>
+        </div>
+
+        <!-- Risk Management -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100 transition-colors group-hover:bg-yellow-200"
+          >
+            <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016zM12 9v2m0 4h.01"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-yellow-700">Risk Management</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Risk Minimization Activities</li>
+            <li>Safety Communication Strategies</li>
+            <li>REMS/EUPAS implementation support</li>
+            <li>Risk Evaluation and Mitigation</li>
+          </ul>
+        </div>
+
+        <!-- Compliance -->
+        <div class="group rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-100 transition-colors group-hover:bg-cyan-200"
+          >
+            <svg class="h-6 w-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-cyan-700">Compliance Support</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>PV system audits</li>
+            <li>Inspection readiness programs</li>
+            <li>Corrective Action planning</li>
+            <li>CAPA implementation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="mb-16 rounded-xl bg-blue-50 p-8">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Advanced Pharmacovigilance Technology</h2>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold text-blue-700">
+            <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+              ></path>
+            </svg>
+            Safety Database Solutions
+          </h3>
+          <p class="text-gray-700">
+            We work with leading safety databases including ARISg, Argus, and Veeva PV to ensure efficient case
+            processing and reporting.
+          </p>
+        </div>
+
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold text-blue-700">
+            <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+            AI-Powered Signal Detection
+          </h3>
+          <p class="text-gray-700">
+            Our advanced analytics platforms employ machine learning to enhance signal detection capabilities and
+            identify emerging safety concerns.
+          </p>
+        </div>
+
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold text-blue-700">
+            <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              ></path>
+            </svg>
+            Secure Cloud Platform
+          </h3>
+          <p class="text-gray-700">
+            Our secure, validated cloud infrastructure ensures 21 CFR Part 11 compliance with robust audit trails and
+            data integrity controls.
+          </p>
+        </div>
+
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <h3 class="mb-3 flex items-center gap-2 text-xl font-semibold text-blue-700">
+            <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
+            Regulatory Intelligence
+          </h3>
+          <p class="text-gray-700">
+            Automated tracking of global PV regulations ensures your systems remain compliant with evolving requirements
+            across markets.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="bg-primary-light mb-16 rounded-xl p-12 text-white">
+      <h2 class="mb-8 text-center text-3xl font-bold">Why Choose Our Pharmacovigilance Services?</h2>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Global Compliance</h3>
+            <p class="text-blue-100">
+              Expertise in all major regulatory frameworks including FDA, EMA, PMDA, CDSCO, and other national
+              requirements.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">End-to-End Solutions</h3>
+            <p class="text-blue-100">
+              From case processing to aggregate reporting - comprehensive services under one roof.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Scalable Resources</h3>
+            <p class="text-blue-100">
+              Flexible capacity to handle product launches, increased case volumes, or special projects.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Quality Focus</h3>
+            <p class="text-blue-100">Rigorous quality control processes with <1% error rates in case processing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="mb-16 text-center">
+      <div class="bg-primary-light inline-block max-w-2xl rounded-xl p-8 text-white shadow-lg">
+        <h3 class="mb-4 text-2xl font-bold">Need Expert Pharmacovigilance Support?</h3>
+        <p class="mb-6 text-lg opacity-90">
+          Our team of drug safety experts is ready to help you establish or enhance your pharmacovigilance systems.
+        </p>
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+          <a href="/contact" class="button"> Contact Our Team </a>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>

@@ -1,0 +1,66 @@
+---
+import { Astro } from 'astro';
+import { defaultSeo } from '../../data/js/seo/siteSeo.js';
+
+const {
+  title = defaultSeo.title,
+  description = defaultSeo.description,
+  keywords = defaultSeo.keywords,
+  image = defaultSeo.image,
+  url = defaultSeo.url,
+  type = defaultSeo.type,
+  twitterHandle = defaultSeo.twitterHandle,
+  schema = null,
+  locationSchema = null,
+  servicesSchema = null,
+  canonical = null,
+} = Astro.props;
+
+const jsonLocationSchema = JSON.stringify(locationSchema, null, 0);
+const jsonSchema = JSON.stringify(schema, null, 0);
+const jsonServiceSchema = JSON.stringify(servicesSchema, null, 0);
+
+---
+
+<head>
+  <title>{title}</title>
+  
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+
+
+  {canonical && (
+    <link rel="canonical" href={canonical} />
+  )}
+
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content={type} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:url" content={url} />
+
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={image} />
+  <meta name="twitter:site" content={twitterHandle} />
+  <meta name="twitter:creator" content={twitterHandle} />
+
+  {schema && Object.keys(schema).length > 0 && (
+    <script type="application/ld+json" set:html={jsonSchema}>
+    </script>
+  )}
+
+  {locationSchema && Object.keys(locationSchema).length > 0 && (
+    <script type="application/ld+json" set:html={jsonLocationSchema}>
+    </script>
+  )}
+
+  {servicesSchema && Object.keys(servicesSchema).length > 0 && (
+    <script type="application/ld+json" set:html={jsonServiceSchema}>
+    </script>
+  )}
+
+  </head>

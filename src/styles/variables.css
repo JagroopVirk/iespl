@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: rgb(1, 166, 158);
+  --color-primary-light: rgb(240, 253, 250);
+  --color-secondary: rgb(245, 105, 12);
+  --color-secondary-light2: rgb(255, 234, 220);
+  --color-secondary-light: rgb(255, 159, 95);
+  --color-primaryBlue: rgb(0, 0, 255);
+  --color-primaryBlueLight: rgb(77, 77, 255);
+  --color-secondaryOrange: rgb(255, 187, 69);
+  --color-black: rgb(27, 27, 27);
+  --color-white: rgb(255, 255, 255);
+  --color-gray: rgb(85, 85, 85);
+
+  --color-input-focus: hsl(177, 100%, 39%);
+  --color-input-border: hsl(177, 99%, 33%);
+  --color-menu-hover: rgb(245, 105, 12);
+  --color-bg-opaque: rgba(255, 255, 255, 0.5);
+  --color-footer-box: rgb(255, 255, 255);
+}
+
+:root {
+  /* colors */
+  --color-primary: rgb(1, 166, 158);
+  --color-primary-light: rgb(240, 253, 250);
+  --color-secondary: rgb(245, 105, 12);
+  --color-secondary-light2: rgb(255, 234, 220);
+  --color-secondary-light: rgb(255, 159, 95);
+  --color-primaryBlue: rgb(0, 0, 255);
+  --color-primaryBlueLight: rgb(77, 77, 255);
+  --color-secondaryOrange: rgb(255, 187, 69);
+  --color-black: rgb(27, 27, 27);
+  --color-white: rgb(255, 255, 255);
+  --color-gray: rgb(85, 85, 85);
+
+  --color-input-focus: hsl(177, 100%, 39%);
+  --color-input-border: hsl(177, 99%, 33%);
+  --color-menu-hover: rgb(245, 105, 12);
+  --color-bg-opaque: rgba(255, 255, 255, 0.5);
+  --color-footer-box: rgb(255, 255, 255);
+  /* --color-input-border: rgb(200, 200, 200); */
+}

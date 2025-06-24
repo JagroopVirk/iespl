@@ -1,0 +1,29 @@
+---
+
+---
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    //select header div for calculating height
+    const headerDiv = document.getElementById("header-div");
+    //select mobile menu div
+    const mobileMenu = document.getElementById("mobile-menu");
+    // select header div
+    const header = document.getElementById("site-header");
+    // select next sibling of header div
+    const nextSibling = header?.nextElementSibling;
+
+    // calculate header height
+    const headerHeight = headerDiv?.offsetHeight;
+
+    // set top of mobile menu to header height
+    if (mobileMenu) {
+      mobileMenu.style.top = `${headerHeight}px`;
+    }
+
+    // set margin top of next sibling of header div to header height
+    if (nextSibling) {
+      nextSibling.style.marginTop = `${headerHeight}px`;
+    }
+  });
+</script>

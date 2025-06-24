@@ -1,0 +1,394 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import '../../styles/global.css';
+
+// Importing SEO data for the About page
+import seoData from '@/data/js/services/calibration.js';
+---
+
+<Layout
+  seo={{
+    title: `${seoData.meta.title} - Indivirtus`,
+    description: seoData.meta.description,
+    keywords: seoData.meta.keywords,
+    canonical: seoData.meta.canonicalUrl,
+    image: seoData.image.path.src,
+    url: seoData.pageLink,
+    schema: seoData.schema,
+  }}
+>
+  <article class="maxwidth px-4 py-12 sm:px-6">
+    <!-- Header Section -->
+    <header class="mb-12 text-center">
+      <h1 class="mb-4 text-4xl font-bold text-blue-900">Precision Calibration Services</h1>
+      <h2 class="text-2xl font-semibold text-blue-700">NABL-Accredited Lab for Reliable Measurements</h2>
+      <div class="mx-auto my-6 w-24 border-b-2 border-blue-200"></div>
+      <p class="mx-auto max-w-3xl text-lg text-gray-600">
+        Ensuring accurate thermal, electrical, mechanical, pressure, mass, and volume measurements with full
+        traceability for regulatory compliance.
+      </p>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="mb-16 rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+      <div class="prose max-w-none">
+        <p>
+          In industries where precision is non-negotiable—pharmaceuticals, automotive, aerospace, oil & gas, and
+          manufacturing—accurate measurements are critical. A <strong>NABL-accredited calibration lab</strong> ensures that
+          your instruments deliver reliable, traceable, and compliant results.
+        </p>
+        <p>
+          Our <strong>NABL-accredited calibration services</strong> cover <strong
+            >thermal, electrical, mechanical, pressure, mass, and volume</strong
+          > measurements, adhering to <strong>international standards</strong> such as <strong>ISO/IEC 17025</strong>.
+          Each calibrated instrument comes with a <strong>detailed calibration certificate</strong>, ensuring full
+          traceability for <strong>regulatory compliance, quality audits, and process optimization</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Why Choose NABL Section -->
+    <section class="mb-16">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Why Choose an NABL-Accredited Calibration Lab?</h2>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-lg border-t-4 border-blue-500 bg-white p-6 shadow-md">
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Ensures Measurement Accuracy</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Minimizes errors in critical processes</li>
+            <li>Reduces risks of product defects</li>
+          </ul>
+        </div>
+
+        <div class="rounded-lg border-t-4 border-green-500 bg-white p-6 shadow-md">
+          <h3 class="mb-3 text-xl font-semibold text-green-700">Regulatory Compliance</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Meets ISO, GMP, FDA requirements</li>
+            <li>Required for quality audits</li>
+          </ul>
+        </div>
+
+        <div class="rounded-lg border-t-4 border-purple-500 bg-white p-6 shadow-md">
+          <h3 class="mb-3 text-xl font-semibold text-purple-700">Full Traceability</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Certificates with measurement uncertainty</li>
+            <li>Traceable to NIST/BIPM standards</li>
+          </ul>
+        </div>
+
+        <div class="rounded-lg border-t-4 border-orange-500 bg-white p-6 shadow-md">
+          <h3 class="mb-3 text-xl font-semibold text-orange-700">Reduces Costs</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Prevents equipment failures</li>
+            <li>Optimizes maintenance schedules</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="mb-16">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Our NABL-Accredited Calibration Services</h2>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Thermal -->
+        <div class="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6v6l4 2m5-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Thermal Calibration</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Thermocouples & RTDs</li>
+            <li>IR thermometers</li>
+            <li>Furnaces & ovens</li>
+          </ul>
+        </div>
+
+        <!-- Electrical -->
+        <div class="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-green-700">Electrical Calibration</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Multimeters</li>
+            <li>Oscilloscopes</li>
+            <li>Insulation testers</li>
+          </ul>
+        </div>
+
+        <!-- Mechanical -->
+        <div class="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
+            <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-purple-700">Mechanical Calibration</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Micrometers</li>
+            <li>Torque wrenches</li>
+            <li>Hardness testers</li>
+          </ul>
+        </div>
+
+        <!-- Pressure -->
+        <div class="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-red-700">Pressure Calibration</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Pressure gauges</li>
+            <li>Transmitters</li>
+            <li>Vacuum pumps</li>
+          </ul>
+        </div>
+
+        <!-- Mass -->
+        <div class="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100">
+            <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-yellow-700">Mass Calibration</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Weighing scales</li>
+            <li>Balances</li>
+            <li>Load cells</li>
+          </ul>
+        </div>
+
+        <!-- Volume -->
+        <div class="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-100">
+            <svg class="h-6 w-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-xl font-semibold text-cyan-700">Volume Calibration</h3>
+          <ul class="list-disc space-y-1 pl-5 text-gray-700">
+            <li>Pipettes</li>
+            <li>Burettes</li>
+            <li>Flow meters</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="mb-16 rounded-xl bg-blue-50 p-8">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Our Calibration Process</h2>
+
+      <div class="grid gap-6 md:grid-cols-4">
+        <div class="text-center">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
+            <span class="text-2xl font-bold text-blue-700">1</span>
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-blue-700">Assessment</h3>
+          <p class="text-gray-700">Identify instruments & requirements</p>
+        </div>
+
+        <div class="text-center">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+            <span class="text-2xl font-bold text-green-700">2</span>
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-green-700">Precision Calibration</h3>
+          <p class="text-gray-700">Using master equipment</p>
+        </div>
+
+        <div class="text-center">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-100">
+            <span class="text-2xl font-bold text-purple-700">3</span>
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-purple-700">Documentation</h3>
+          <p class="text-gray-700">NABL-accredited certificate</p>
+        </div>
+
+        <div class="text-center">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange-100">
+            <span class="text-2xl font-bold text-orange-700">4</span>
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-orange-700">Support</h3>
+          <p class="text-gray-700">Recalibration recommendations</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="mb-16">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Industries We Serve</h2>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-lg border-l-4 border-blue-500 bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-blue-700">Pharmaceuticals</h3>
+          <p class="text-gray-700">GMP, FDA 21 CFR Part 11 compliance for lab equipment</p>
+        </div>
+
+        <div class="rounded-lg border-l-4 border-green-500 bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-green-700">Automotive</h3>
+          <p class="text-gray-700">IATF 16949 standards for torque tools</p>
+        </div>
+
+        <div class="rounded-lg border-l-4 border-purple-500 bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-purple-700">Oil & Gas</h3>
+          <p class="text-gray-700">Safety-critical pressure valve calibration</p>
+        </div>
+
+        <div class="rounded-lg border-l-4 border-red-500 bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-red-700">Food & Beverage</h3>
+          <p class="text-gray-700">Hygienic measurements for processing</p>
+        </div>
+
+        <div class="rounded-lg border-l-4 border-yellow-500 bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-yellow-700">Aerospace</h3>
+          <p class="text-gray-700">AS9100 compliant instrumentation</p>
+        </div>
+
+        <div class="rounded-lg border-l-4 border-cyan-500 bg-white p-6 shadow-sm">
+          <h3 class="mb-3 text-xl font-semibold text-cyan-700">Research Labs</h3>
+          <p class="text-gray-700">Precision calibration for analytical instruments</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="bg-primary-light mb-16 rounded-xl p-8 text-white">
+      <h2 class="mb-8 text-center text-3xl font-bold">Benefits of Our NABL-Accredited Calibration</h2>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Globally Recognized Certificates</h3>
+            <p class="text-blue-100">Accepted by regulatory bodies worldwide</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Reduced Compliance Risks</h3>
+            <p class="text-blue-100">Avoid penalties and non-conformities</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Enhanced Equipment Lifespan</h3>
+            <p class="text-blue-100">Regular calibration prevents wear & tear</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <svg
+            class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h3 class="mb-2 text-xl font-semibold">Improved Process Efficiency</h3>
+            <p class="text-blue-100">Minimizes measurement errors</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mb-16">
+      <h2 class="mb-8 text-center text-3xl font-bold text-blue-800">Frequently Asked Questions</h2>
+
+      <div class="overflow-hidden rounded-lg bg-white shadow-md">
+        <div class="border-b border-gray-200 p-6">
+          <h3 class="mb-2 text-lg font-semibold text-blue-700">How often should instruments be calibrated?</h3>
+          <p class="text-gray-700">Depends on usage and industry standards (typically 6-12 months).</p>
+        </div>
+
+        <div class="border-b border-gray-200 p-6">
+          <h3 class="mb-2 text-lg font-semibold text-blue-700">
+            What's the difference between NABL and ISO calibration?
+          </h3>
+          <p class="text-gray-700">NABL accreditation confirms compliance with ISO/IEC 17025, adding credibility.</p>
+        </div>
+
+        <div class="border-b border-gray-200 p-6">
+          <h3 class="mb-2 text-lg font-semibold text-blue-700">Do you provide on-site calibration?</h3>
+          <p class="text-gray-700">Yes, we offer mobile calibration services for fixed equipment.</p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="mb-2 text-lg font-semibold text-blue-700">Are your certificates audit-ready?</h3>
+          <p class="text-gray-700">Yes, we provide digital certificates with full documentation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="text-center">
+      <div class="inline-block max-w-2xl rounded-xl border-2 border-blue-200 bg-blue-50 p-8">
+        <h3 class="mb-4 text-2xl font-bold text-blue-800">Need Reliable Calibration Services?</h3>
+        <p class="mb-6 text-lg text-gray-700">
+          Ensure your measurements are traceable, accurate, and audit-ready with our NABL-accredited calibration.
+        </p>
+        <a href="/contact-us" class="button"> Request a Quote </a>
+      </div>
+    </section>
+  </article>
+</Layout>

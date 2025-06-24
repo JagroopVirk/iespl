@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import '../styles/global.css';
+
+import ResourceGrid from '../components/resourses/ResourceGrid.astro';
+
+// Importing the default SEO and location schema
+// import { servicesPageSeo } from "../data/js/siteSeo.js";
+import { allServicesSchema } from '../data/js/seo/servicesSchemaSEO.js';
+
+//  seo={{ ...servicesPageSeo, canonical: servicesPageSeo.url, servicesSchema: allServicesSchema}}
+---
+
+<Layout seo={{ servicesSchema: allServicesSchema }}>
+  <ResourceGrid />
+</Layout>
+
+style

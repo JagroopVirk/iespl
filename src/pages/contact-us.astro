@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import ContactForm from '../components/contact/ContactForm.astro';
+import GoogleMap from '../components/contact/GoogleMap.astro';
+import '../styles/global.css';
+
+// Importing the default SEO and location schema
+// import { servicesPageSeo } from "../data/js/siteSeo.js";
+import { allServicesSchema } from '../data/js/seo/servicesSchemaSEO.js';
+
+//  seo={{ ...servicesPageSeo, canonical: servicesPageSeo.url, servicesSchema: allServicesSchema}}
+---
+
+<Layout seo={{ servicesSchema: allServicesSchema }}>
+  <section class="section">
+    <div class="maxwidth flex flex-col gap-8 p-10 md:flex-row-reverse">
+      <ContactForm />
+      <GoogleMap />
+    </div>
+  </section>
+</Layout>

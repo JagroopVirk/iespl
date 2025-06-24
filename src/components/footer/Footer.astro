@@ -1,0 +1,201 @@
+---
+import offices from '../../data/js/offices.js';
+
+// Importing the GoTopBtn component for the "Back to Top" button
+import GoTopBtn from '@/components/other/GoTopBtn.astro';
+
+import Social from './SocialMedia.astro';
+
+// Importing React Icons
+import { FaLocationDot, FaPhone, FaEnvelope } from 'react-icons/fa6';
+
+// Importing the SetMarginTop component for setting margin top
+import SetMarginTop from '../extras/SetMarginTop.astro';
+---
+
+<footer class="footer px-6 pt-8 pb-4">
+  {/* Upper Section */}
+  <div>
+    <h2>Our Global Offices</h2>
+    <div class="addDiv maxwidth mx-auto grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+      {
+        offices.map((office) => (
+          <div>
+            <h3 class="officeCountry mb-2 text-center">{office.location}</h3>
+            <div class="mb-2 flex">
+              <div class="footerIcon text-lg">
+                <FaLocationDot />
+              </div>
+              <a class="addDetails" href={'http://maps.google.com/?q=' + office.address} target={'_blank'}>
+                {office.address}
+              </a>
+            </div>
+
+            <div class="mb-2 flex">
+              <div class="footerIcon text-lg">
+                <FaPhone />
+              </div>
+              <div class="flex flex-col xl:flex-row">
+                {office.phone.map((element) => (
+                  <a class="addDetails" href={`tel:${element}`}>
+                    {element}
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div class="mb-2 flex">
+              <div class="footerIcon text-lg">
+                <FaEnvelope />
+              </div>
+              <div class="flex flex-col xl:flex-row">
+                {office.email.map((element) => (
+                  <a class="addDetails" href={`mailto:${element}`}>
+                    {element}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Social media links */}
+    <Social />
+
+    <div class="footerCopyright text-center">
+      &copy; {new Date().getFullYear()} Indivirtus Healthcare Services Pvt. Ltd. All rights reserved.
+    </div>
+
+    {
+      /* <!-- Lower Section -->
+  <div
+    class="border-t border-gray-700 pt-12 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto"
+  >
+    <!-- Company Info -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4">About Our Company</h3>
+      <p class="text-sm text-gray-400">
+        We are a leading global tech company offering innovative solutions in
+        web development, cloud hosting, and digital marketing. Our mission is to
+        empower businesses with cutting-edge technologies.
+      </p>
+    </div>
+
+    <!-- Services -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4">Our Services</h3>
+      <ul class="space-y-2">
+        {
+          footerData.services.map((service) => (
+            <li class="text-sm text-gray-300 hover:text-white cursor-pointer">
+              {service}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    {
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+      <ul class="space-y-2">
+        {
+          footerData.quickLinks.map((link) => (
+            <li class="text-sm text-gray-300 hover:text-white cursor-pointer">
+              {link}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    } */
+    }
+  </div>
+  <GoTopBtn />
+  <SetMarginTop />
+
+  <style>
+    @reference 'tailwindcss';
+
+    .footer {
+      @apply relative;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+
+      & h2 {
+        @apply relative z-2 mb-10 text-center;
+        color: var(--color-primary);
+      }
+
+      &:after {
+        @apply absolute top-0 px-6 left-1/2 -translate-x-1/2 h-24 w-82 rounded-b-xl;
+        background-color: var(--color-footer-box);
+        content: '';
+      }
+      &:before {
+        @apply absolute z-1 top-0 px-6 left-1/2 -translate-x-1/2 h-4 w-60 rounded-t-xl;
+        box-shadow:
+          -300.6Q 0Q var(--color-primary),
+          -280Q 0Q var(--color-footer-box),
+          300.6Q 0Q var(--color-primary),
+          280Q 0Q var(--color-footer-box);
+        background-color: transparent;
+        content: '';
+      }
+    }
+
+    .officeCountry {
+      color: var(--color-secondaryOrange);
+    }
+
+    .addDetails {
+      @apply ml-1.5;
+      color: var(--color-white);
+    }
+
+    .footerIcon {
+      @apply align-middle relative;
+      color: var(--color-white);
+
+      svg {
+        @apply relative top-1/2 -translate-1/2;
+      }
+    }
+
+    .addDiv > div {
+      &:nth-child(1) {
+        @apply md:hidden;
+      }
+      &:nth-child(2) {
+        @apply md:hidden;
+      }
+      &:nth-child(3) {
+        @apply hidden md:block;
+      }
+      &:nth-child(4) {
+        @apply hidden md:block;
+      }
+    }
+
+    .footerCopyright {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      overflow: hidden;
+      color: rgb(from var(--color-white) r g b / 0.7);
+
+      &:before {
+        display: block;
+        position: absolute;
+        left: -10%;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+        background-color: var(--color-secondaryOrange);
+        width: 110%;
+        height: 1px;
+        content: '';
+      }
+    }
+  </style>
+</footer>

@@ -1,0 +1,26 @@
+---
+const { setStyle } = Astro.props;
+
+import { services } from '../../data/js/servicesGrid.js';
+---
+
+<section class="section" style={`background: ${setStyle}`}>
+  <div class="maxwidth flex flex-col items-center justify-center gap-10">
+    <h2>Comprehensive <span class="halfHeading">Service Offerings</span></h2>
+    <div class="flex flex-wrap justify-center gap-25 p-6">
+      {
+        services.map((service) => (
+          <a
+            href={service.link}
+            class={`block aspect-square w-[140px] rotate-45 transform bg-gradient-to-br sm:w-[140px] md:w-[180px] ${service.color} rounded-[20%] shadow-md transition-transform duration-300 hover:scale-110 hover:shadow-xl`}
+          >
+            <div class="flex h-full w-full -rotate-45 items-center justify-center px-2 text-center text-sm font-bold whitespace-pre-line text-black">
+              <span>{service.title}</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+    {/* //TODO: colors and fond size through variables */}
+  </div>
+</section>

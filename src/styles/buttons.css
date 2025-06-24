@@ -1,0 +1,57 @@
+/* button */
+.button {
+  @apply px-4 py-2 rounded-lg transition duration-200 cursor-pointer relative text-center text-lg font-medium;
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+
+  /* &:after {
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    transform: translate(0px, 0px);
+    opacity: 0.3;
+    z-index: -1;
+    transition: transform 0.2s ease-out;
+    border-radius: 8px;
+    background-color: var(--color-button-bg);
+    width: 100%;
+    height: 100%;
+    content: '';
+  }
+
+  &:hover {
+    &::after {
+      transform: translate(8px, 8px);
+    }
+  } */
+
+  &:hover {
+    @apply shadow-lg;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+  }
+}
+
+.buttonSimple {
+  @apply py-2 pr-2 cursor-pointer text-xl font-medium max-w-fit;
+  transition: 0.5s all ease 0s;
+  -webkit-transition: 0.5s all ease 0s;
+  -moz-transition: 0.5s all ease 0s;
+  -ms-transition: 0.5s all ease 0s;
+  color: var(--color-primary);
+
+  &:hover {
+    @apply origin-left;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 0.5s all ease 0s;
+    -webkit-transition: 0.5s all ease 0s;
+    -moz-transition: 0.5s all ease 0s;
+    -ms-transition: 0.5s all ease 0s;
+  }
+}

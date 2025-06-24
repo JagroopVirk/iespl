@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import '../styles/global.css';
+
+// Importing the SEO and location schema
+import { aboutPageSeo } from '../data/js/seo/siteSeo.js';
+import { allServicesSchema } from '../data/js/seo/servicesSchemaSEO.js';
+---
+
+<Layout seo={{ ...aboutPageSeo, canonical: aboutPageSeo.url, servicesSchema: allServicesSchema }}>
+  <section class="flex min-h-[60%] items-center justify-center">
+    <div class="text-center">
+      <h1 class="font-extrabold">404</h1>
+      <p class="mt-4 font-semibold">Oops! Page not found.</p>
+      <p class="mt-2 mb-6">The page you're looking for doesn't exist or has been moved.</p>
+      <a href="/" class="button"> Go back to Home </a>
+    </div>
+  </section>
+</Layout>

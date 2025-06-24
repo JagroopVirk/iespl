@@ -1,0 +1,107 @@
+---
+
+---
+
+<section class="px-6 py-16 md:px-12 lg:px-24">
+  <div class="mx-auto max-w-5xl">
+    <h2 class="mb-10 text-center text-4xl font-bold text-gray-800">Who we are?</h2>
+    <div class="text-lg text-gray-700">
+      <div
+        class="mb-20 translate-y-10 rounded-2xl bg-gradient-to-b from-white to-gray-100 p-8 opacity-0 transition-all duration-700 ease-in-out will-change-transform"
+        data-scroll
+      >
+        <p>
+          In 2018, inside a single-room office tucked away in a modest corner of the city, two determined
+          professionals—Dr. Upendra Jain and Ms. Veena Kumari—laid the foundation of what would become Indivirtus
+          Healthcare Services. There were no lavish resources, no financial safety nets, just a bold vision and an
+          unwavering belief in the power of expertise and ethical consulting. Long hours were spent huddled over medical
+          data, poring through regulations, and crafting reports that adhered not only to the letter of the law but also
+          to the spirit of patient safety and industry integrity. From the very beginning, Indivirtus was not just
+          another healthcare consultancy. It was a dream to bring world-class toxicological and regulatory insight to
+          every corner of the pharmaceutical industry—one client, one report, one breakthrough at a time.
+        </p>
+      </div>
+
+      <div
+        class="mb-20 translate-y-10 rounded-2xl bg-gradient-to-b from-gray-100 to-gray-200 p-8 opacity-0 transition-all duration-700 ease-in-out will-change-transform"
+        data-scroll
+      >
+        <p>
+          The company’s early days were defined by its specialization in Toxicological Risk Assessment. At a time when
+          regulatory landscapes were becoming increasingly complex and demanding, Indivirtus stood out by offering
+          reports that were not only technically precise but also comprehensible and actionable. This rare combination
+          of scientific depth and client-focused clarity helped Indivirtus quickly gain a loyal client base. From
+          calculating Permitted Daily Exposure (PDE) limits to ensuring adherence to EMA and ICH guidelines, each
+          assessment became a cornerstone of client trust. And slowly, that trust transformed into referrals.
+          Pharmaceutical manufacturers who had long struggled with regulatory complexities now had a partner who not
+          only understood their pain points but also offered reliable, timely solutions with integrity.
+        </p>
+      </div>
+
+      <div
+        class="mb-20 translate-y-10 rounded-2xl bg-gradient-to-b from-gray-200 to-gray-300 p-8 opacity-0 transition-all duration-700 ease-in-out will-change-transform"
+        data-scroll
+      >
+        <p>
+          Growth was never rushed—but it was inevitable. With each new client came a deeper understanding of the
+          challenges faced by the industry. The demand wasn’t limited to toxicology anymore. Clients began to seek
+          guidance in regulatory dossier submissions, genotoxic impurity evaluations, and even calibration and clinical
+          trial support. And so, Indivirtus responded—expanding its capabilities in a thoughtful, strategic manner.
+          Departments were built one by one, not for the sake of expansion, but because the need for those services was
+          real and pressing. Pharmacovigilance soon became a key offering, with services ranging from PSMF management to
+          global literature monitoring. Calibration labs were set up under NABL accreditation, and training sessions
+          were organized to empower clients with knowledge on GMP, cleaning validation, and quality systems. All of this
+          unfolded organically—driven by the company's foundational belief: solve real problems, and growth will follow.
+        </p>
+      </div>
+
+      <div
+        class="mb-20 translate-y-10 rounded-2xl bg-gradient-to-b from-gray-300 to-gray-400 p-8 opacity-0 transition-all duration-700 ease-in-out will-change-transform"
+        data-scroll
+      >
+        <p>
+          By 2024, Indivirtus had evolved from a small consultancy into a dynamic, international organization. With over
+          100 employees, spread across seven global offices, and structured as a group of five interconnected companies,
+          the vision had transformed into a robust enterprise. More than 500 clients across 45+ countries had now
+          experienced the Indivirtus promise. Our teams had participated in countless regulatory submissions, helped
+          streamline product approvals, facilitated technology transfers, and ensured compliance in clinical
+          environments around the world. Through all of this, what remained constant was the company’s deep-rooted
+          commitment to precision, transparency, and care. Indivirtus didn’t just grow in size—it grew in depth,
+          capability, and trust.
+        </p>
+      </div>
+
+      <div
+        class="mb-20 translate-y-10 rounded-2xl bg-gradient-to-b from-gray-400 to-white p-8 opacity-0 transition-all duration-700 ease-in-out will-change-transform"
+        data-scroll
+      >
+        <p>
+          And yet, despite all the milestones, awards, and recognitions, Indivirtus continues to see itself as a company
+          on a journey. A journey fueled by curiosity, compassion, and courage. We remain as committed today as we were
+          in 2018—to offering scientific excellence with a human touch. To every new client, every new challenge, and
+          every new regulation, we bring the same sense of responsibility and dedication. Because for us, success isn't
+          defined by the number of clients or countries—but by the lives improved, the quality standards elevated, and
+          the trust we've built. This is our story. And it’s only just begun.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          entry.target.classList.remove('opacity-0', 'translate-y-10');
+        }
+      });
+    },
+    {
+      threshold: 0.3,
+    },
+  );
+
+  document.querySelectorAll('[data-scroll]').forEach((el) => observer.observe(el));
+</script>

@@ -1,0 +1,94 @@
+---
+import {
+  prefooterLogo,
+  domesticOffices,
+  domesticContacts,
+  internationalOffices,
+} from "../../data/js/footerIHS.js";
+---
+
+<div class="footer-nav-widgets-wrapper header-footer-group bg-gray-900 text-white py-12">
+  <div class="footer-inner section-inner max-w-7xl mx-auto px-4">
+
+    <!-- Prefooter with Logo -->
+    <div class="prefooter-section mb-12">
+      <div class="flex justify-center">
+        <img src={prefooterLogo} alt="Indivirtus Logo" class="h-16" />
+      </div>
+    </div>
+
+    <!-- Footer Widgets -->
+    <aside class="footer-widgets-outer-wrapper">
+      <div class="footer-widgets-wrapper grid md:grid-cols-2 gap-12">
+
+        <!-- Domestic Offices -->
+        <div class="footer-widgets column-one">
+          <div class="widget-content">
+            <h2 class="text-xl font-bold mb-6">Domestic Offices</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {domesticOffices.map((office) => (
+                <div>
+                  <h3 class="font-semibold mb-2">{office.title}</h3>
+                  <p class="text-sm space-y-1">
+                    {office.address.map((line) => (
+                      <div>{line}</div>
+                    ))}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div class="mt-6">
+              <p class="flex items-center gap-2 text-sm mb-2">
+                <img src="https://www.indivirtus.com/wp-content/uploads/2022/06/phone-icon-1.png" alt="Phone Icon" class="h-4 w-4" />
+                {domesticContacts.phones.map((phone) => (
+                  <a href={`tel:${phone.replace(/\s+/g, "")}`} class="hover:text-primary-400 mr-4">{phone}</a>
+                ))}
+              </p>
+              <p class="flex items-center gap-2 text-sm">
+                <img src="https://www.indivirtus.com/wp-content/uploads/2022/06/mail-icon.png" alt="Email Icon" class="h-4 w-4" />
+                <a href={`mailto:${domesticContacts.email}`} class="hover:text-primary-400">{domesticContacts.email}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- International Offices -->
+        <div class="footer-widgets column-two">
+          <div class="widget-content">
+            <h2 class="text-xl font-bold mb-6">International Offices</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {internationalOffices.map((office) => (
+                <div>
+                  <h3 class="font-semibold mb-2">{office.country}</h3>
+                  <p class="text-sm space-y-1 mb-2">
+                    {office.address.map((line) => (
+                      <div>{line}</div>
+                    ))}
+                  </p>
+                  {office.phone && (
+                    <p class="flex items-center gap-2 text-sm mb-1">
+                      <img src="https://www.indivirtus.com/wp-content/uploads/2022/06/phone-icon-1.png" alt="Phone Icon" class="h-4 w-4" />
+                      <a href={`tel:${office.phone.replace(/\s+/g, "")}`} class="hover:text-primary-400">{office.phone}</a>
+                    </p>
+                  )}
+                  {office.email && (
+                    <p class="flex items-center gap-2 text-sm">
+                      <img src="https://www.indivirtus.com/wp-content/uploads/2022/06/mail-icon.png" alt="Email Icon" class="h-4 w-4" />
+                      <a href={`mailto:${office.email}`} class="hover:text-primary-400">{office.email}</a>
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+</div>

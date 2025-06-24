@@ -1,0 +1,66 @@
+---
+import FormAlert from '../other/FormAlert.astro';
+---
+
+<div class="formDiv w-full md:w-1/2 pxy-8 flex flex-col justify-center">
+
+{/* Alert Message */}
+<FormAlert />
+   
+{/* Form */}
+<h2 class="text-center mb-6">Have a Question? <span class="halfHeading">Let’s Talk</span></h2>
+    <form 
+    id="contactForm"
+      action="../sendmail.php" 
+      method="POST"
+      class="flex flex-col gap-4"
+    >
+      <div class="mb-4">
+        <label for="name" class="block mb-1">Name<span class="text-red-500">*</span></label>
+        <input type="text" id="name" name="name" placeholder="Full Name" required class="w-full border p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-input-focus" />
+      </div>
+      
+      <div class="mb-4">
+        <label for="email" class="block mb-1">Email<span class="text-red-500">*</span></label>
+        <input type="email" id="email" name="email" placeholder="Yours email address" required class="w-full border p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-input-focus" />
+      </div>
+      
+      <div class="mb-4">
+        <label for="contact" class="block mb-1">Contact</label>
+        <input type="text" id="contact" name="contact" placeholder="Your contact number" class="w-full border p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-input-focus" />
+      </div>
+      
+      <div class="mb-4">
+        <label for="message" class="block mb-1">Message<span class="text-red-500">*</span></label>
+        <textarea id="message" name="message" placeholder="Write full query" required class="w-full border p-2 rounded-md h-32 focus:outline-none focus:ring-1 focus:ring-input-focus "></textarea>
+      </div>
+
+      <div class="mb-4" style="display:none">
+        <label for="website" class="block mb-1">Website</label>
+        <input type="text" id="website" name="website" placeholder="website" class="border" />
+      </div>
+
+      <button type="submit" class="button">Send Message</button>
+    </form>
+  </div>
+
+<style>
+{/* Text & color styling  */}
+@reference "tailwindcss";
+
+h2 {
+  @apply tracking-wider;
+  color: var(--color-black);
+}
+
+label {
+  @apply text-base font-medium;
+  color: var(--color-gray);
+}
+
+input, textarea {
+  @apply text-base;
+  color: var(--color-gray);
+  border-color: var(--color-input-border);
+}
+</style>

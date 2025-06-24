@@ -1,0 +1,132 @@
+---
+import worldMap from '../../assets/world_map.svg';
+import Picture from 'astro/components/Picture.astro';
+
+import { useEffect } from 'preact/hooks';
+
+function latLngToPercent(lat, lng) {
+  const x = ((lng + 180) / 360) * 100;
+  const y = ((90 - lat) / 180) * 100;
+  return { top: `${y}%`, left: `${x}%` };
+}
+
+const rawLocations = [
+  {
+    name: 'India',
+    lat: 28.6139,
+    lng: 77.209,
+    city: 'Mohali, Punjab',
+    address: 'Taj Plaza, TDI City, Sector-118',
+  },
+  {
+    name: 'UAE',
+    lat: 25.276987,
+    lng: 55.296249,
+    city: 'Dubai',
+    address: 'Saleh Bin Lahej 341, Al Barsha 1',
+  },
+  {
+    name: 'USA',
+    lat: 42.4806,
+    lng: -83.4755,
+    city: 'Novi, MI',
+    address: '23950 Mondavi Drive',
+  },
+  {
+    name: 'UK',
+    lat: 51.5217,
+    lng: -0.7192,
+    city: 'Berkshire',
+    address: '16 Bissley Drive, Maidenhead',
+  },
+  {
+    name: 'Canada',
+    lat: 43.7315,
+    lng: -79.7624,
+    city: 'Brampton, ON',
+    address: '2 County Court Blvd',
+  },
+  {
+    name: 'Egypt',
+    lat: 30.1122,
+    lng: 31.3469,
+    city: 'Cairo',
+    address: '5 El Nasr St, Sheraton Heliopolis',
+  },
+];
+
+const locations = rawLocations.map((loc, index) => ({
+  ...loc,
+  ...latLngToPercent(loc.lat, loc.lng),
+  id: index,
+}));
+---
+
+<style>
+  .tooltip::after {
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: 4px;
+    background-color: #000;
+    padding: 2px 6px;
+    pointer-events: none;
+    content: attr(data-name);
+    color: #fff;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  .tooltip:hover::after {
+    opacity: 1;
+  }
+</style>
+
+<section class="section overflow-hidden bg-[#f0fdfa]">
+  <div class="mx-auto max-w-6xl px-4 text-center">
+    <h2 class="mb-4 text-3xl font-bold text-[#01a69e]">Our Global Footprint</h2>
+
+    <!-- Map with fixed aspect ratio -->
+    <div class="relative mx-auto aspect-[2/1] w-full max-w-5xl">
+      <Picture src={worldMap} alt="World map" class="absolute inset-0 z-0 h-full w-full object-contain" />
+
+      <!-- Pins -->
+      {
+        locations.map((loc) => (
+          <button
+            key={loc.id}
+            type="button"
+            class="tooltip absolute z-10 -translate-x-1/2 -translate-y-1/2 transform"
+            data-name={loc.name}
+            style={`top: ${loc.top}; left: ${loc.left};`}
+            onClick={() => {
+              const modal = document.getElementById(`modal-${loc.id}`);
+              modal?.showModal();
+            }}
+          >
+            <span class="absolute h-full w-full animate-ping rounded-full bg-[#f5690c] opacity-75" />
+            <span class="relative inline-flex h-3 w-3 rounded-full border-2 border-white bg-[#f5690c] shadow-md" />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Modals -->
+  {
+    locations.map((loc) => (
+      <dialog id={`modal-${loc.id}`} class="w-full max-w-md rounded-xl bg-white p-4 shadow-lg backdrop:bg-black/40">
+        <div class="mb-2 flex items-start justify-between">
+          <h3 class="text-xl font-semibold text-[#01a69e]">{loc.name}</h3>
+          <form method="dialog">
+            <button class="text-xl font-bold text-gray-500 hover:text-red-500">&times;</button>
+          </form>
+        </div>
+        <p class="text-sm font-semibold text-gray-700">{loc.city}</p>
+        <p class="text-sm text-gray-600">{loc.address}</p>
+      </dialog>
+    ))
+  }
+</section>
