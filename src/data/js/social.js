@@ -22,7 +22,7 @@ export default [
     icon: FaInstagram,
   },
   {
-    link: 'https://whatsapp.com/indivirtus',
+    link: 'https://wa.me/9981746990?text=Hi',
     label: 'WhatsApp',
     icon: FaWhatsapp,
   },

@@ -1,0 +1,11 @@
+---
+// Importing card
+import ResourceCard from './DownloadCard.astro';
+
+// Importing data
+import { downloads } from '../../data/js/downloads.js';
+---
+
+<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+  {downloads.map((file) => <ResourceCard title={file.title} fileUrl={file.fileUrl} aria={file.aria} />)}
+</div>

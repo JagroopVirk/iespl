@@ -3,13 +3,13 @@
 ---
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
     //select header div for calculating height
-    const headerDiv = document.getElementById("header-div");
+    const headerDiv = document.getElementById('header-div');
     //select mobile menu div
-    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenu = document.getElementById('mobile-menu');
     // select header div
-    const header = document.getElementById("site-header");
+    const header = document.getElementById('site-header');
     // select next sibling of header div
     const nextSibling = header?.nextElementSibling;
 
@@ -24,6 +24,14 @@
     // set margin top of next sibling of header div to header height
     if (nextSibling) {
       nextSibling.style.marginTop = `${headerHeight}px`;
+    }
+
+    // select bottom empty div
+    const bottomDiv = document.getElementById('bottomSpacing');
+
+    // height
+    if (bottomDiv) {
+      bottomDiv.style.height = `${headerHeight ? headerHeight * 0.4 : 44}px`;
     }
   });
 </script>

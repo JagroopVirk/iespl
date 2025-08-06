@@ -1,0 +1,28 @@
+---
+const listItems = [
+  'Use of botanical Extract (Cownomics technology – Eco Friendly, Sustainable, Nature basedSolution)',
+  'No Mechanical dredging ,No Biological process, No chemicals',
+  '"Eco-dredging," naturally consumes bottom sludge deposits, maintaining the waterbody\'s natural holding capacity and healthy soil capillary links, leading to perennial fresh water.',
+  'Converts water into reducing agent and decomposition process speeds up resulting in oxidation of solids in water',
+  'Increased dissolved O also kills disease borne anaerobic bacteria',
+];
+---
+
+<section class="section flex flex-col items-center justify-center py-10">
+  <!-- Heading -->
+  <div class="maxwidth">
+    <h2 class="mx-auto mb-10 max-w-max rounded-full bg-teal-500 px-6 py-2 text-center text-xl font-semibold text-white">
+      How it works
+    </h2>
+    <ul class="ml-4 list-outside list-disc">
+      {listItems.map((item, idx) => <li class="py-1" set:html={item} />)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  @reference "tailwindcss";
+  h2 {
+    color: white !important;
+  }
+</style>

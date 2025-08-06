@@ -1,0 +1,36 @@
+---
+const features = [
+  { number: 1, text: 'Three step process – Resurrection, Restoration and Rejuvenation', color: 'bg-blue-500' },
+  { number: 2, text: 'In-Situ process – No de-watering', color: 'bg-purple-500' },
+  { number: 3, text: 'Use of 100% botanical extracts', color: 'bg-pink-500' },
+  { number: 4, text: 'No Sludge Removal - Sludge is used as nutrients for aquatic life', color: 'bg-yellow-500' },
+  {
+    number: 5,
+    text: 'One time removal of Floating Weeds, Plastics or other non-degradable items',
+    color: 'bg-orange-500',
+  },
+  { number: 6, text: 'No need to Stop any inlets (Sewage/ Nallah/ Industrial Effluents etc)', color: 'bg-green-500' },
+];
+
+import Picture from 'astro/components/Picture.astro';
+import keyFeatures from '@/assets/key_features.jpg';
+---
+
+<section class="section border-secondary flex flex-col items-center justify-center border-y-8 py-10">
+  <!-- Heading -->
+  <div class="maxwidth">
+    <h2 class="mx-auto mb-10 max-w-max rounded-full bg-teal-500 px-6 py-2 text-center text-xl font-semibold text-white">
+      Key Features
+    </h2>
+    <div class="mx-auto md:w-2/3">
+      <Picture src={keyFeatures} alt="" />
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "tailwindcss";
+  h2 {
+    color: white !important;
+  }
+</style>

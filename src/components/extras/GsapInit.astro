@@ -1,0 +1,30 @@
+---
+//src/components/GsapInit.astro
+import { onMount } from 'astro/jsx-runtime';
+import { animateElements } from '@/utils/animations';
+
+onMount(() => {
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      animateElements(); // Ensure animations run after full render
+    }, 0);
+  });
+});
+---
+
+<!-- This component runs GSAP setup -->{
+  /* <script type="module">
+  import { initScrollAnimations } from '/src/utils/animations.js';
+  document.addEventListener('DOMContentLoaded', initScrollAnimations);
+</script> */
+}
+
+{
+  /* <script type="module">
+  import { initScrollAnimations } from '/src/utils/animations.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initScrollAnimations();
+  });
+</script> */
+}

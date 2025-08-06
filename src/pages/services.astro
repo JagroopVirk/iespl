@@ -1,18 +1,48 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
 
 import ServiceCatalog from '../components/services/ServicesCatalog.astro';
-import '../styles/global.css';
 
 // Importing the default SEO and location schema
-import { servicesPageSeo } from '../data/js/seo/siteSeo.js';
-import { allServicesSchema } from '../data/js/seo/servicesSchemaSEO.js';
+import seoData from '@/data/js/seo/services.js';
+import { allServicesSchema } from '@/data/js/seo/servicesSchemaSEO.js';
 
 import services from '../utils/services.js';
+
+const { meta, faqSchema, gtm, pageLink } = seoData;
 ---
 
-<Layout seo={{ ...servicesPageSeo, canonical: servicesPageSeo.url, servicesSchema: allServicesSchema }}>
-  <main>
-    <ServiceCatalog services={services} />
-  </main>
+<Layout
+  seo={{
+    title: `${meta.title} - Indivirtus`,
+    description: meta.description,
+    keywords: meta.keywords,
+    canonical: meta.canonicalUrl,
+    url: pageLink,
+    faqSchema: faqSchema,
+    ogTags: meta.ogTags,
+    twitterCard: meta.twitterCard,
+    servicesSchema: allServicesSchema,
+  }}
+  gtm={gtm}
+>
+  <section
+    aria-labelledby="services-offerings-heading"
+    aria-describedby="services-offerings-description"
+    class="section"
+  >
+    <div class="maxwidth mx-auto px-4">
+      <h3 class="pageHeading" id="services-offerings-heading">
+        Browse Our <span class="halfHeading">Comprehensive Service Offerings</span>
+      </h3>
+      {/* <ServiceCatalog services={services} /> */}
+    </div>
+  </section>
 </Layout>
+<style>
+  @reference "tailwindcss";
+
+  h1 {
+    @apply mb-8 text-center;
+  }
+</style>

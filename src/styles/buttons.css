@@ -1,11 +1,43 @@
 /* button */
+.button,
+.buttonSimple {
+  @apply py-2 cursor-pointer rounded-lg transition-all max-w-fit;
+}
+
 .button {
-  @apply px-4 py-2 rounded-lg transition duration-200 cursor-pointer relative text-center text-lg font-medium;
+  @apply px-4  duration-200 text-center text-lg font-medium mx-auto hover:scale-105 focus:scale-105;
   border: 2px solid var(--color-primary);
   background-color: var(--color-primary);
   color: var(--color-white);
 
-  /* &:after {
+  &:hover {
+    @apply shadow-lg;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+  }
+}
+
+/* a {
+  @apply w-full;
+} */
+
+.contactBtn {
+  @apply min-w-full;
+}
+
+.buttonSimple {
+  @apply pr-2 text-xl font-medium hover:scale-115 focus:scale-115 hover:origin-left duration-300;
+
+  a {
+    @apply pr-2 text-xl font-medium py-2 rounded-lg max-w-fit focus:ring-secondary;
+  }
+}
+
+/* a {
+  @apply block;
+} */
+
+/* &:after {
     display: block;
     position: absolute;
     top: -2px;
@@ -26,32 +58,3 @@
       transform: translate(8px, 8px);
     }
   } */
-
-  &:hover {
-    @apply shadow-lg;
-    background-color: var(--color-white);
-    color: var(--color-primary);
-  }
-}
-
-.buttonSimple {
-  @apply py-2 pr-2 cursor-pointer text-xl font-medium max-w-fit;
-  transition: 0.5s all ease 0s;
-  -webkit-transition: 0.5s all ease 0s;
-  -moz-transition: 0.5s all ease 0s;
-  -ms-transition: 0.5s all ease 0s;
-  color: var(--color-primary);
-
-  &:hover {
-    @apply origin-left;
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    transform: scale(1.1);
-    transition: 0.5s all ease 0s;
-    -webkit-transition: 0.5s all ease 0s;
-    -moz-transition: 0.5s all ease 0s;
-    -ms-transition: 0.5s all ease 0s;
-  }
-}

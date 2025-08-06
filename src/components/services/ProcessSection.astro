@@ -1,0 +1,24 @@
+---
+const { process } = Astro.props;
+---
+
+{/* Process Section */}
+
+<section aria-labelledby="process-heading" aria-describedby="process-steps" class="mb-12">
+  <h2 id="process-heading" class="mb-6" set:html={process.heading} />
+  <div id="process-steps" class="space-y-6">
+    {
+      process.steps.map((step, index) => (
+        <div key={index} class="flex items-center">
+          <div class="text-primary bg-primary/10 mr-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-2xl font-bold">
+            {index + 1}
+          </div>
+          <div>
+            <h3 class="mb-2" set:html={step.title} />
+            <p set:html={step.description} />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

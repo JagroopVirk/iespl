@@ -1,7 +1,13 @@
 export default [
   {
-    title: 'Indivirtus Healthcare Services',
-    services: ['Toxicological Services', 'Pharmacovigilance', 'MICC', 'CSV and GxP Services'],
+    title: 'Indivirtus EcologicalServices',
+    services: [
+      'Toxicological Services',
+      'Pharmacovigilance',
+      'Greenfield/ Brownfield Projects',
+      'CSV and Calibration',
+      'Regulatory Affairs',
+    ],
     link: 'https://www.indivirtus.com',
     bgColor: 'bg-blue-50',
     textColor: 'text-blue-900',
@@ -47,9 +53,9 @@ export default [
   {
     title: 'Indivirtus Ecological Services',
     services: ['Environmental Risk Assessment', 'Ecotoxicology Studies', 'Biodiversity Compliance'],
-    link: 'https://www.indivirtuseco.com',
+    link: '/services',
     bgColor: 'bg-green-100',
     textColor: 'text-blue-900',
     linkColor: 'text-blue-900 font-semibold underline',
   },
-]
+];

@@ -1,30 +1,39 @@
 ---
-// Props: features = [{ title, description, icon }]
-const { features = [] } = Astro.props;
-const { setStyle } = Astro.props;
+// src\components\home\WhyUs.astro
+const { features = [], setStyle } = Astro.props;
 ---
 
 <section class="section px-6" style={`background: ${setStyle}`}>
   <div class="maxwidth mx-auto text-center">
     <h2 class="mb-10 text-3xl font-bold">Why Choose <span class="halfHeading">Us?</span></h2>
-    <div class="grid grid-cols-1 gap-8 text-left md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-10 text-left md:grid-cols-2 lg:grid-cols-3">
       {
         features.map((item, idx) => (
-          <div class="rounded-2xl bg-gray-50 p-6 shadow transition hover:shadow-md">
-            <div class="mb-4 flex items-start gap-4">
-              <div class="text-primaryBlue flex h-10 w-10 items-center justify-center text-2xl">
+          <div
+            class="bg-primary gsap-animate rounded-2xl p-6 shadow transition hover:shadow-md"
+            data-scroll="true"
+            data-stagger-group="why-choose"
+            data-delay="index"
+            data-ease="expo.out"
+          >
+            <div class="flex items-center gap-1.5 text-3xl">
+              <div class="flex h-10 w-10 items-center text-white">
                 <item.icon />
               </div>
-              <div>
-                <h3 class="">{item.title}</h3>
-                <p class="mt-1">{item.description}</p>
-              </div>
+              <h3 set:html={item.title} />
             </div>
+            <p class="mt-1.5" set:html={item.description} />
           </div>
         ))
       }
     </div>
   </div>
-  {/* TODO: color and size with variables */}
-  {/* TODO: background should be image not color or a little slanted bg */}
 </section>
+
+<style>
+  @reference "tailwindcss";
+  h3,
+  p {
+    @apply text-white;
+  }
+</style>

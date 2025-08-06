@@ -6,29 +6,45 @@ import Testimonials from '../testimonials/Testimonials.jsx';
 import Certifications from './Certifications.astro';
 import WhyUs from './WhyUs.astro';
 import GlobalFootprint from './GlobalFootprint.jsx';
-import ContactForm from '../contact/ContactForm.astro';
-import QR from '../contact/QR.astro';
+import ContactForm from '../contactUs/ContactForm.astro';
+
+import QR from '../contactUs/QR.astro';
 
 //importing data
-import whyUs from '../../data/js/whyUs.js';
+import whyUs from '@/data/js/whyUs.js';
 import AboutShort from '../aboutus/AboutShort.astro';
+import OurTechnologies from './OurTechnologies.astro';
+import KeyFeatures from './KeyFeatures.astro';
+import HowItWorks from './HowItWorks.astro';
+import ScientificOutcome from './ScientificOutcome.astro';
+import MeasurableImpact from './MeasurableImpact.astro';
+import JourneyTillDate from './JourneyTillDate.astro';
+import Awards from './Awards.astro';
 
 const colorPrimaryLight = 'var(--color-primary-light)';
 ---
 
-<main id="main-content">
+<div id="main-content">
   <Hero />
   <Companies setStyle="var(--color-secondary-light)" />
-  <AboutShort />
-  <SerivcesSectionGrid setStyle={colorPrimaryLight} />
-  <WhyUs features={whyUs} />
-  <Testimonials client:load setStyle={colorPrimaryLight} />
-  <GlobalFootprint client:load setStyle="" />
-  <Certifications setStyle={colorPrimaryLight} />
+  {/* <AboutShort /> */}
+  {/* <SerivcesSectionGrid setStyle={colorPrimaryLight} /> */}
+  {/* <WhyUs features={whyUs} setStyle={colorPrimaryLight} /> */}
+  {/* <Testimonials client:load setStyle={colorPrimaryLight} /> */}
+  {/* <GlobalFootprint client:load setStyle="" /> */}
+  {/* <Certifications setStyle={colorPrimaryLight} /> */}
+  <OurTechnologies />
+  <KeyFeatures />
+  <HowItWorks />
+  <ScientificOutcome />
+  <MeasurableImpact />
+  <JourneyTillDate />
+  <Awards />
+
   <section class="section">
     <div class="maxwidth flex flex-col justify-between gap-8 p-10 md:flex-row">
-      <ContactForm />
+      <ContactForm slideDirection="left" />
       <QR />
     </div>
   </section>
-</main>
+</div>

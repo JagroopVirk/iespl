@@ -1,0 +1,27 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+import VisionMissionQuality from '@/components/aboutus/VisionMissionQuality.astro';
+
+// Importing the SEO
+import seoData from '@/data/js/seo/aboutus/visionMissionQuality.js';
+
+const { meta, faqSchema, gtm, pageLink, schema } = seoData;
+---
+
+<Layout
+  seo={{
+    title: `${meta.title} - Indivirtus`,
+    description: meta.description,
+    keywords: meta.keywords,
+    canonical: meta.canonicalUrl,
+    url: pageLink,
+    schema: schema,
+    faqSchema: faqSchema,
+    ogTags: meta.ogTags,
+    twitterCard: meta.twitterCard,
+  }}
+  gtm={gtm}
+>
+  <VisionMissionQuality />
+</Layout>

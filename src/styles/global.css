@@ -1,6 +1,6 @@
-@import './variables.css';
-@import './buttons.css';
-@import './typography.css';
+* {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+}
 
 html,
 body {
@@ -22,8 +22,11 @@ body {
   }
 }
 
+body.preload {
+  opacity: 0;
+}
+
 .maxwidth {
-  margin-inline: auto;
   max-width: clamp(10%, 1348px, 100%);
   @apply px-6 mx-auto;
 }
@@ -32,7 +35,6 @@ body {
   @apply py-10 md:py-15 w-full;
 }
 
-/* footer */
-.addDetails {
-  @apply text-sm;
+footer {
+  transform: none !important;
 }

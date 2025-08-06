@@ -1,0 +1,23 @@
+---
+import Picture from 'astro/components/Picture.astro';
+
+import journey from '@/assets/journey.png';
+---
+
+<section class="section bg-primary-light flex flex-col items-center justify-center py-10">
+  <!-- Heading -->
+  <div class="maxwidth">
+    <h2 class="mx-auto mb-10 max-w-max rounded-full bg-teal-500 px-6 py-2 text-center text-xl font-semibold text-white">
+      Journey Till Date
+    </h2>
+
+    <Picture src={journey} alt="" />
+  </div>
+</section>
+
+<style>
+  @reference "tailwindcss";
+  h2 {
+    color: white !important;
+  }
+</style>

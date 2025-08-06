@@ -1,11 +1,11 @@
 ---
 // Props: navItems (array of navigation items)
-const { navItems } = Astro.props
+const { navItems } = Astro.props;
 
-const currentPath = Astro.url.pathname
+const currentPath = Astro.url.pathname;
 
 function isActive(href) {
-  return href === currentPath
+  return href === currentPath;
 }
 ---
 
@@ -82,11 +82,12 @@ function isActive(href) {
       {
         navItems.map((item, idx) => (
           <li class="group/mobile relative" id={`menuItemLi-${idx}`}>
-            <button
+            <a
               type="button"
               class="menuItem flex w-full items-center justify-between font-medium transition-colors duration-300"
               data-submenu-toggle={`submenu-${idx}`}
               data-parent-id={`menuItemLi-${idx}`}
+              href={item.href != '/services' ? item.href : '#'}
             >
               {item.name}
               {item.submenu && (
@@ -97,7 +98,7 @@ function isActive(href) {
                   ⯆
                 </span>
               )}
-            </button>
+            </a>
 
             {item.submenu && (
               <ul class="mt-2 ml-4 hidden" id={`submenu-${idx}`}>
@@ -234,38 +235,38 @@ function isActive(href) {
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('menu-toggle')
-    const mobileMenu = document.getElementById('mobile-menu')
+    const toggleBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
 
     toggleBtn.addEventListener('click', () => {
       // Slide Mobile Menu
-      mobileMenu.classList.toggle('right-0')
-      mobileMenu.classList.toggle('right-[-100%]')
+      mobileMenu.classList.toggle('right-0');
+      mobileMenu.classList.toggle('right-[-100%]');
 
       // Animate Hamburger into X
-      toggleBtn.classList.toggle('open')
-    })
+      toggleBtn.classList.toggle('open');
+    });
 
     // Handle submenu toggling for mobile
     document.querySelectorAll('[data-submenu-toggle]').forEach((button) => {
       button.addEventListener('click', () => {
-        const submenuId = button.getAttribute('data-submenu-toggle')
-        const parentId = button.getAttribute('data-parent-id')
-        const submenu = document.getElementById(submenuId)
-        const parentLi = document.getElementById(parentId)
+        const submenuId = button.getAttribute('data-submenu-toggle');
+        const parentId = button.getAttribute('data-parent-id');
+        const submenu = document.getElementById(submenuId);
+        const parentLi = document.getElementById(parentId);
 
         if (submenu) {
-          submenu.classList.toggle('hidden')
+          submenu.classList.toggle('hidden');
         }
 
         if (parentLi) {
-          parentLi.classList.toggle('open')
+          parentLi.classList.toggle('open');
         }
-      })
-    })
+      });
+    });
 
     // const quoteButton = document.getElementById('7')
     // quoteButton.classList.add('button')
     // quoteButton.classList.remove('menuItem')
-  })
+  });
 </script>

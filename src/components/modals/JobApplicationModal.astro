@@ -1,0 +1,109 @@
+---
+// src\components\career\JobApplicationModal.astro
+---
+
+<div class="hidden" id="jobApplicationModal" data-astro-modal>
+  <div
+    class="modalBg fixed inset-0 z-[1000] flex items-center justify-center bg-black/30 backdrop-blur-sm"
+    onClick="document.getElementById('jobApplicationModal').classList.add('hidden')"
+  >
+    <div class="relative w-full max-w-md rounded-lg bg-white p-6 shadow-lg" onClick="event.stopPropagation()">
+      <button
+        type="button"
+        class="absolute top-4 right-4 text-2xl text-gray-500 hover:text-gray-700"
+        onClick="document.getElementById('jobApplicationModal').classList.add('hidden')"
+      >
+        &times;
+      </button>
+
+      <h3 id="modalTitle" class="mb-4 text-2xl font-semibold">Apply for</h3>
+
+      <form class="space-y-4" action="../api/sendJobApp.php" method="POST" enctype="multipart/form-data">
+        <!-- Hidden field for job title -->
+        <input type="hidden" id="jobTitleInput" name="jobTitle" />
+        <input type="hidden" id="jobDepartment" name="jobDepartment" />
+
+        <div>
+          <label class="mb-1 block text-base font-medium">
+            Name<span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            required
+            class="w-full rounded-md border p-2 focus:ring-1 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label class="mb-1 block text-base font-medium">
+            Email<span class="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Your email address"
+            required
+            class="w-full rounded-md border p-2 focus:ring-1 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label class="mb-1 block text-base font-medium">Phone<span class="text-red-500">*</span></label>
+          <input
+            type="text"
+            name="contact"
+            placeholder="Your phone number"
+            required
+            class="w-full rounded-md border p-2 focus:ring-1 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label class="mb-1 block text-base font-medium">Upload Resume<span class="text-red-500">*</span></label>
+          <input
+            type="file"
+            name="resume"
+            accept=".pdf,.doc,.docx"
+            required
+            class="w-full rounded-md border p-2 focus:ring-1 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label class="mb-1 block text-base font-medium"> Cover Letter </label>
+          <textarea
+            name="message"
+            placeholder="Write cover letter"
+            required
+            class="h-32 w-full rounded-md border p-2 focus:ring-1 focus:outline-none"></textarea>
+        </div>
+
+        {/* Honeypot  */}
+        <div class="hidden">
+          <label>Website</label>
+          <input type="text" name="website" placeholder="website" />
+        </div>
+
+        <button type="submit" class="button contactBtn"> Submit Application </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  @reference "tailwindcss";
+
+  label {
+    @apply text-base font-medium;
+    color: var(--color-gray);
+  }
+
+  input,
+  textarea {
+    @apply text-base;
+    border-color: var(--color-input-border);
+    color: var(--color-gray);
+  }
+</style>

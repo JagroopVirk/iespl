@@ -1,13 +1,38 @@
 ---
-import Layout from '../layouts/Layout.astro';
+// src\pages\career.astro
 
-import '../styles/global.css';
+import Layout from '@/layouts/Layout.astro';
 
-// Importing the default SEO and location schema
-// import { servicesPageSeo } from "../data/js/siteSeo.js";
-import { allServicesSchema } from '../data/js/seo/servicesSchemaSEO.js';
+import JobCard from '@/components/career/JobCard.astro';
 
-//  seo={{ ...servicesPageSeo, canonical: servicesPageSeo.url, servicesSchema: allServicesSchema}}
+/// Importing the SEO and location schema
+import seoData from '@/data/js/seo/career.js';
+
+import jobs from '@/data/js/jobOpenings';
+
+const { meta, faqSchema, gtm, pageLink, schema } = seoData;
 ---
 
-<Layout seo={{ servicesSchema: allServicesSchema }} />
+<Layout
+  seo={{
+    title: `${meta.title} - Indivirtus`,
+    description: meta.description,
+    keywords: meta.keywords,
+    canonical: meta.canonicalUrl,
+    url: pageLink,
+    schema: schema,
+    faqSchema: faqSchema,
+    ogTags: meta.ogTags,
+    twitterCard: meta.twitterCard,
+  }}
+  gtm={gtm}
+>
+  <section class="section">
+    <div class="maxwidth">
+      <h3 class="pageHeading">
+        Opportunities <span class="halfHeading">@ Indivirtus!</span>
+      </h3>
+      <JobCard jobs={jobs} />
+    </div>
+  </section>
+</Layout>

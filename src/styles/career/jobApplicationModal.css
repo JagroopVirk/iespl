@@ -1,0 +1,12 @@
+@reference "tailwindcss";
+label {
+  @apply text-base font-medium;
+  color: var(--color-gray);
+}
+
+input,
+textarea {
+  @apply text-base;
+  border-color: var(--color-input-border);
+  color: var(--color-gray);
+}

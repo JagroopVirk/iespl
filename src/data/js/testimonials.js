@@ -28,7 +28,7 @@ export const testimonials = [
     name: 'Chetan Patel',
     company: '',
     quote:
-      'Customer always wants timely support from vendor and quality services, which is built in the Indivirtus Healthcare Services. Staffs are always ready to resolve your issues and understand your urgency also. Very supportive and always positive for customers need. GREAT ORGANIZATION..',
+      'Customer always wants timely support from vendor and quality services, which is built in the Indivirtus EcologicalServices. Staffs are always ready to resolve your issues and understand your urgency also. Very supportive and always positive for customers need. GREAT ORGANIZATION..',
   },
   {
     name: 'Drashti Krunal Patel',
@@ -36,4 +36,4 @@ export const testimonials = [
     quote:
       'This company has providing impromptu service. They provides assistance whenever required. Such a great organisation to work with. Maintain healthy relationships with customers. They provide good quality PDE reports. Their report does not have any query from auditor. They meets the international standards.',
   },
-]
+];

@@ -1,0 +1,78 @@
+---
+const shortTerm = [
+  'Free from Odor',
+  'Sludge decomposition',
+  'Potable water for general purpose',
+  'Free from Mosquitoes – Better health index',
+  'Revival of Aquatic life',
+  'Flora & Fauna (Expansion of Native Plant and Animal Species)',
+  'No regrowth of Water Hyacinth and other weeds',
+  'Considerable reduction in water and vector borne diseases',
+];
+
+const longTerm = [
+  'Less probability of Flood/ drought',
+  'Rainwater recharge due sludge decomposition',
+  'Reduced air pollution/ Solid particulates',
+  'Better aquatic ecology',
+  'Improved Air, Water, Soil quality',
+  'Improved Groundwater level',
+  'Better socio-economic index',
+  'Water body becomes low in viscosity and becomes wavy',
+];
+---
+
+<section class="section flex flex-col items-center justify-center py-10">
+  <!-- Heading -->
+  <div class="maxwidth relative">
+    <h2 class="mx-auto mb-14 max-w-max rounded-full bg-teal-500 px-6 py-2 text-center text-xl font-semibold text-white">
+      Measurable Impact
+    </h2>
+
+    <!-- Horizontal section with arrows -->
+    <div class="relative mt-6 flex w-full max-w-5xl flex-col items-start justify-center gap-6 px-4 md:flex-row">
+      <!-- Short Term -->
+      <div class="relative flex-1 rounded-lg bg-white p-4 shadow-sm">
+        <span
+          class="absolute -top-8 left-1/2 w-full -translate-x-1/2 rounded-full bg-teal-400 px-4 py-1 text-center text-sm text-white"
+        >
+          Short Term
+        </span>
+        <ul class="ml-4 list-outside list-disc">
+          {shortTerm.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <!-- Long Term -->
+      <div class="relative flex-1 rounded-lg bg-white p-4 shadow-sm">
+        <span
+          class="absolute -top-8 left-1/2 w-full -translate-x-1/2 rounded-full bg-teal-400 px-4 py-1 text-center text-sm text-white"
+        >
+          Long Term
+        </span>
+        <ul class="ml-4 list-outside list-disc">
+          {longTerm.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Arrow (Optional for design effect) -->
+    <!-- <div class="absolute top-[75px] right-0 left-0 hidden justify-between px-12 md:flex">
+      <div
+        class="h-0 w-0 border-t-[15px] border-r-[25px] border-b-[15px] border-t-transparent border-r-teal-400 border-b-transparent"
+      >
+      </div>
+      <div
+        class="h-0 w-0 border-t-[15px] border-b-[15px] border-l-[25px] border-t-transparent border-b-transparent border-l-teal-400"
+      >
+      </div>
+    </div> -->
+  </div>
+</section>
+
+<style>
+  @reference "tailwindcss";
+  h2 {
+    color: white !important;
+  }
+</style>

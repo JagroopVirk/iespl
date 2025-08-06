@@ -1,24 +1,62 @@
 ---
-import favIcon from '../assets/favicon.png';
+//layouts/Layout.astro
+import '@/styles/styles.css';
 
-// Importing google fonts
 import GoogleFonts from '@/components/extras/GoogleFonts.astro';
+import Seo from '@/components/seo/Seo.astro';
 
-// Importing google tag manager
-import GoogleTag from '@/components/extras/GoogleTag.astro';
+// import google components
+import GoogleTagHead from '@/components/extras/GoogleTagHead.astro';
+import GoogleTagBody from '@/components/extras/GoogleTagBody.astro';
+import GtmPush from '@/components/extras/GtmPush.astro';
 
-// Importing the default SEO and location schema
-// import Seo from '../components/seo/Seo.astro';
-import { defaultSeo } from '../data/js/seo/siteSeo.js';
-import { locationSchema } from '../data/js/seo/locationSchema.js';
+// Import GSAP
+import GsapInit from '@/components/extras/GsapInit.jsx';
 
-// import Header from '../components/header/Header.astro';
-// import Footer from '../components/footer/Footer.astro';
+// defaultSeo and locationSchema
+import defaultSeo from '@/data/js/seo/index.js';
+import { locationSchema } from '@/data/js/seo/locationSchema.js';
+
+import Header from '@/components/header/Header.astro';
+import Footer from '@/components/footer/Footer.astro';
+
+// Importing the GoTopBtn component for the "Back to Top" button
+import GoTopBtn from '@/components/other/GoTopBtn.astro';
+
+// modals
+import CertificateModal from '@/components/modals/CertificateModal.astro';
+import FormAlert from '@/components/modals/FormAlert.astro';
+import JobApplicationModal from '@/components/modals/JobApplicationModal.astro';
+
+const { meta, faqSchema, pageLink } = defaultSeo;
 
 const {
-  seo = defaultSeo, // page-specific SEO, or fall back to default
-  location = locationSchema, // locationSchema can also be optional
+  seo = {
+    title: `${meta.title} - Indivirtus`,
+    description: meta.description,
+    keywords: meta.keywords,
+    canonical: meta.canonicalUrl,
+    url: pageLink,
+    schema: null,
+    faqSchema: faqSchema,
+    ogTags: meta.ogTags,
+    twitterCard: meta.twitterCard,
+  },
+  location = locationSchema,
+  gtm = null,
 } = Astro.props;
+
+const gtmProps = gtm
+  ? {
+      event: gtm.eventAction,
+      eventCategory: gtm.eventCategory,
+      eventLabel: gtm.eventLabel,
+      serviceTier: gtm.dataLayerPush?.reportType?.join(', ') ?? '',
+      regulatoryLevel: Array.isArray(gtm.dataLayerPush?.certification)
+        ? gtm.dataLayerPush.certification.join(', ')
+        : (gtm.dataLayerPush?.certification ?? ''),
+    }
+  : null;
 ---
 
 <!doctype html>
@@ -26,17 +64,34 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png+xml" href={favIcon.src} />
+    <link rel="icon" type="image/png+xml" href="/favicon.png" />
 
-    {/* Google Fonts */}
     <GoogleFonts />
-
-    {/* SEO component */}
-    {/* <Seo {...seo} locationSchema={location} /> */}
-
-    {/* Google Tag Manager */}
-    <GoogleTag />
+    <Seo {...seo} locationSchema={location} />
+    <GoogleTagHead />
+    {gtmProps && <GtmPush {...gtmProps} />}
   </head>
 
-  <slot />
+  <body>
+    <GoogleTagBody />
+    <Header />
+
+    {/* ScrollSmoother required structure */}
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <main>
+          <slot />
+        </main>
+        <Footer />
+      </div>
+    </div>
+
+    <GoTopBtn />
+    {/* Modals */}
+    <CertificateModal />
+    <FormAlert />
+    <JobApplicationModal client:load />
+
+    <GsapInit client:load />
+  </body>
 </html>

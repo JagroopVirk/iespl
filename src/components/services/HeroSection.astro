@@ -1,0 +1,18 @@
+---
+const { hero } = Astro.props;
+---
+
+{/* Hero Section */}
+
+<header
+  class="bg-primary-light border-primary border-b-1 py-10 text-center"
+  role="banner"
+  aria-labelledby="hero-heading"
+  aria-describedby="hero-tagline"
+>
+  <div class="maxwidth">
+    <h1 id="hero-heading" class="mb-4 text-4xl font-bold md:text-5xl" set:html={hero.heading} />
+    <p id="hero-tagline" class="pb-2" set:html={hero.tagline} />
+    {hero.detail ? <p id="hero-detail" class="mx-auto max-w-2/3" set:html={hero.detail}></p> : ''}
+  </div>
+</header>

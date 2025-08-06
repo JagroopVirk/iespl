@@ -1,0 +1,12 @@
+---
+//src\components\extras\GoogleTagBody.astro
+const googleTagID = 'GTM-MCZ4M7WB'; // Replace with your actual GTM ID
+const gtmUrl = `https://www.googletagmanager.com/gtm.js?id=${googleTagID}`;
+const nsUrl = `https://www.googletagmanager.com/ns.html?id=${googleTagID}`;
+---
+
+{/* Google Tag Manager (noscript) */}
+<noscript>
+  <iframe src={nsUrl} height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+{/* End Google Tag Manager (noscript) */}

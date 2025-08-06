@@ -1,45 +1,51 @@
 ---
 // Props: services (array of service objects)
 const { services } = Astro.props;
+
+import BTN from '../other/BTN.astro';
 ---
 
-<section class="section">
-  <div class="maxwidth mx-auto px-4">
-    <h2>Browse Our <span class="halfHeading"> Comprehensive Service Offerings</span></h2>
-
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        services.map((service) => (
-          <div class="serviceDiv">
-            <div>
-              <div class="flex items-center gap-2">
-                <div class="serviceIcon">{service.icon}</div>
-                <h3 class="tags">{service.title}</h3>
-              </div>
-              <h4 class="serviceHeading my-4" set:html={service.description} />
-              <ul class="ml-4 list-outside list-disc">
-                {service.deliverables.map((listItem) => (
-                  <li class="py-1">{listItem}</li>
-                ))}
-              </ul>
+<div id="services-offerings-description" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    services.map((service, index) => (
+      <article
+        key={`service-${index}`}
+        class="serviceDiv"
+        tabindex="0"
+        aria-labelledby={`service-title-${index}`}
+        aria-describedby={`service-desc-${index}`}
+      >
+        <div>
+          <div class="flex items-center gap-2">
+            <div class="serviceIcon" aria-hidden="true">
+              {service.icon}
             </div>
-
-            <a class="button mt-4" href={service.pageLink}>
-              View Details
-            </a>
+            <h3 id={`service-title-${index}`} class="tags">
+              {service.title}
+            </h3>
           </div>
-        ))
-      }
-    </div>
-  </div>
-</section>
+          <h4 id={`service-desc-${index}`} class="serviceHeading my-4" set:html={service.description} />
+          <ul class="ml-4 list-outside list-disc">
+            {service.deliverables.map((listItem, i) => (
+              <li class="py-1" key={`service-${index}-item-${i}`}>
+                {listItem}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <BTN
+          btnLink={service.pageLink}
+          btnClass="button min-w-full mt-4"
+          btnText="View Details"
+          btnAria={`Learn more about ${service.title}`}
+        />
+      </article>
+    ))
+  }
+</div>
 
 <style>
   @reference "tailwindcss";
-
-  h2 {
-    @apply mb-8 text-center;
-  }
 
   .serviceDiv {
     @apply flex flex-col justify-between rounded-2xl p-6 shadow-md transition hover:shadow-xl;

@@ -1,0 +1,105 @@
+---
+// import top scrolling text
+import topScroll from '../../data/js/topScroll';
+---
+
+<section class="marqueeDiv text-center">
+  <marquee
+    direction="left"
+    scrollamount="7"
+    behavior="scroll"
+    onmouseover="this.stop()"
+    onmouseout="this.start()"
+    class="py-1 align-middle"
+    loop="-1"
+    set:html={topScroll.row1 +
+      '   ||   ' +
+      topScroll.row2 +
+      '   ||   ' +
+      topScroll.row3 +
+      '   ||   ' +
+      topScroll.row1 +
+      '   ||   ' +
+      topScroll.row2 +
+      '   ||   ' +
+      topScroll.row3 +
+      '   ||   ' +
+      topScroll.row1 +
+      '   ||   ' +
+      topScroll.row2 +
+      '   ||   ' +
+      topScroll.row3 +
+      '   ||   ' +
+      topScroll.row1 +
+      '   ||   ' +
+      topScroll.row2 +
+      '   ||   ' +
+      topScroll.row3 +
+      '   ||   ' +
+      topScroll.row1 +
+      '   ||   ' +
+      topScroll.row2 +
+      '   ||   ' +
+      topScroll.row3 +
+      '   ||   ' +
+      topScroll.row1 +
+      '   ||   ' +
+      topScroll.row2 +
+      '   ||   ' +
+      topScroll.row3 +
+      '   ||   ' +
+      topScroll.row1 +
+      '   ||   ' +
+      topScroll.row2 +
+      '   ||   ' +
+      topScroll.row3 +
+      '   ||   ' +
+      topScroll.row1 +
+      '   ||   ' +
+      topScroll.row2 +
+      '   ||   ' +
+      topScroll.row3 +
+      '   ||   ' +
+      topScroll.row1 +
+      '   ||   ' +
+      topScroll.row2 +
+      '   ||   ' +
+      topScroll.row3 +
+      '   ||   ' +
+      topScroll.row1 +
+      '   ||   ' +
+      topScroll.row2 +
+      '   ||   ' +
+      topScroll.row3}
+  >
+    {
+      /* <div class="text-center">
+    <FaPhone /><h4>{topScroll.row1}</h4>
+  </div>
+  <h4>{topScroll.row2}</h4>
+  <h4>{topScroll.row3}</h4> */
+    }
+  </marquee>
+
+  <style>
+    @reference "tailwindcss";
+
+    .headerDiv {
+      background-color: var(--color-white);
+    }
+
+    .marqueeDiv,
+    h4 {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    scrollLink {
+      color: var(--color-primaryBlue);
+    }
+
+    h4 {
+      @apply py-1;
+    }
+  </style>
+</section>

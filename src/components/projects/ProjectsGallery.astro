@@ -1,0 +1,66 @@
+---
+import gallery1 from '@/assets/projects/gallery1.jpg';
+import gallery2 from '@/assets/projects/gallery2.jpg';
+import gallery3 from '@/assets/projects/gallery3.jpg';
+import gallery4 from '@/assets/projects/gallery4.jpg';
+import gallery5 from '@/assets/projects/gallery5.jpg';
+import gallery6 from '@/assets/projects/gallery6.jpg';
+import gallery7 from '@/assets/projects/gallery7.jpg';
+import gallery8 from '@/assets/projects/gallery8.jpg';
+import gallery9 from '@/assets/projects/gallery9.jpg';
+
+import Picture from 'astro/components/Picture.astro';
+
+const images = [
+  { src: gallery1, alt: 'Gallery Image 1' },
+  { src: gallery2, alt: 'Gallery Image 2' },
+  { src: gallery3, alt: 'Gallery Image 3' },
+  { src: gallery4, alt: 'Gallery Image 4' },
+  { src: gallery5, alt: 'Gallery Image 5' },
+  { src: gallery6, alt: 'Gallery Image 6' },
+  { src: gallery7, alt: 'Gallery Image 7' },
+  { src: gallery8, alt: 'Gallery Image 8' },
+  { src: gallery9, alt: 'Gallery Image 9' },
+];
+
+let selectedImage = null;
+
+function openModal(img) {
+  selectedImage = img;
+}
+
+function closeModal() {
+  selectedImage = null;
+}
+---
+
+<!-- Image Grid -->
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+  {
+    images.map((image) => (
+      <div
+        class="group flex cursor-pointer items-center justify-center overflow-hidden rounded-lg shadow-md"
+        on:click={() => openModal(image.src)}
+      >
+        <Picture
+          src={image.src}
+          alt={image.alt}
+          class="h-auto w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+    ))
+  }
+</div>
+
+<!-- Modal (Lightbox) -->
+{
+  selectedImage && (
+    <div class="bg-opacity-80 fixed inset-0 z-50 flex items-center justify-center bg-black">
+      <button class="absolute top-6 right-6 text-3xl font-bold text-white" on:click={closeModal}>
+        &times;
+      </button>
+      <Picture src={selectedImage} alt="Full View" class="max-h-[90%] max-w-[90%] rounded-lg shadow-xl" />
+    </div>
+  )
+}

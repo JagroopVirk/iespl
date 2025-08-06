@@ -1,0 +1,62 @@
+---
+const { cards } = Astro.props;
+
+// Components
+import BTN from '@/components/other/BTN.astro';
+---
+
+<section aria-labelledby="expertise-heading" aria-describedby="expertise-services" class="section mb-12">
+  <h2 id="expertise-heading" class="mb-6 text-center text-2xl font-bold" set:html={cards.heading} />
+
+  <div id="expertise-services" class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
+    {
+      cards.services.map((service, index) => (
+        <article
+          key={`service-${index}`}
+          tabindex="0"
+          aria-labelledby={`service-title-${index}`}
+          aria-describedby={`service-desc-${index}`}
+          class="group border-primary-light relative mx-auto h-[300px] w-full overflow-hidden rounded-lg border-2 pb-1 shadow-lg transition-transform duration-300 ease-in-out"
+        >
+          {/* Image */}
+          <div class="h-full bg-cover bg-center" style={`background-image: url('${service.image.src}')`} />
+          {/* <a href={service.link}> */}
+          {/* Info Section */}
+          <div class="border-secondary absolute bottom-0 left-0 h-full w-full bg-[var(--color-white-rgba)] px-6 py-2 transition-transform duration-500 ease-[cubic-bezier(0.17,0.67,0.5,1.03)] md:-bottom-[72%] md:border-t-3 md:bg-white md:group-hover:-translate-y-[72%] md:hover:border-0">
+            <div class="flex h-1/4 items-center justify-start gap-3">
+              <span class="text-2xl" aria-hidden="true">
+                {service.icon}
+              </span>
+              <h3 id={`service-title-${index}`} class="text-base font-bold uppercase">
+                {service.title}
+              </h3>
+            </div>
+
+            <ul
+              id={`service-desc-${index}`}
+              class="mt-4 ml-4 list-outside list-disc pl-7 text-sm transition-opacity delay-200 duration-500 md:opacity-0 md:group-hover:opacity-100"
+            >
+              {service.items.map((item, i) => (
+                <li class="pb-1.5" key={`service-${index}-item-${i}`}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-4 transition-opacity delay-300 duration-500 md:opacity-0 md:group-hover:opacity-100">
+              <div class="buttonSimple">
+                <BTN
+                  btnLink={service.link}
+                  btnClass="buttonSimple text-secondary"
+                  btnText="Learn More..."
+                  btnArea={`Learn more about ${service.title}`}
+                />
+              </div>
+            </div>
+          </div>
+          {/* </a> */}
+        </article>
+      ))
+    }
+  </div>
+</section>

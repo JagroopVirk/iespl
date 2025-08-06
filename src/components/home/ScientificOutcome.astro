@@ -1,0 +1,41 @@
+---
+const outcomes = [
+  { text: 'Emission Avoidance', color: 'from-red-600 to-pink-600' },
+  { text: 'Air Pollution Mitigation', color: 'from-purple-500 to-pink-400' },
+  { text: 'Oxygen Enrichment', color: 'from-sky-500 to-blue-400' },
+  { text: 'UHI Mitigation', color: 'from-green-500 to-emerald-400' },
+  { text: 'Disease Prevention', color: 'from-orange-500 to-yellow-400' },
+  { text: 'Biodiversity Conservation', color: 'from-blue-600 to-indigo-500' },
+];
+---
+
+<section class="section flex flex-col items-center justify-center py-10 bg-primary-light">
+  <!-- Heading -->
+  <div class="maxwidth ">
+    <h2 class="mx-auto mb-10 max-w-max rounded-full bg-teal-500 px-6 py-2 text-center text-xl font-semibold text-white">
+      Scientific Outcome
+    </h2>
+     <!-- Outcomes Row -->
+  <div class="flex flex-wrap justify-center items-center gap-6">
+    {outcomes.map((item) => (
+      <div class="relative flex flex-col items-center">
+        <!-- Circle -->
+        <div
+          class={`w-28 h-28 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-center text-white font-medium px-4 text-sm shadow-lg`}
+        >
+          {item.text}
+        </div>
+        <!-- Connector line -->
+        <div class="hidden md:block w-px h-8 bg-black mb-1"></div>
+      </div>
+    ))}
+  </div>
+  </div>
+</section>
+
+<style>
+  @reference "tailwindcss";
+  h2 {
+    color: white !important;
+  }
+</style>

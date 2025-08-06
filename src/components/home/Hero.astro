@@ -1,9 +1,10 @@
 ---
-// import Picture from 'astro/components/Picture.astro'
-// import heroImg from '../../assets/hero.png'
-import bgImage from '../../assets/hero-bg-4.avif';
-import { heroDescription } from '../../data/js/hero.js';
-import Stats from './Stats.astro';
+import Picture from 'astro/components/Picture.astro';
+
+import heroImg from '@/assets/hero.png';
+import bgImage from '@/assets/hero-bg-11.jpg';
+import { heroDescription } from '@/data/js/hero.js';
+// import Stats from './Stats.astro';
 ---
 
 <section
@@ -11,22 +12,31 @@ import Stats from './Stats.astro';
   class="relative mb-8 bg-cover bg-center bg-no-repeat md:mb-0"
   style={`background-image: url(${bgImage.src});`}
 >
-  <div class="maxwidth mx-auto flex flex-col-reverse px-8 py-8 lg:flex-row lg:py-20">
-    <Stats />
+  <div class="maxwidth mx-auto flex flex-col-reverse items-center px-8 pt-8 lg:flex-row lg:py-10">
+    {/* <Stats /> */}
     <div class="mb-6 sm:text-justify lg:max-w-2/3">
-      <h1 class="text-justify md:text-left">
-        {heroDescription.tag}<br /><span class="text-lg font-semibold">{heroDescription.description}</span>
-      </h1>
+      <h1 class="heroDetail mb-2 text-left" set:html={heroDescription.description} />
+      <ul class="text-primaryBlue ml-4 list-outside list-disc">
+        {heroDescription.listItem.map((item, idx) => <li class="py-1" set:html={item} />)}
+      </ul>
     </div>
-    {/* <Picture src={heroImg} alt="Hero Image" class="mx-auto hidden md:block md:max-w-[70%]" /> */}
+    <Picture src={heroImg} alt="Hero Image" class="mx-auto hidden rounded-4xl md:block" />
   </div>
-  {/* text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); */}
+  <div class="maxwidth text-center lg:pb-30">
+    <p set:html={heroDescription.bottomTag} />
+  </div>
 </section>
 
 <style>
-  h1 {
-    span {
-      color: var(--color-black);
-    }
+  @reference "tailwindcss";
+
+  .heroHeadline {
+    @apply leading-12;
+  }
+  .heroDetail {
+    @apply text-lg font-medium text-black;
+  }
+  p {
+    @apply text-2xl py-1.5 text-shadow-lg text-black font-bold;
   }
 </style>

@@ -1,0 +1,7 @@
+---
+const { btnLink, btnClass, btnText, btnAria } = Astro.props;
+---
+
+<a class=`${btnClass}` aria-label={btnAria} href={btnLink}>
+  {btnText}
+</a>

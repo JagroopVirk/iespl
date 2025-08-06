@@ -6,7 +6,7 @@
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
-// const folderPath = path.join(__dirname, '../data/js/services'); // make sure this matches your folder
+// const folderPath = path.join(__dirname, '@/data/js/services'); // make sure this matches your folder
 
 // /** @typedef {{ id: number, name: string }} Service */
 
@@ -30,7 +30,8 @@
 //   }
 // }
 
-import adepde from '@/data/js/services/adepde';
+import adepde from '@/data/js/services/ade-pde-oel';
+import msdsSds from '@/data/js/services/msds-sds';
 import calibration from '@/data/js/services/calibration';
 import gmpAudits from '@/data/js/services/gmpAudits';
 import gmpComplianceTrainings from '@/data/js/services/gmpComplianceTrainings';
@@ -39,16 +40,19 @@ import pharmacovigilance from '@/data/js/services/pharmacovigilance';
 import regulatoryAffairs from '@/data/js/services/regulatoryAffairs';
 import riskAssessment from '@/data/js/services/riskAssessment';
 import validation from '@/data/js/services/validation';
+import containmentValidation from '@/data/js/services/containmentValidation';
 
 const services = [
   adepde,
-  calibration,
-  gmpAudits,
-  gmpComplianceTrainings,
-  greenfieldBrownfield,
-  pharmacovigilance,
-  regulatoryAffairs,
   riskAssessment,
+  containmentValidation,
+  msdsSds,
+  pharmacovigilance,
+  calibration,
+  regulatoryAffairs,
+  gmpComplianceTrainings,
+  gmpAudits,
+  greenfieldBrownfield,
   validation,
 ];
 

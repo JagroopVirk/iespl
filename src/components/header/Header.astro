@@ -9,21 +9,12 @@ import Navigation from './Navigation.astro';
 import { navItems } from '../../data/js/navItems.js';
 
 // import top scrolling text
-import topScroll from '../../data/js/topScroll';
+import TopBar from './TopBar.astro';
 ---
 
 <header id="site-header" class="relative z-100 w-full">
   <div id="header-div" class="headerDiv fixed top-0 right-0 left-0 shadow-sm">
-    <section class="marqueeDiv text-center">
-      <marquee
-        direction="left"
-        scrollamount="7"
-        behavior="scroll"
-        onmouseover="this.stop()"
-        onmouseout="this.start()"
-        class="py-1 align-middle">{topScroll}</marquee
-      >
-    </section>
+    {/* <TopBar /> */}
     <section class="container mx-auto flex items-center justify-between px-4">
       <div class="flex grow items-end">
         <a href="/" class="py-1.5">
@@ -42,10 +33,5 @@ import topScroll from '../../data/js/topScroll';
 
   .headerDiv {
     background-color: var(--color-white);
-  }
-
-  .marqueeDiv {
-    background-color: var(--color-primary);
-    color: var(--color-white);
   }
 </style>

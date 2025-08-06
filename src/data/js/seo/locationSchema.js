@@ -1,5 +1,5 @@
-// const siteUrl = document.location.origin || "https://indivirtus.com";
-const siteUrl = 'https://indivirtus.com';
+// const siteUrl = document.location.origin || "https://indivirtuseco.com";
+const siteUrl = 'https://indivirtuseco.com';
 const siteLogo = siteUrl + '/assets/logo.png';
 
 // location-based Schema
@@ -8,38 +8,38 @@ export const locationSchema = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://www.indivirtus.com#organization',
+      '@id': 'https://www.indivirtuseco.com#organization',
       name: 'Indivirtus',
-      url: 'https://www.indivirtus.com',
+      url: 'https://www.indivirtuseco.com',
       logo: siteLogo,
       sameAs: [],
     },
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://www.indivirtus.com#chandigarh',
+      '@id': 'https://www.indivirtuseco.com#bhopal',
       name: 'Indivirtus - Registered Office',
       image: siteLogo,
-      url: 'https://www.indivirtus.com',
-      telephone: '+91 172 450 8817',
+      url: 'https://www.indivirtuseco.com',
+      telephone: '+91 9131925456',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '5020 A, Sector 38 West',
-        addressLocality: 'Chandigarh',
-        addressRegion: 'CH',
-        postalCode: '160055',
+        streetAddress: 'C-97, New Minal Residency, J.K. Road,Madhya Pradesh',
+        addressLocality: 'Bhopal',
+        addressRegion: 'BH',
+        postalCode: '',
         addressCountry: 'IN',
       },
       parentOrganization: {
-        '@id': 'https://www.indivirtus.com#organization',
+        '@id': 'https://www.indivirtuseco.com#organization',
       },
     },
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://www.indivirtus.com#mohali',
+      '@id': 'https://www.indivirtuseco.com#mohali',
       name: 'Indivirtus - Site Office',
       image: siteLogo,
-      url: 'https://www.indivirtus.com',
-      telephone: '+91 9131925456',
+      url: 'https://www.indivirtuseco.com',
+      telephone: '+91 450 88 17',
       address: {
         '@type': 'PostalAddress',
         streetAddress: '521-522, 2nd Floor, TDI City, Taj Plaza, Sector 118',
@@ -54,15 +54,15 @@ export const locationSchema = {
         longitude: '76.6975626',
       },
       parentOrganization: {
-        '@id': 'https://www.indivirtus.com#organization',
+        '@id': 'https://www.indivirtuseco.com#organization',
       },
     },
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://www.indivirtus.com#usa',
+      '@id': 'https://www.indivirtuseco.com#usa',
       name: 'Indivirtus - USA Office',
       image: siteLogo,
-      url: 'https://www.indivirtus.com',
+      url: 'https://www.indivirtuseco.com',
       telephone: '+1 (323) 522-5967',
       address: {
         '@type': 'PostalAddress',
@@ -73,15 +73,15 @@ export const locationSchema = {
         addressCountry: 'US',
       },
       parentOrganization: {
-        '@id': 'https://www.indivirtus.com#organization',
+        '@id': 'https://www.indivirtuseco.com#organization',
       },
     },
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://www.indivirtus.com#uk',
+      '@id': 'https://www.indivirtuseco.com#uk',
       name: 'Indivirtus - UK Office',
       image: siteLogo,
-      url: 'https://www.indivirtus.com',
+      url: 'https://www.indivirtuseco.com',
       telephone: '+44 20 3286 0405',
       address: {
         '@type': 'PostalAddress',
@@ -92,15 +92,15 @@ export const locationSchema = {
         addressCountry: 'GB',
       },
       parentOrganization: {
-        '@id': 'https://www.indivirtus.com#organization',
+        '@id': 'https://www.indivirtuseco.com#organization',
       },
     },
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://www.indivirtus.com#canada',
+      '@id': 'https://www.indivirtuseco.com#canada',
       name: 'Indivirtus - Canada Office',
       image: siteLogo,
-      url: 'https://www.indivirtus.com',
+      url: 'https://www.indivirtuseco.com',
       telephone: '+1 (647) 581-6157',
       address: {
         '@type': 'PostalAddress',
@@ -111,15 +111,15 @@ export const locationSchema = {
         addressCountry: 'CA',
       },
       parentOrganization: {
-        '@id': 'https://www.indivirtus.com#organization',
+        '@id': 'https://www.indivirtuseco.com#organization',
       },
     },
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://www.indivirtus.com#uae',
+      '@id': 'https://www.indivirtuseco.com#uae',
       name: 'Indivirtus - UAE Office',
       image: siteLogo,
-      url: 'https://www.indivirtus.com',
+      url: 'https://www.indivirtuseco.com',
       telephone: '+971 565114477',
       address: {
         '@type': 'PostalAddress',
@@ -130,7 +130,26 @@ export const locationSchema = {
         addressCountry: 'AE',
       },
       parentOrganization: {
-        '@id': 'https://www.indivirtus.com#organization',
+        '@id': 'https://www.indivirtuseco.com#organization',
+      },
+    },
+    {
+      '@type': 'LocalBusiness',
+      '@id': 'https://www.indivirtuseco.com#raipur',
+      name: 'Indivirtus - Registered Office',
+      image: siteLogo,
+      url: 'https://www.indivirtuseco.com',
+      telephone: '+91 9981746990',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '404- Fourth Floor, Avinash Time Square, Sector - 19,',
+        addressLocality: 'Nawa Raipur',
+        addressRegion: 'NR',
+        postalCode: '',
+        addressCountry: 'IN',
+      },
+      parentOrganization: {
+        '@id': 'https://www.indivirtuseco.com#organization',
       },
     },
   ],

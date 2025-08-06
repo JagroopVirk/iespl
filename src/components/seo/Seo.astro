@@ -1,24 +1,31 @@
 ---
-import { Astro } from 'astro';
-import { defaultSeo } from '../../data/js/seo/siteSeo.js';
+
+// defaultSEO
+import  defaultSeo  from '../../data/js/seo/index.js';
+
+const { meta } = defaultSeo;
+
 
 const {
-  title = defaultSeo.title,
-  description = defaultSeo.description,
-  keywords = defaultSeo.keywords,
-  image = defaultSeo.image,
-  url = defaultSeo.url,
-  type = defaultSeo.type,
-  twitterHandle = defaultSeo.twitterHandle,
+  title = meta.title,
+  description = meta.description,
+  keywords = meta.keywords,
+  image = meta.ogTags.image,
+  twitterHandle = meta.twitterHandle,
+  ogTags = meta.ogTags,
+  twitterCard = meta.twitterCard,
   schema = null,
   locationSchema = null,
   servicesSchema = null,
+  faqSchema = defaultSeo.faqSchema,
   canonical = null,
+  robots = meta.robotsMeta,
 } = Astro.props;
 
 const jsonLocationSchema = JSON.stringify(locationSchema, null, 0);
 const jsonSchema = JSON.stringify(schema, null, 0);
 const jsonServiceSchema = JSON.stringify(servicesSchema, null, 0);
+const jsonFaqSchema = JSON.stringify(faqSchema, null, 0);
 
 ---
 
@@ -33,20 +40,35 @@ const jsonServiceSchema = JSON.stringify(servicesSchema, null, 0);
     <link rel="canonical" href={canonical} />
   )}
 
-  <meta property="og:locale" content="en_US">
-  <meta property="og:type" content={type} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:image" content={image} />
-  <meta property="og:url" content={url} />
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:type" content={ogTags.type} />
+  <meta property="og:title" content={ogTags.title} />
+  <meta property="og:description" content={ogTags.description} />
+  <meta property="og:image" content={ogTags.image} />
+  <meta property="og:url" content={ogTags.url} />
 
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={image} />
+  <meta name="twitter:card" content={twitterCard.card} />
+  <meta name="twitter:title" content={twitterCard.title} />
+  <meta name="twitter:description" content={twitterCard.description} />
+  <meta name="twitter:image" content={twitterCard.image} />
   <meta name="twitter:site" content={twitterHandle} />
-  <meta name="twitter:creator" content={twitterHandle} />
+  <meta name="twitter:creator" content={twitterCard.creator} />
+  <meta name="image" content={image} />
+
+  {robots && (
+  <meta
+    name="robots"
+    content={`${robots.index ? 'index' : 'noindex'}, ${robots.follow ? 'follow' : 'nofollow'}${
+      robots.nocache ? ', noarchive' : ''
+    }`}
+  />
+)}
+
+{robots?.googlebot && (
+  <meta name="googlebot" content={robots.googlebot} />
+)}
+
 
   {schema && Object.keys(schema).length > 0 && (
     <script type="application/ld+json" set:html={jsonSchema}>
@@ -60,6 +82,11 @@ const jsonServiceSchema = JSON.stringify(servicesSchema, null, 0);
 
   {servicesSchema && Object.keys(servicesSchema).length > 0 && (
     <script type="application/ld+json" set:html={jsonServiceSchema}>
+    </script>
+  )}
+
+  {faqSchema && Object.keys(faqSchema).length > 0 && (
+    <script type="application/ld+json" set:html={jsonFaqSchema}>
     </script>
   )}
 

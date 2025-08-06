@@ -1,0 +1,35 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import LeadershipCard from '@/components/aboutus/LeadershipCard.astro';
+
+import leaders from '@/data/js/aboutus/leadership';
+
+/// Importing the SEO and location schema
+import seoData from '@/data/js/seo/aboutus/leadership';
+
+const { meta, faqSchema, gtm, pageLink, schema } = seoData;
+---
+
+<Layout
+  seo={{
+    title: `${meta.title} - Indivirtus`,
+    description: meta.description,
+    keywords: meta.keywords,
+    canonical: meta.canonicalUrl,
+    url: pageLink,
+    schema: schema,
+    faqSchema: faqSchema,
+    ogTags: meta.ogTags,
+    twitterCard: meta.twitterCard,
+  }}
+  gtm={gtm}
+>
+  <section aria-labelledby="leadership-heading" class="section">
+    <div class="maxwidth mx-auto px-4 text-center">
+      <h3 id="leadership-heading" class="pageHeading">
+        Our Visionary <span class="halfHeading">Leadership Team</span>
+      </h3>
+      <LeadershipCard leaders={leaders} />
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,29 @@
+---
+const { data } = Astro.props;
+
+import { FaCheck } from 'react-icons/fa6';
+---
+
+<section aria-labelledby="deliverables-heading" class="section bg-white">
+  <div class="maxwidth">
+    <h2 id="deliverables-heading" class="mb-6 text-center" set:html={data.heading} />
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        data.itemList.map((item, index) => (
+          <article
+            key={index}
+            class="bg-primary-light flex items-center gap-3 rounded-lg p-4 shadow-md transition-all hover:shadow-lg focus:shadow-lg"
+            tabindex="0"
+            role="region"
+            aria-labelledby={`item-heading-${index}`}
+          >
+            <div class="text-primary text-2xl" aria-hidden="true">
+              <FaCheck />
+            </div>
+            <p id={`item-heading-${index}`} set:html={item} />
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,8 +1,5 @@
 ---
-import offices from '../../data/js/offices.js';
-
-// Importing the GoTopBtn component for the "Back to Top" button
-import GoTopBtn from '@/components/other/GoTopBtn.astro';
+import { internationOffices, domesticOffices } from '@/data/js/offices.js';
 
 import Social from './SocialMedia.astro';
 
@@ -17,54 +14,104 @@ import SetMarginTop from '../extras/SetMarginTop.astro';
   {/* Upper Section */}
   <div>
     <h2>Our Global Offices</h2>
-    <div class="addDiv maxwidth mx-auto grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
-      {
-        offices.map((office) => (
-          <div>
-            <h3 class="officeCountry mb-2 text-center">{office.location}</h3>
-            <div class="mb-2 flex">
-              <div class="footerIcon text-lg">
-                <FaLocationDot />
+    <div class="maxwidth mx-auto mt-16">
+      <div class="mb-15 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+        {
+          domesticOffices.map((office) => (
+            <div class={`order-${office.seq.small} md:order-${office.seq.big}`}>
+              <h3 class="officeCountry mb-2 text-center">{office.location ? office.location : ''}</h3>
+              <div class="mb-2 flex">
+                <div class="footerIcon text-lg">
+                  <FaLocationDot />
+                </div>
+                <a
+                  class="addDetails"
+                  href={'http://maps.google.com/?q=' + office.address ? office.address : ''}
+                  target={'_blank'}
+                >
+                  {office.address}
+                </a>
               </div>
-              <a class="addDetails" href={'http://maps.google.com/?q=' + office.address} target={'_blank'}>
-                {office.address}
-              </a>
+              <div class="mb-2 flex">
+                <div class="footerIcon text-lg">{office.phone ? <FaPhone /> : ''}</div>
+                <div class="flex flex-col xl:flex-row">
+                  {office.phone
+                    ? office.phone.map((element) => (
+                        <a class="addDetails" href={`tel:${element}`}>
+                          {element}
+                        </a>
+                      ))
+                    : ''}
+                </div>
+              </div>
+              <div class="mb-2 flex">
+                <div class="footerIcon text-lg">{office.email ? <FaEnvelope /> : ''}</div>
+                <div class="flex flex-col xl:flex-row">
+                  {office.email
+                    ? office.email.map((element) => (
+                        <a class="addDetails" href={`mailto:${element}`}>
+                          {element}
+                        </a>
+                      ))
+                    : ''}
+                </div>
+              </div>
             </div>
-
-            <div class="mb-2 flex">
-              <div class="footerIcon text-lg">
-                <FaPhone />
+          ))
+        }
+      </div>
+      <div class="addDivI grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        {
+          internationOffices.map((office) => (
+            <div>
+              <h3 class="officeCountry mb-2 text-center">{office.location ? office.location : ''}</h3>
+              <div class="mb-2 flex">
+                <div class="footerIcon text-lg">
+                  <FaLocationDot />
+                </div>
+                <a
+                  class="addDetails"
+                  href={'http://maps.google.com/?q=' + office.address ? office.address : ''}
+                  target={'_blank'}
+                >
+                  {office.address}
+                </a>
               </div>
-              <div class="flex flex-col xl:flex-row">
-                {office.phone.map((element) => (
-                  <a class="addDetails" href={`tel:${element}`}>
-                    {element}
-                  </a>
-                ))}
+              <div class="mb-2 flex">
+                <div class="footerIcon text-lg">{office.phone ? <FaPhone /> : ''}</div>
+                <div class="flex flex-col xl:flex-row">
+                  {office.phone
+                    ? office.phone.map((element) => (
+                        <a class="addDetails" href={`tel:${element}`}>
+                          {element}
+                        </a>
+                      ))
+                    : ''}
+                </div>
+              </div>
+              <div class="mb-2 flex">
+                <div class="footerIcon text-lg">{office.email ? <FaEnvelope /> : ''}</div>
+                <div class="flex flex-col xl:flex-row">
+                  {office.email
+                    ? office.email.map((element) => (
+                        <a class="addDetails" href={`mailto:${element}`}>
+                          {element}
+                        </a>
+                      ))
+                    : ''}
+                </div>
               </div>
             </div>
-            <div class="mb-2 flex">
-              <div class="footerIcon text-lg">
-                <FaEnvelope />
-              </div>
-              <div class="flex flex-col xl:flex-row">
-                {office.email.map((element) => (
-                  <a class="addDetails" href={`mailto:${element}`}>
-                    {element}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
 
     {/* Social media links */}
     <Social />
 
     <div class="footerCopyright text-center">
-      &copy; {new Date().getFullYear()} Indivirtus Healthcare Services Pvt. Ltd. All rights reserved.
+      &copy; {new Date().getFullYear()} Indivirtus Ecological Services Pvt. Ltd. All rights reserved.
     </div>
 
     {
@@ -112,8 +159,10 @@ import SetMarginTop from '../extras/SetMarginTop.astro';
     </div>
     } */
     }
+    {/* blank div for compensating top margin  */}
+    <div id="bottomSpacing"></div>
   </div>
-  <GoTopBtn />
+
   <SetMarginTop />
 
   <style>
@@ -135,7 +184,7 @@ import SetMarginTop from '../extras/SetMarginTop.astro';
         content: '';
       }
       &:before {
-        @apply absolute z-1 top-0 px-6 left-1/2 -translate-x-1/2 h-4 w-60 rounded-t-xl;
+        @apply absolute z-1 top-0 px-6 left-1/2 -translate-x-1/2 h-[17px] w-60 rounded-t-xl;
         box-shadow:
           -300.6Q 0Q var(--color-primary),
           -280Q 0Q var(--color-footer-box),
@@ -151,8 +200,12 @@ import SetMarginTop from '../extras/SetMarginTop.astro';
     }
 
     .addDetails {
-      @apply ml-1.5;
+      @apply ml-1.5 text-sm;
       color: var(--color-white);
+    }
+
+    .addDivI * {
+      @apply md:text-[95%];
     }
 
     .footerIcon {
@@ -164,24 +217,9 @@ import SetMarginTop from '../extras/SetMarginTop.astro';
       }
     }
 
-    .addDiv > div {
-      &:nth-child(1) {
-        @apply md:hidden;
-      }
-      &:nth-child(2) {
-        @apply md:hidden;
-      }
-      &:nth-child(3) {
-        @apply hidden md:block;
-      }
-      &:nth-child(4) {
-        @apply hidden md:block;
-      }
-    }
-
     .footerCopyright {
       margin-top: 2rem;
-      padding-top: 1rem;
+      padding-bottom: 4rem;
       overflow: hidden;
       color: rgb(from var(--color-white) r g b / 0.7);
 

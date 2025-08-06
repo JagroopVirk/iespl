@@ -1,0 +1,33 @@
+---
+// src/components/extras/GtmPush.astro
+const {
+  event = 'Service Inquiry',
+  eventCategory = 'Default Category',
+  eventLabel = 'Default Label',
+  serviceTier = '',
+  regulatoryLevel = '',
+} = Astro.props;
+---
+
+<script define:vars={{ event, eventCategory, eventLabel, serviceTier, regulatoryLevel }}>
+  const pageId = window.location.pathname + window.location.search;
+  if (!window.gtmPushExecuted || window.gtmPushExecuted !== pageId) {
+    document.addEventListener('DOMContentLoaded', () => {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event,
+        eventCategory,
+        eventLabel,
+        serviceTier,
+        regulatoryLevel,
+        debugId: 'GtmPush-Astro-' + Date.now() + '-' + pageId,
+      });
+
+      window.gtmPushExecuted = pageId;
+    });
+
+    window.addEventListener('astro:page-load', () => {
+      window.gtmPushExecuted = false;
+    });
+  }
+</script>

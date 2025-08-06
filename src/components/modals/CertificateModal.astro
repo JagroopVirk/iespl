@@ -1,0 +1,25 @@
+---
+// src\components\home\CertificateModal.astro
+---
+
+<div class="hidden" id="certificateModal" data-astro-modal>
+  <div
+    class="modalBg fixed inset-0 z-[1000] flex items-center justify-center bg-black/30 backdrop-blur-sm"
+    onClick="document.getElementById('certificateModal').classList.add('hidden')"
+  >
+    <div class="relative w-full max-w-md rounded-lg bg-white p-6 shadow-lg" onClick="event.stopPropagation()">
+      <button
+        type="button"
+        class="absolute top-4 right-4 text-2xl text-gray-500 hover:text-gray-700"
+        onClick="document.getElementById('certificateModal').classList.add('hidden')"
+      >
+        &times;
+      </button>
+
+      <h3 id="certificateTitle" class="mb-4 text-2xl font-semibold"></h3>
+      <div class="w-full">
+        <img id="certificateImage" src="" alt="Certificate Preview" class="w-full rounded-md border" />
+      </div>
+    </div>
+  </div>
+</div>

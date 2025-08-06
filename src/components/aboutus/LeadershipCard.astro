@@ -1,0 +1,42 @@
+---
+const { leaders } = Astro.props;
+
+import Picture from 'astro/components/Picture.astro';
+---
+
+<div class="">
+  {
+    leaders.map((leader, idx) => (
+      <div
+        class={`gsap-animate flex flex-col gap-10 pb-10 md:flex-row md:even:flex-row-reverse`}
+        role="region"
+        aria-labelledby={`leader-name-${idx}`}
+        aria-describedby={`leader-desc-${idx}`}
+        tabindex="0"
+        data-animation="slide"
+        data-direction=`${idx % 2 === 0 ? 'right' : 'left'}`
+        data-delay="0.3"
+        data-scroll="true"
+      >
+        <div class="m-w-full flex flex-col items-center">
+          <div class={`h-50 w-50 translate-y-24 transform overflow-hidden rounded-full shadow-lg`}>
+            <Picture src={leader.image} alt={`${leader.name}'s photo`} />
+          </div>
+          <div
+            class={`mt-4 rounded-lg px-6 py-4 ${leader.bg} flex h-44 w-[375px] flex-col items-center justify-end shadow-sm`}
+          >
+            <h3 id={`leader-name-${idx}`}>{leader.name}</h3>
+            <p>{leader.title}</p>
+          </div>
+        </div>
+        <div id={`leader-desc-${idx}`} class="mt-auto text-left">
+          <h2 set:html={leader.description.name} />
+          <h3 class="py-3" set:html={leader.description.qualification} />
+          {leader.description.details.map((item) => (
+            <p class="pb-2">{item}</p>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+</div>

@@ -1,0 +1,37 @@
+---
+import cownomics from '@/assets/cownomics.jpg';
+import magicc from '@/assets/magicc.jpg';
+import eco_dredging from '@/assets/eco_dredging.jpg';
+import eco_liner from '@/assets/eco_liner.jpg';
+import eco_drainer from '@/assets/eco_drainer.jpg';
+
+import Picture from 'astro/components/Picture.astro';
+---
+
+<section class="section">
+  <div class="maxwidth text-center">
+    <h2 class="mx-auto mb-10 max-w-max rounded-full bg-teal-500 px-6 py-2 text-center text-xl font-semibold text-white">
+      Our Technologies
+    </h2>
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <Picture src={eco_liner} alt="Eco Liner" class="max-w-[200px] flex-1" />
+      <Picture src={eco_drainer} alt="Eco Drainer" class="max-w-[200px] flex-1" />
+    </div>
+
+    <!-- Centered Image -->
+    <div class="my-10 flex justify-center">
+      <Picture src={cownomics} alt="Cownomics" class="mx-auto w-[70%] sm:w-[50%]" />
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <Picture src={eco_dredging} alt="Cownomics" class="max-w-[200px] flex-1" />
+      <Picture src={magicc} alt="Magicc" class="max-w-[200px] flex-1" />
+    </div>
+  </div>
+  <style>
+    @reference "tailwindcss";
+    h2 {
+      color: white !important;
+    }
+  </style>
+</section>

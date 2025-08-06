@@ -1,0 +1,21 @@
+---
+const { faqs } = Astro.props;
+---
+
+<div id="faq" class="section">
+  <h2 class="mb-4 text-3xl font-bold text-[--color-secondary]">
+    Frequently Asked<span class="halfHeading"> Questions</span>
+  </h2>
+  <div class="space-y-4">
+    {
+      faqs.map((faq) => (
+        <details class="rounded-xl bg-[--color-secondary-light2] shadow">
+          <summary class="cursor-pointer px-4 py-3 font-semibold transition hover:bg-[--color-secondary-light]">
+            {faq.name}
+          </summary>
+          <p class="px-4 pb-4">{faq.acceptedAnswer.text}</p>
+        </details>
+      ))
+    }
+  </div>
+</div>

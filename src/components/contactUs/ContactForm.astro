@@ -1,0 +1,90 @@
+---
+const { slideDirection } = Astro.props;
+---
+
+<div
+  class="formDiv pxy-8 gsap-animate flex w-full flex-col justify-center md:w-1/2"
+  data-direction={slideDirection}
+  data-duration="1.2"
+  data-delay="0.3"
+  data-scroll="true"
+  data-animation="slide"
+>
+  {/* Form */}
+  <h2 class="mb-6 text-center">
+    Have a Question? <span class="halfHeading">Let’s Talk</span>
+  </h2>
+  <form id="contactForm" action="../api/sendmail.php" method="POST" class="flex flex-col gap-4">
+    <div class="mb-4">
+      <label for="name" class="mb-1 block">Name<span class="text-red-500">*</span></label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Full Name"
+        required
+        class="focus:ring-input-focus w-full rounded-md border p-2 focus:ring-1 focus:outline-none"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="email" class="mb-1 block">Email<span class="text-red-500">*</span></label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Yours email address"
+        required
+        class="focus:ring-input-focus w-full rounded-md border p-2 focus:ring-1 focus:outline-none"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="contact" class="mb-1 block">Contact</label>
+      <input
+        type="text"
+        id="contact"
+        name="contact"
+        placeholder="Your contact number"
+        class="focus:ring-input-focus w-full rounded-md border p-2 focus:ring-1 focus:outline-none"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="message" class="mb-1 block">Message<span class="text-red-500">*</span></label>
+      <textarea
+        id="message"
+        name="message"
+        placeholder="Write full query"
+        required
+        class="focus:ring-input-focus h-32 w-full rounded-md border p-2 focus:ring-1 focus:outline-none"></textarea>
+    </div>
+
+    <div class="mb-4" style="display:none">
+      <label for="website" class="mb-1 block">Website</label>
+      <input type="text" id="website" name="website" placeholder="website" class="border" />
+    </div>
+
+    <button type="submit" class="button contactBtn" aria-label="Send Message to Indivirtus">Send Message</button>
+  </form>
+</div>
+
+<style>
+  @reference "tailwindcss";
+
+  h2 {
+    @apply tracking-wider;
+  }
+
+  label {
+    @apply text-base font-medium;
+    color: var(--color-gray);
+  }
+
+  input,
+  textarea {
+    @apply text-base;
+    border-color: var(--color-input-border);
+    color: var(--color-gray);
+  }
+</style>

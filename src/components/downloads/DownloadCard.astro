@@ -1,0 +1,24 @@
+---
+// Props
+const { title, fileUrl, aria } = Astro.props;
+
+import { FaFilePdf } from 'react-icons/fa6';
+
+import BTN from '@/components/other/BTN.astro';
+---
+
+<div
+  class="gsap-animate flex w-full flex-col justify-between rounded p-6 shadow transition hover:shadow-lg"
+  data-animation="zoom"
+  data-scroll="true"
+  data-stagger-group="companies"
+  data-delay="index"
+>
+  <div class="mb-10 flex items-center space-x-4">
+    <div class="text-secondary text-3xl md:text-5xl">
+      <FaFilePdf />
+    </div>
+    <p class="font-semibold">{title}</p>
+  </div>
+  <BTN btnLink={fileUrl} btnClass="button contactBtn" , btnText="Download" btnAria=`download ${aria}` />
+</div>

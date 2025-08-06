@@ -1,0 +1,34 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+// Importing the SEO
+import seoData from '@/data/js/seo/projects.js';
+
+import ProjectsGallery from '@/components/projects/ProjectsGallery.astro';
+
+const { meta, faqSchema, gtm, pageLink, schema } = seoData;
+---
+
+<Layout
+  seo={{
+    title: `${meta.title} - Indivirtus`,
+    description: meta.description,
+    keywords: meta.keywords,
+    canonical: meta.canonicalUrl,
+    url: pageLink,
+    schema: schema,
+    faqSchema: faqSchema,
+    ogTags: meta.ogTags,
+    twitterCard: meta.twitterCard,
+  }}
+  gtm={gtm}
+>
+  <section class="section">
+    <div class="maxwidth">
+      <h3 class="pageHeading">
+        Glimpses of few <span class="halfHeading">Delivered Projects</span>
+      </h3>
+      <ProjectsGallery />
+    </div>
+  </section>
+</Layout>

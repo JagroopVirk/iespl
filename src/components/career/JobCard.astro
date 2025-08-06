@@ -1,0 +1,52 @@
+---
+const { jobs } = Astro.props;
+---
+
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+  {
+    jobs.map((job) => (
+      <div class="rounded-lg bg-white p-6 shadow-md transition-shadow duration-300 hover:shadow-lg">
+        <h3 class="text-xl font-semibold">{job.title}</h3>
+        <p class="mt-2">Department: {job.department}</p>
+        <p class="">Positions: {job.noOfPositions}</p>
+        <p class="mt-4">{job.jobDescription}</p>
+        <p class="mt-2">Experience: {job.relevantExperience}</p>
+        <p class="">CTC: {job.offeredCTC}</p>
+        <p class="mt-2">
+          Location: {job.location} | {job.type}
+        </p>
+        <p class="mt-2">Posted on: {job.posted}</p>
+
+        <!-- Apply button only needs title -->
+        <button
+          class="button contactBtn mt-4 openJobModalBtn"
+          data-title={job.title}
+        >
+          Apply Now
+        </button>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  document.querySelectorAll('.openJobModalBtn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const modal = document.getElementById('jobApplicationModal');
+      const modalTitle = document.getElementById('modalTitle');
+      modalTitle.textContent = 'Apply for ' + btn.dataset.title;
+
+      // Set hidden field for PHP processing
+      const jobInput = document.getElementById('jobTitleInput');
+      if (jobInput) jobInput.value = btn.dataset.title;
+      
+      const jobDepartment = document.getElementById('jobDepartment');
+      if (jobDepartment) jobDepartment.value = btn.dataset.title;
+      
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    });
+  });
+</script>

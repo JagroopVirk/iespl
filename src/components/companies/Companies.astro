@@ -5,22 +5,10 @@ import CompanyCard from './CompanyCard.astro';
 import cards from '../../data/js/companies.js';
 ---
 
-{
-  (
-    <section class="pb-20" style={`background: ${setStyle}`}>
-      <div class="maxwidth relative mx-auto -mt-15 grid grid-cols-1 justify-items-center gap-6 px-4 sm:grid-cols-2 md:grid-cols-3">
-        {cards.map((card) => (
-          <CompanyCard {...card} />
-        ))}
-      </div>
-    </section>
-  )
-}
-
-{
-  /* <style>
-  section {
-    background: var(--color-secondary-light);
-  }
-</style> */
-}
+<section class="pb-20" style={`background: ${setStyle}`}>
+  <div
+    class="maxwidth relative mx-auto -mt-15 grid grid-cols-1 justify-items-center gap-x-40 gap-y-20 px-4 sm:grid-cols-2 md:grid-cols-3"
+  >
+    {cards.map((card) => <CompanyCard {...card} />)}
+  </div>
+</section>

@@ -3,10 +3,10 @@ import Picture from 'astro/components/Picture.astro';
 
 import AnimatedNumber from '@/components/extras/AnimatedNumber.jsx';
 
-import { heroStats } from '../../data/js/hero.js';
+import { heroStats } from '@/data/js/hero.js';
 ---
 
-<div class="md:mt-auto">
+<div class="mb-12 md:mt-auto">
   <div class="my-5 flex gap-10 md:px-4 lg:flex-col">
     {
       heroStats.map((stat) => (

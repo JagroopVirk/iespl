@@ -1,22 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Main from '../components/home/Main.astro';
+import Layout from '@/layouts/Layout.astro';
+import Main from '@/components/home/Main.astro';
 
-import '../styles/global.css';
+// Importing the SEO
+import seoData from '@/data/js/seo/index.js';
 
-// Importing the default SEO and location schema
-import { allServicesSchema } from '../data/js/seo/servicesSchemaSEO.js';
+const { gtm } = seoData;
 ---
 
-<Layout>
-  <main class="flex h-full items-center justify-center">
-    <h1>Coming soon</h1>
-  </main>
+<Layout gtm={gtm}>
+  <Main />
 </Layout>
-
-<style>
-  @reference "tailwindcss";
-  h1 {
-    @apply text-9xl;
-  }
-</style>

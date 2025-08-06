@@ -1,0 +1,20 @@
+---
+const { main, image } = Astro.props;
+
+//import picture
+import Picture from 'astro/components/Picture.astro';
+---
+
+{/* Main Content Section */}
+
+<article aria-labelledby="services-heading" aria-describedby="services-detail" class="mt-20">
+  <section aria-labelledby="services-heading" class="mb-12 flex gap-15">
+    <div>
+      <h2 id="services-heading" class="mb-4" set:html={main.heading} />
+      <p id="services-detail" class="leading-relaxed" set:html={main.detail} />
+    </div>
+    <div class="min-w-1/3">
+      <Picture src={image.path} alt={image.alt} width={500} />
+    </div>
+  </section>
+</article>

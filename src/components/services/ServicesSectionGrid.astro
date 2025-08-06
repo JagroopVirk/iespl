@@ -4,6 +4,8 @@ const { setStyle } = Astro.props;
 import Picture from 'astro/components/Picture.astro';
 
 import services from '@/utils/services.js';
+
+import BTN from '../other/BTN.astro';
 ---
 
 <section class="section" style={`background: ${setStyle}`}>
@@ -16,14 +18,18 @@ import services from '@/utils/services.js';
             <div class="my-auto align-middle md:w-1/2">
               <h3 set:html={service.description} />
               <p class="py-6 leading-loose" set:html={service.full_description} />
+
               <div class="buttonSimple">
-                <a class="" href={service.pageLink}>
-                  Read more...
-                </a>
+                <BTN
+                  btnLink={service.pageLink}
+                  btnClass="text-secondary"
+                  btnText="Learn more...."
+                  btnAria={`read more about ${service.name}`}
+                />
               </div>
             </div>
             <div class="hidden transition-shadow hover:shadow-md md:block md:w-1/2 lg:w-1/3">
-              <Picture src={service.image.path} alt={service.image.alt} />
+              <Picture src={service.image.path} alt={service.image.alt} loading="lazy" style={{ height: '100%' }} />
             </div>
           </div>
         ))
