@@ -1,7 +1,7 @@
 const siteUrl = 'https://indivirtuseco.com';
 const siteLogo = `${siteUrl}/logo.png`;
 
-const allServicesSchema = {
+export default {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'Services | Indivirtus Ecological Services',
@@ -67,5 +67,3 @@ const allServicesSchema = {
     ],
   },
 };
-
-export default allServicesSchema;
