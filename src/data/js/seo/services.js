@@ -3,28 +3,23 @@ const siteLogo = siteUrl + '/logo.png';
 const link = '/services';
 
 export default {
-  pageLink: `${siteUrl}${link}`,
+  pageLink: `${siteUrl}${link}`, //managed with const
   meta: {
-    title: 'Comprehensive Pharmaceutical Services | Indivirtus Healthcare',
+    title: 'Services | Indivirtus Ecological Services',
     description:
-      'Explore Indivirtus Healthcare’s wide range of pharmaceutical services, including ADE/PDE/OEL calculations, genotoxic impurity assessments, pharmacovigilance, GMP approvals, and more.',
+      'Explore the comprehensive services offered by Indivirtus Ecological Services, including ecological consulting, sustainability solutions, and environmental impact assessments.',
     keywords: [
-      'pharmaceutical services',
-      'ADE/PDE/OEL calculations',
-      'genotoxic impurity assessment',
-      'pharmacovigilance',
-      'GMP approvals',
-      'medical device registration',
-      'NABL calibration',
-      'isolator containment validation',
-      'MSDS/SDS preparation',
-      'pharmaceutical training',
+      'indivirtus services',
+      'ecological consulting',
+      'sustainability solutions',
+      'environmental impact assessment',
+      'green services',
     ],
     twitterHandle: '@indivirtus',
     url: siteUrl,
     logo: siteLogo,
     type: 'website',
-    canonicalUrl: `${siteUrl}${link}`,
+    canonicalUrl: `${siteUrl}${link}`, //managed with const
     robotsMeta: {
       index: true,
       follow: true,
@@ -33,45 +28,45 @@ export default {
     },
     ogTags: {
       type: 'website',
-      url: siteUrl,
-      site_name: 'Indivirtus EcologicalServices Pvt Ltd',
+      url: `${siteUrl}${link}`,
+      site_name: 'Indivirtus Ecological Services Pvt Ltd',
       image: siteLogo,
-      title: 'Comprehensive Pharmaceutical Services | Indivirtus Healthcare',
+      title: 'Services | Indivirtus Ecological Services',
       description:
-        'Indivirtus Ecologicaloffers specialized pharmaceutical services, including cleaning validation, genotoxic assessments, pharmacovigilance, GMP approvals, and regulatory compliance support.',
+        'Discover the range of services provided by Indivirtus Ecological Services to support sustainability and ecological innovation.',
     },
     twitterCard: {
       card: 'summary_large_image',
-      title: 'Comprehensive Pharmaceutical Services | Indivirtus Healthcare',
+      title: 'Services | Indivirtus Ecological Services',
       description:
-        'Indivirtus Ecologicalprovides expert pharmaceutical services, from ADE/PDE calculations to GMP approvals and pharmacovigilance solutions.',
+        'Discover the range of services provided by Indivirtus Ecological Services to support sustainability and ecological innovation.',
       image: siteLogo,
       site: '@indivirtus',
       creator: '@indivirtus',
     },
   },
   gtm: {
-    eventCategory: 'Services Page',
+    eventCategory: 'PageView',
     eventAction: 'View',
-    eventLabel: 'Pharmaceutical Services',
+    eventLabel: 'Services',
     customDimensions: {},
     dataLayerPush: {
-      reportType: ['ADE/PDE/OEL', 'Genotoxic Assessment', 'Pharmacovigilance', 'GMP Approvals'],
-      certification: 'NABL Accredited',
+      reportType: ['services_page'],
+      certification: 'ISO 14001',
     },
   },
   schema: {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: 'Indivirtus EcologicalServices',
+    name: 'Indivirtus Ecological Services',
     description:
-      'Indivirtus Ecologicalprovides comprehensive pharmaceutical services, including ADE/PDE/OEL calculations, genotoxic impurity assessments, pharmacovigilance, GMP approvals, and regulatory compliance support.',
-    serviceType: 'Pharmaceutical Consulting and Compliance Services',
+      'Indivirtus Ecological Services offers a wide range of professional services focused on ecological consulting, sustainability solutions, and environmental impact assessments.',
+    serviceType: 'Ecological and Sustainability Services',
     provider: {
       '@type': 'Organization',
       name: 'Indivirtus',
-      url: 'https://www.indivirtus.com',
-      logo: 'https://www.indivirtus.com/logo.png',
+      url: siteUrl, // Consistent with siteUrl
+      logo: siteLogo,
       sameAs: [
         'https://www.linkedin.com/company/indivirtus-group-of-companies',
         'https://twitter.com/indivirtus',
@@ -85,7 +80,7 @@ export default {
     },
     availableChannel: {
       '@type': 'ServiceChannel',
-      serviceUrl: `${siteUrl}${link}`,
+      serviceUrl: `${siteUrl}${link}`, //managed with const
       servicePhone: '+91-9131925456',
       servicePostalAddress: {
         '@type': 'PostalAddress',
@@ -98,37 +93,32 @@ export default {
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Pharmaceutical and Regulatory Services',
+      name: 'Services Offered',
       itemListElement: [
         {
           '@type': 'Offer',
-          name: 'ADE/PDE/OEL Calculation for Cleaning Validation',
-          description:
-            'Specialized calculations to ensure safe exposure levels during pharmaceutical cleaning validation, including risk assessments and compliance documentation.',
+          name: 'Ecological Consulting',
+          description: 'Expert guidance for sustainable environmental practices and project planning.',
         },
         {
           '@type': 'Offer',
-          name: 'Genotoxic Impurity & Medical Device Toxicology Assessment',
-          description:
-            'Comprehensive genotoxicity and toxicological risk assessments aligned with ICH and ISO standards for pharmaceuticals and medical devices.',
+          name: 'Sustainability Solutions',
+          description: 'Innovative solutions to promote sustainability across various industries.',
         },
         {
           '@type': 'Offer',
-          name: 'Pharmacovigilance & Drug Safety Monitoring',
-          description:
-            'Full-suite pharmacovigilance services, including safety database setup, ICSR processing, and risk management plans.',
+          name: 'Environmental Impact Assessment',
+          description: 'Comprehensive assessments to ensure environmentally responsible project outcomes.',
         },
         {
           '@type': 'Offer',
-          name: 'NABL-Accredited Calibration Services',
-          description:
-            'Precise calibration for critical pharmaceutical instruments, backed by NABL accreditation and comprehensive documentation.',
+          name: 'Sustainable Development Projects',
+          description: 'Initiatives focused on sustainable practices for communities and businesses.',
         },
         {
           '@type': 'Offer',
-          name: 'GMP Approvals & Regulatory Compliance',
-          description:
-            'Support for GMP approvals from global authorities and regulatory compliance services, including dossier preparation and audit remediation.',
+          name: 'Healthcare Solutions',
+          description: 'Integrated healthcare services aligned with sustainability goals.',
         },
       ],
     },
@@ -139,42 +129,26 @@ export default {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'What types of pharmaceutical services does Indivirtus offer?',
+        name: 'What services does Indivirtus Ecological Services offer?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Indivirtus provides a wide range of services, including ADE/PDE/OEL calculations, genotoxic impurity assessments, pharmacovigilance, NABL-accredited calibration, GMP approvals, regulatory compliance, and turnkey project execution for pharmaceutical facilities.',
+          text: 'We offer ecological consulting, sustainability solutions, environmental impact assessments, sustainable development projects, and healthcare solutions.',
         },
       },
       {
         '@type': 'Question',
-        name: 'How does Indivirtus ensure compliance with global regulatory standards?',
+        name: 'How can Indivirtus help with sustainability projects?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Indivirtus supports compliance with standards like EU-GMP, USFDA, WHO-GMP, and TGA through regulatory readiness assessments, dossier preparation, audit remediation, and comprehensive documentation.',
+          text: 'Our sustainability solutions provide innovative strategies and practices to support environmentally friendly project development.',
         },
       },
       {
         '@type': 'Question',
-        name: 'What is included in your pharmacovigilance services?',
+        name: 'How can I request a service from Indivirtus?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Our pharmacovigilance services include PSMF preparation, SOPs, safety database setup, ICSR processing, PSUR/PBRER/PADER submissions, signal detection, risk management plans, and literature surveillance.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Are your calibration services accredited?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, our calibration services are NABL-accredited, providing traceable calibration reports, deviation records, and quality documentation for pharmaceutical instruments.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How can I contact Indivirtus for more information about your services?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'You can reach us via our service page at https://indivirtuseco.com/services, by phone at +91-9131925456, or at our office located at 522, Taj Plaza, TDI City, Sector 118, Mohali, Punjab, India.',
+          text: 'Visit our services page at https://indivirtuseco.com/services or contact us at +91-9131925456 for more information.',
         },
       },
     ],
