@@ -2,7 +2,7 @@
 import Picture from 'astro/components/Picture.astro';
 
 import heroImg from '@/assets/hero.png';
-import bgImage from '@/assets/hero-bg-11.jpg';
+import bgImage from '@/assets/hero-bg.webp';
 import { heroDescription } from '@/data/js/hero.js';
 // import Stats from './Stats.astro';
 ---
@@ -16,9 +16,25 @@ import { heroDescription } from '@/data/js/hero.js';
     {/* <Stats /> */}
     <div class="mb-6 sm:text-justify lg:max-w-2/3">
       <h1 class="heroDetail mb-2 text-left" set:html={heroDescription.description} />
-      <ul class="text-primaryBlue ml-4 list-outside list-disc">
-        {heroDescription.listItem.map((item, idx) => <li class="py-1" set:html={item} />)}
-      </ul>
+      <div>
+        <div class="flex flex-col gap-x-40 md:flex-row">
+          <ul class="ml-4 list-outside list-disc text-white">
+            {
+              heroDescription.listItem
+                .slice(0, -1)
+                .map((item, idx) => (idx % 2 == 0 ? <li class="py-1" set:html={item} /> : ''))
+            }
+          </ul>
+          <ul class="ml-4 list-outside list-disc text-white">
+            {heroDescription.listItem.map((item, idx) => (idx % 2 != 0 ? <li class="py-1" set:html={item} /> : ''))}
+          </ul>
+        </div>
+        <div class="mx-auto">
+          <ul class="ml-4 list-outside list-disc text-white">
+            <li class="py-1" set:html={heroDescription.listItem.slice(-1)} />
+          </ul>
+        </div>
+      </div>
     </div>
     <Picture src={heroImg} alt="Hero Image" class="mx-auto hidden rounded-4xl md:block" />
   </div>
@@ -34,9 +50,9 @@ import { heroDescription } from '@/data/js/hero.js';
     @apply leading-12;
   }
   .heroDetail {
-    @apply text-lg font-medium text-black;
+    @apply text-lg font-medium text-white;
   }
   p {
-    @apply text-2xl py-1.5 text-shadow-lg text-black font-bold;
+    @apply text-2xl py-1.5 text-shadow-lg text-white font-bold;
   }
 </style>

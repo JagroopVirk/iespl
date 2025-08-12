@@ -24,17 +24,21 @@ const longTerm = [
 
 <section class="section flex flex-col items-center justify-center py-10">
   <!-- Heading -->
-  <div class="maxwidth relative">
-    <h2 class="mx-auto mb-14 max-w-max rounded-full bg-teal-500 px-6 py-2 text-center text-xl font-semibold text-white">
+  <div
+    class="maxwidth relative z-10 after:absolute after:top-0 after:left-1/2 after:z-1 after:hidden after:h-full after:w-[25px] after:-translate-x-1/2 after:rounded-full after:bg-teal-500 md:after:block"
+  >
+    <h2
+      class="relative z-10 mx-auto mb-14 max-w-max rounded-full bg-teal-500 px-6 py-2 text-center text-xl font-semibold text-white"
+    >
       Measurable Impact
     </h2>
 
     <!-- Horizontal section with arrows -->
-    <div class="relative mt-6 flex w-full max-w-5xl flex-col items-start justify-center gap-6 px-4 md:flex-row">
+    <div class="relative mt-6 flex w-full max-w-5xl flex-col items-start justify-center gap-14 px-4 md:flex-row">
       <!-- Short Term -->
       <div class="relative flex-1 rounded-lg bg-white p-4 shadow-sm">
         <span
-          class="absolute -top-8 left-1/2 w-full -translate-x-1/2 rounded-full bg-teal-400 px-4 py-1 text-center text-sm text-white"
+          class="absolute -top-8 left-0 z-5 w-full rounded-full bg-teal-500 px-4 py-1 text-center text-white md:left-[10px] md:w-[calc(100%_+_28px)] md:before:absolute md:before:top-0 md:before:left-0 md:before:z-0 md:before:h-full md:before:w-[25px] md:before:bg-white md:after:absolute md:after:top-0 md:after:left-0 md:after:z-10 md:after:h-0 md:after:w-0 md:after:border-t-[16px] md:after:border-r-[25px] md:after:border-b-[16px] md:after:border-t-transparent md:after:border-r-teal-500 md:after:border-b-transparent"
         >
           Short Term
         </span>
@@ -44,29 +48,18 @@ const longTerm = [
       </div>
 
       <!-- Long Term -->
-      <div class="relative flex-1 rounded-lg bg-white p-4 shadow-sm">
+      <div class="relative mt-4 flex-1 rounded-lg bg-white p-4 shadow-sm">
         <span
-          class="absolute -top-8 left-1/2 w-full -translate-x-1/2 rounded-full bg-teal-400 px-4 py-1 text-center text-sm text-white"
+          class="absolute -top-8 left-0 w-full rounded-full bg-teal-500 px-4 py-1 text-center text-white md:-left-[28px] md:w-[calc(100%_+_28px)] md:before:absolute md:before:top-0 md:before:right-0 md:before:z-0 md:before:h-full md:before:w-[25px] md:before:bg-white md:after:absolute md:after:top-0 md:after:right-0 md:after:z-10 md:after:h-0 md:after:w-0 md:after:border-t-[16px] md:after:border-b-[16px] md:after:border-l-[25px] md:after:border-t-transparent md:after:border-b-transparent md:after:border-l-teal-500"
         >
           Long Term
         </span>
+
         <ul class="ml-4 list-outside list-disc">
           {longTerm.map((item) => <li>{item}</li>)}
         </ul>
       </div>
     </div>
-
-    <!-- Bottom Arrow (Optional for design effect) -->
-    <!-- <div class="absolute top-[75px] right-0 left-0 hidden justify-between px-12 md:flex">
-      <div
-        class="h-0 w-0 border-t-[15px] border-r-[25px] border-b-[15px] border-t-transparent border-r-teal-400 border-b-transparent"
-      >
-      </div>
-      <div
-        class="h-0 w-0 border-t-[15px] border-b-[15px] border-l-[25px] border-t-transparent border-b-transparent border-l-teal-400"
-      >
-      </div>
-    </div> -->
   </div>
 </section>
 

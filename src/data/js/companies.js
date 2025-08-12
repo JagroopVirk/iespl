@@ -1,6 +1,14 @@
 export default [
   {
-    title: 'Indivirtus EcologicalServices',
+    title: 'Indivirtus Ecological Services',
+    services: ['Environmental Risk Assessment', 'Ecotoxicology Studies', 'Biodiversity Compliance'],
+    link: '/services',
+    bgColor: 'bg-green-100',
+    textColor: 'text-blue-900',
+    linkColor: 'text-blue-900',
+  },
+  {
+    title: 'Indivirtus Healthcare Services',
     services: [
       'Toxicological Services',
       'Pharmacovigilance',
@@ -14,30 +22,6 @@ export default [
     linkColor: 'text-orange-600',
   },
   {
-    title: 'Indivirtus Solutions',
-    services: ['Insurance Services', 'Accounting Services', 'Data Management Services', 'International B.P.O.'],
-    link: 'https://www.indivirtussolutions.com',
-    bgColor: 'bg-sky-400',
-    textColor: 'text-blue-900',
-    linkColor: 'text-blue-900 font-semibold underline',
-  },
-  {
-    title: 'Indivirtus Strategic Solutions',
-    services: ['Export/ import of finished formulations', 'Finding a suitable MAH across all regions'],
-    link: 'https://www.indivirtusrnd.com',
-    bgColor: 'bg-sky-300',
-    textColor: 'text-blue-900',
-    linkColor: 'text-blue-900 font-semibold underline',
-  },
-  {
-    title: 'Indivirtus AB7 Scribing and RCM',
-    services: ['Medical scribing', 'Revenue cycle management', 'Medical transcription'],
-    link: 'https://www.indivirtusab7.com',
-    bgColor: 'bg-orange-200',
-    textColor: 'text-blue-900',
-    linkColor: 'text-blue-900 font-semibold underline',
-  },
-  {
     title: 'Indivirtus Global CRO',
     services: [
       'Bioavailability and Bioequivalence (BA/BE) Studies',
@@ -48,14 +32,31 @@ export default [
     link: 'https://www.indivirtuscro.com',
     bgColor: 'bg-slate-200',
     textColor: 'text-blue-900',
-    linkColor: 'text-blue-900 font-semibold underline',
+    linkColor: 'text-blue-900',
+  },
+
+  {
+    title: 'Indivirtus Strategic Solutions',
+    services: ['Export/ import of finished formulations', 'Finding a suitable MAH across all regions'],
+    link: 'https://www.indivirtusrnd.com',
+    bgColor: 'bg-sky-300',
+    textColor: 'text-blue-900',
+    linkColor: 'text-blue-900 ',
   },
   {
-    title: 'Indivirtus Ecological Services',
-    services: ['Environmental Risk Assessment', 'Ecotoxicology Studies', 'Biodiversity Compliance'],
-    link: '/services',
-    bgColor: 'bg-green-100',
+    title: 'Indivirtus Solutions',
+    services: ['Insurance Services', 'Accounting Services', 'Data Management Services', 'International B.P.O.'],
+    link: 'https://www.indivirtussolutions.com',
+    bgColor: 'bg-sky-400',
     textColor: 'text-blue-900',
-    linkColor: 'text-blue-900 font-semibold underline',
+    linkColor: 'text-blue-900 ',
+  },
+  {
+    title: 'Indivirtus AB7 Scribing and RCM',
+    services: ['Medical scribing', 'Revenue cycle management', 'Medical transcription'],
+    link: 'https://www.indivirtusab7.com',
+    bgColor: 'bg-orange-200',
+    textColor: 'text-blue-900',
+    linkColor: 'text-blue-900 ',
   },
 ];

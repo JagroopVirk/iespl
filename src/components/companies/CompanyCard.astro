@@ -15,5 +15,11 @@ const { title, services, link, bgColor, textColor, linkColor } = Astro.props;
     {services.map((item) => <li>{item}</li>)}
   </ul>
 
-  <a href={link} class={`${linkColor}`} target="_blank">View More Services +</a>
+  <a
+    href={link}
+    class={`${linkColor}`}
+    target={link && (link.startsWith('http://') || link.startsWith('https://')) ? '_blank' : undefined}
+    rel={link && (link.startsWith('http://') || link.startsWith('https://')) ? 'noopener noreferrer' : undefined}
+    >View More Services +</a
+  >
 </div>
