@@ -38,8 +38,8 @@ import { heroDescription } from '@/data/js/hero.js';
     </div>
     <Picture src={heroImg} alt="Hero Image" class="mx-auto hidden rounded-4xl md:block" />
   </div>
-  <div class="maxwidth text-center lg:pb-30">
-    <p set:html={heroDescription.bottomTag} />
+  <div class="maxwidth pb-12 text-center lg:pb-30">
+    <p class="bg-primary/50" set:html={heroDescription.bottomTag} />
   </div>
 </section>
 
@@ -53,6 +53,6 @@ import { heroDescription } from '@/data/js/hero.js';
     @apply text-lg font-medium text-white;
   }
   p {
-    @apply text-2xl py-1.5 text-shadow-lg text-white font-bold;
+    @apply text-2xl text-white font-bold text-shadow-lg  mx-auto w-fit rounded-full border-2 border-white px-4 py-3;
   }
 </style>
