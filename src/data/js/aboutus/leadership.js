@@ -1,7 +1,7 @@
 import ujPic from '@/assets/leadership/Dr._Upendra_K_Jain.png';
 import vkPic from '@/assets/leadership/Ms._Veena_Kumari.jpg';
 import ajPic from '@/assets/leadership/Dr._Ashish_Jain.jpg';
-import rkPic from '@/assets/leadership/Dr._Randeep_Signh.jpg';
+import snPic from '@/assets/leadership/Mr._Suresh_Nair.jpg';
 
 export default [
   {
@@ -47,7 +47,7 @@ export default [
   {
     name: 'Mr. Suresh U Nair',
     title: 'Director',
-    image: ujPic,
+    image: snPic,
     bg: 'bg-yellow-100',
     description: {
       name: 'Mr. Suresh U Nair',
