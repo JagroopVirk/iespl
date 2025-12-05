@@ -1,7 +1,7 @@
 export const downloads = [
   {
     title: 'Indivirtus Ecological Services',
-    fileUrl: '/downloads/IES_Brochure.pdf',
+    fileUrl: '/downloads/IES-brochure.pdf',
     aria: 'Indivirtus Ecological Services Brochure',
   },
   // {
