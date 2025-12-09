@@ -1,6 +1,10 @@
 <IfModule mod_rewrite.c>
      RewriteEngine On
      RewriteBase /
+
+     # Redirect IES-brochure.pdf → /downloads/brochure/  (301), preserving query string.
+RewriteCond %{REQUEST_URI} ^/downloads/IES-brochure\.pdf$ [NC]
+RewriteRule ^downloads/IES-brochure\.pdf$ /downloads/brochure/ [R=301,L,QSA]
      RewriteCond %{REQUEST_FILENAME} !-f
      RewriteCond %{REQUEST_FILENAME} !-d
      RewriteCond %{REQUEST_FILENAME} !-l

@@ -1,0 +1,43 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+// Importing the SEO
+import seoData from '@/data/js/seo/downloads/brochure';
+
+const { meta, faqSchema, gtm, pageLink, schema } = seoData;
+---
+
+<Layout
+  seo={{
+    title: `${meta.title} - Indivirtus`,
+    description: meta.description,
+    keywords: meta.keywords,
+    canonical: meta.canonicalUrl,
+    url: pageLink,
+    schema: schema,
+    faqSchema: faqSchema,
+    ogTags: meta.ogTags,
+    twitterCard: meta.twitterCard,
+  }}
+  gtm={gtm}
+>
+  <section class="">
+    <div class="pdf-wrapper">
+      <iframe src="/downloads/IES-brochure.pdf#toolbar=1" class="pdf-frame"></iframe>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .pdf-wrapper {
+    width: 100%;
+    height: 100vh; /* adjust for header + footer height */
+    overflow: hidden;
+  }
+
+  .pdf-frame {
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+</style>

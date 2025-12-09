@@ -26,7 +26,7 @@ import SetMarginTop from '../extras/SetMarginTop.astro';
                 </div>
                 <a
                   class="addDetails"
-                  href={'http://maps.google.com/?q=' + office.address ? office.address : ''}
+                  href={'http://maps.google.com/?q=' + (office.address ? office.address : '')}
                   target={'_blank'}
                 >
                   {office.address}
@@ -34,34 +34,35 @@ import SetMarginTop from '../extras/SetMarginTop.astro';
               </div>
               <div class="mb-2 flex">
                 <div class="footerIcon text-lg">{office.phone ? <FaPhone /> : ''}</div>
-                <div class="flex flex-col xl:flex-row">
+                <div>
                   {office.phone
                     ? office.phone.map((element) => (
                         <a class="addDetails" href={`tel:${element}`}>
                           {element}
-                        </a>
+                        </a></br>
                       ))
                     : ''}
                 </div>
               </div>
               <div class="mb-2 flex">
                 <div class="footerIcon text-lg">{office.email ? <FaEnvelope /> : ''}</div>
-                <div class="flex flex-col xl:flex-row">
+                <div>
                   {office.email
                     ? office.email.map((element) => (
                         <a class="addDetails" href={`mailto:${element}`}>
                           {element}
-                        </a>
+                        </a></br>
                       ))
                     : ''}
                 </div>
               </div>
+                {office.otherInfo? <p class="enquiry">({office.otherInfo})</p>  : ""}
             </div>
           ))
         }
       </div>
       <div class="addDivI grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-        {
+       {
           internationOffices.map((office) => (
             <div>
               <h3 class="officeCountry mb-2 text-center">{office.location ? office.location : ''}</h3>
@@ -71,7 +72,7 @@ import SetMarginTop from '../extras/SetMarginTop.astro';
                 </div>
                 <a
                   class="addDetails"
-                  href={'http://maps.google.com/?q=' + office.address ? office.address : ''}
+                  href={'http://maps.google.com/?q=' + (office.address ? office.address : '')}
                   target={'_blank'}
                 >
                   {office.address}
