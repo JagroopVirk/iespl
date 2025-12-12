@@ -24,13 +24,15 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
   const baseScale = useRef(1);
   const lastScale = useRef(1);
 
+  const cancelableRenderTasks = useRef({}); // Track active renders per page
+
   // ———————————————————— INIT PDF + AUTO-FIT ————————————————————
   useEffect(() => {
     (async () => {
       const pdfjs = await import("pdfjs-dist/build/pdf.mjs");
 
-      // THIS IS THE MAGIC LINE — fixes production forever
-      pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+      // 100% PRODUCTION-PROOF — HTTPS + version-pinned + minified
+      pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
       const loadingTask = pdfjs.getDocument(file);
       const pdf = await loadingTask.promise;
@@ -53,8 +55,14 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
   const renderPage = useCallback(
     async (pageNum) => {
       if (!pdfDoc || !scale) return;
+
       const canvas = pageRefs.current[pageNum];
       if (!canvas || canvas.dataset.rendered === "true") return;
+
+      // CANCEL any previous render on this canvas
+      if (cancelableRenderTasks.current[pageNum]) {
+        cancelableRenderTasks.current[pageNum].cancel();
+      }
 
       const page = await pdfDoc.getPage(pageNum);
       const viewport = page.getViewport({ scale });
@@ -67,15 +75,35 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
       canvas.style.height = `${viewport.height}px`;
 
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      await page.render({ canvasContext: ctx, viewport }).promise;
 
-      canvas.dataset.rendered = "true";
+      // This is the key: use cancelable render task
+      const renderTask = page.render({
+        canvasContext: ctx,
+        viewport: viewport,
+      });
 
-      gsap.fromTo(
-        canvas,
-        { autoAlpha: 0, y: 25 },
-        { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }
-      );
+      // Store it so we can cancel later
+      cancelableRenderTasks.current[pageNum] = renderTask;
+
+      try {
+        await renderTask.promise;
+        canvas.dataset.rendered = "true";
+
+        gsap.fromTo(
+          canvas,
+          { autoAlpha: 0, y: 25 },
+          { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }
+        );
+      } catch (error) {
+        if (error?.name === "RenderingCancelledException") {
+          // This is expected when we cancel — ignore
+          return;
+        }
+        console.error("PDF render error:", error);
+      } finally {
+        // Clean up
+        delete cancelableRenderTasks.current[pageNum];
+      }
     },
     [pdfDoc, scale]
   );
@@ -148,6 +176,15 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
   useEffect(() => {
     if (!scale || !numPages) return;
 
+    // Cancel ALL ongoing renders when scale changes
+    Object.values(cancelableRenderTasks.current).forEach((task) => {
+      if (task && typeof task.cancel === "function") {
+        task.cancel();
+      }
+    });
+    cancelableRenderTasks.current = {};
+
+    // Mark all as unrendered
     Object.values(pageRefs.current).forEach((canvas) => {
       if (canvas) {
         canvas.dataset.rendered = "false";
@@ -155,6 +192,7 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
       }
     });
 
+    // Re-render visible pages
     setTimeout(() => {
       document.querySelectorAll("[data-page-wrapper]").forEach((el) => {
         const pageNum = Number(el.querySelector("canvas")?.dataset.pageNumber);
