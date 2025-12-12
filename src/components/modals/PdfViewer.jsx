@@ -1,37 +1,33 @@
 // src/components/modals/PdfViewer.jsx
-"use client";
-
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { gsap } from "gsap";
 
-// ── FA6 Icons ───────────────────────
 import {
   FaMagnifyingGlassPlus,
   FaMagnifyingGlassMinus,
-  FaArrowsLeftRight, // "Fit width"
+  FaArrowsLeftRight,
   FaExpand,
-  FaCompress, // Optional: for exit fullscreen
+  FaCompress,
 } from "react-icons/fa6";
+
+import { usePinch, useWheel } from "@use-gesture/react";
 
 export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
   const containerRef = useRef(null);
-  const pdfjsRef = useRef(null);
-
   const [pdfDoc, setPdfDoc] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [scale, setScale] = useState(null);
   const pageRefs = useRef({});
-  const [mounted, setMounted] = useState(false); // New: Track client mount
+  const [mounted, setMounted] = useState(false);
 
-  // ---------------------------------------------------
-  // INIT: Load PDF.js + Document
-  // ---------------------------------------------------
+  const baseScale = useRef(1);
+  const lastScale = useRef(1);
+
+  // ———————————————————— INIT PDF + AUTO-FIT ————————————————————
   useEffect(() => {
     (async () => {
       const pdfjs = await import("pdfjs-dist/build/pdf.mjs");
-      pdfjsRef.current = pdfjs;
-
       pdfjs.GlobalWorkerOptions.workerSrc = new URL(
         "pdfjs-dist/build/pdf.worker.mjs",
         import.meta.url
@@ -43,26 +39,24 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
       setPdfDoc(pdf);
       setNumPages(pdf.numPages);
 
-      // Auto-fit scale
       const firstPage = await pdf.getPage(1);
       const viewport = firstPage.getViewport({ scale: 1 });
       const pageWidth = viewport.width;
 
-      // Use clamp logic similar to your .maxwidth
-      const maxContainerWidth = Math.min(window.innerWidth * 0.95, 1348);
-      const bestScale = maxContainerWidth / pageWidth;
+      // FIXED: Use exact clamp like your CSS rule → never overflows
+      const maxWidth = Math.min(window.innerWidth * 0.94, 1348); // 94% for padding
+      const autoScale = maxWidth / pageWidth;
 
-      setScale(bestScale);
+      baseScale.current = autoScale;
+      lastScale.current = autoScale;
+      setScale(autoScale);
     })();
   }, [file]);
 
-  // ---------------------------------------------------
-  // RENDER PAGE
-  // ---------------------------------------------------
+  // ———————————————————— RENDER PAGE ————————————————————
   const renderPage = useCallback(
     async (pageNum) => {
       if (!pdfDoc || !scale) return;
-
       const canvas = pageRefs.current[pageNum];
       if (!canvas || canvas.dataset.rendered === "true") return;
 
@@ -77,13 +71,8 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
       canvas.style.height = `${viewport.height}px`;
 
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      await page.render({ canvasContext: ctx, viewport }).promise;
 
-      const renderContext = {
-        canvasContext: ctx,
-        viewport: viewport,
-      };
-
-      await page.render(renderContext).promise;
       canvas.dataset.rendered = "true";
 
       gsap.fromTo(
@@ -95,12 +84,9 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
     [pdfDoc, scale]
   );
 
-  // ---------------------------------------------------
-  // LAZY LOADING
-  // ---------------------------------------------------
+  // ———————————————————— LAZY LOAD ————————————————————
   useEffect(() => {
     if (!numPages) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -110,81 +96,98 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
           }
         });
       },
-      { rootMargin: "600px 0px" }
+      { rootMargin: "600px" }
     );
 
-    // Observe the parent div, not canvas directly (more reliable)
-    document.querySelectorAll("[data-page-wrapper]").forEach((el) => {
-      observer.observe(el);
-    });
-
+    document.querySelectorAll("[data-page-wrapper]").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [numPages, renderPage]);
 
-  // ---------------------------------------------------
-  // ZOOM CONTROLS
-  // ---------------------------------------------------
-  const zoomIn = () => setScale((s) => +(s + 0.2).toFixed(2));
-  const zoomOut = () => setScale((s) => Math.max(0.4, +(s - 0.2).toFixed(2)));
-  const resetZoom = () => setScale(null); // triggers auto-fit again
-
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      containerRef.current.requestFullscreen?.() ||
-        containerRef.current.webkitRequestFullscreen?.();
-    } else {
-      document.exitFullscreen?.() || document.webkitExitFullscreen?.();
-    }
+  // ———————————————————— ZOOM CONTROLS ————————————————————
+  const zoomIn = () => setScale((s) => Math.min(4, +(s * 1.25).toFixed(3)));
+  const zoomOut = () => setScale((s) => Math.max(0.5, +(s * 0.8).toFixed(3)));
+  const resetZoom = () => {
+    setScale(baseScale.current);
+    lastScale.current = baseScale.current;
   };
 
-  // Re-render on scale change
+  const toggleFullscreen = useCallback(() => {
+    if (!document.fullscreenElement) {
+      containerRef.current?.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  }, []);
+
+  // ———————————————————— GESTURES: Pinch + Ctrl+Wheel Only ————————————————————
+  const bindPinch = usePinch(
+    ({ offset: [s] }) => {
+      const newScale = Math.max(0.5, Math.min(4, baseScale.current * s));
+      setScale(newScale);
+      lastScale.current = newScale;
+    },
+    { scaleBounds: { min: 0.5, max: 4 }, rubberband: true, pointer: { touch: true } }
+  );
+
+  // Only zoom with Ctrl + Wheel (standard behavior)
+  const bindWheel = useWheel(
+    ({ event, wheeling, memo, offset: [, y] }) => {
+      if (!event.ctrlKey && !event.metaKey) return memo; // ← Critical: require Ctrl/Cmd
+      if (!wheeling) return memo;
+
+      const delta = y - (memo || y);
+      const factor = delta > 0 ? 0.92 : 1.08;
+      const newScale = Math.max(0.5, Math.min(4, (scale || baseScale.current) * factor));
+
+      setScale(newScale);
+      lastScale.current = newScale;
+      return y;
+    },
+    { preventDefault: true } // Stops page scroll while zooming
+  );
+
+  const gestureProps = { ...bindPinch(), ...bindWheel() };
+
+  // ———————————————————— RE-RENDER ON ZOOM ————————————————————
   useEffect(() => {
     if (!scale || !numPages) return;
 
-    Object.keys(pageRefs.current).forEach((num) => {
-      const canvas = pageRefs.current[num];
+    Object.values(pageRefs.current).forEach((canvas) => {
       if (canvas) {
         canvas.dataset.rendered = "false";
         canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
       }
     });
 
-    // Trigger re-render of visible pages
     setTimeout(() => {
       document.querySelectorAll("[data-page-wrapper]").forEach((el) => {
         const pageNum = Number(el.querySelector("canvas")?.dataset.pageNumber);
         if (pageNum) renderPage(pageNum);
       });
-    }, 100);
+    }, 50);
   }, [scale, renderPage]);
 
-  // Recalculate scale on window resize (for your clamp behavior)
+  // ———————————————————— RESIZE → REFIT ————————————————————
   useEffect(() => {
     const handleResize = () => {
-      if (!pdfDoc || scale !== null) return; // only auto-scale when in "fit" mode
-
+      if (!pdfDoc || scale !== baseScale.current) return;
       (async () => {
         const firstPage = await pdfDoc.getPage(1);
         const viewport = firstPage.getViewport({ scale: 1 });
-        const pageWidth = viewport.width;
-        const maxContainerWidth = Math.min(window.innerWidth * 0.95, 1348);
-        const bestScale = maxContainerWidth / pageWidth;
-        setScale(bestScale);
+        const maxWidth = Math.min(window.innerWidth * 0.94, 1348);
+        const autoScale = maxWidth / viewport.width;
+        baseScale.current = autoScale;
+        lastScale.current = autoScale;
+        setScale(autoScale);
       })();
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [pdfDoc]);
+  }, [pdfDoc, scale]);
 
-  // NEW: Mount check + Portal toolbar (only creates/renders on client)
-  useEffect(() => {
-    setMounted(true); // Now safe to access document
+  // ———————————————————— MOUNT & PORTAL ————————————————————
+  useEffect(() => setMounted(true), []);
 
-    return () => setMounted(false); // Cleanup
-  }, []);
-
-  // The portal JSX (only render if mounted)
   const toolbarPortal =
     mounted &&
     createPortal(
@@ -223,7 +226,11 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
             className="group text-primary rounded-xl bg-gray-100 p-3 transition-all hover:bg-gray-200 active:scale-95"
             title="Toggle Fullscreen"
           >
-            <FaExpand className="h-4 w-4" />
+            {document.fullscreenElement ? (
+              <FaCompress className="h-5 w-5" />
+            ) : (
+              <FaExpand className="h-5 w-5" />
+            )}
           </button>
         </div>
       </div>,
@@ -231,33 +238,32 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
     );
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-gray-50 py-8">
-      {/* This toolbar will ALWAYS be centered on screen, never blocked */}
+    <div ref={containerRef} className="relative min-h-screen bg-gray-50 py-12">
       {toolbarPortal}
 
-      <div className="mx-auto flex flex-col items-center gap-12 px-4">
-        {Array.from({ length: numPages || 8 }, (_, i) => {
-          const pageNum = i + 1;
-          return (
-            <div
-              key={pageNum}
-              data-page-wrapper // for IntersectionObserver
-              className="max-w-clamp-shrink w-full max-w-[1348px]" // your rule
-              style={{
-                maxWidth: "clamp(280px, 95vw, 1348px)", // Exact match to your .maxwidth
-              }}
-            >
-              <div className="flex justify-center">
-                <canvas
-                  ref={(el) => (pageRefs.current[pageNum] = el)}
-                  data-page-number={pageNum}
-                  className="rounded-lg bg-white shadow-2xl ring-1 ring-gray-200"
-                  style={{ maxWidth: "100%", height: "auto" }}
-                />
+      <div {...gestureProps} className="touch-none select-none">
+        <div className="mx-auto flex flex-col items-center gap-16 px-4">
+          {Array.from({ length: numPages || 8 }, (_, i) => {
+            const pageNum = i + 1;
+            return (
+              <div
+                key={pageNum}
+                data-page-wrapper
+                style={{ maxWidth: "clamp(280px, 94vw, 1348px)" }}
+                className="w-full"
+              >
+                <div className="flex justify-center">
+                  <canvas
+                    ref={(el) => (pageRefs.current[pageNum] = el)}
+                    data-page-number={pageNum}
+                    className="rounded-xl bg-white shadow-2xl ring-1 ring-gray-200"
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
