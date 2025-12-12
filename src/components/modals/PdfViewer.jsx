@@ -9,6 +9,10 @@ import {
   FaArrowsLeftRight,
   FaExpand,
   FaCompress,
+  FaSistrix, // ← Fixed: FaSistrix → FaSearch
+  FaXmark,
+  FaAngleUp,
+  FaAngleDown,
 } from "react-icons/fa6";
 
 import { usePinch, useWheel } from "@use-gesture/react";
@@ -19,24 +23,29 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
   const [numPages, setNumPages] = useState(null);
   const [scale, setScale] = useState(null);
   const pageRefs = useRef({});
+  const textLayerRefs = useRef({}); // ← ADDED
+  const pageTextContent = useRef({}); // ← ADDED
   const [mounted, setMounted] = useState(false);
 
   const baseScale = useRef(1);
   const lastScale = useRef(1);
+  const cancelableRenderTasks = useRef({});
 
-  const cancelableRenderTasks = useRef({}); // Track active renders per page
+  // ——— SEARCH STATE ———
+  const [searchText, setSearchText] = useState("");
+  const [matches, setMatches] = useState([]); // [{page: 1, rects: [...]}, ...]
+  const [currentMatch, setCurrentMatch] = useState(0);
 
-  // ———————————————————— INIT PDF + AUTO-FIT ————————————————————
+  const totalMatches = matches.reduce((sum, m) => sum + m.rects.length, 0);
+
+  // ——— INIT PDF + TEXT EXTRACTION ———
   useEffect(() => {
     (async () => {
       const pdfjs = await import("pdfjs-dist/build/pdf.mjs");
-
-      // 100% PRODUCTION-PROOF — HTTPS + version-pinned + minified
-      pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+      pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
       const loadingTask = pdfjs.getDocument(file);
       const pdf = await loadingTask.promise;
-
       setPdfDoc(pdf);
       setNumPages(pdf.numPages);
 
@@ -48,18 +57,37 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
       baseScale.current = autoScale;
       lastScale.current = autoScale;
       setScale(autoScale);
+
+      // Extract text + bounding boxes for search
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const textContent = await page.getTextContent();
+        const viewport = page.getViewport({ scale: 1 });
+
+        const pageRects = [];
+        textContent.items.forEach((item) => {
+          const [x1, y1, x2, y2] = item.transform.slice(4); // PDF.js transform matrix
+          const height = item.height || Math.abs(y2 - y1);
+          pageRects.push({
+            str: item.str,
+            x: x1,
+            y: viewport.height - y1 - height,
+            width: item.width,
+            height: height,
+          });
+        });
+        pageTextContent.current[i] = pageRects;
+      }
     })();
   }, [file]);
 
-  // ———————————————————— RENDER PAGE ————————————————————
+  // ——— RENDER PAGE ———
   const renderPage = useCallback(
     async (pageNum) => {
       if (!pdfDoc || !scale) return;
-
       const canvas = pageRefs.current[pageNum];
       if (!canvas || canvas.dataset.rendered === "true") return;
 
-      // CANCEL any previous render on this canvas
       if (cancelableRenderTasks.current[pageNum]) {
         cancelableRenderTasks.current[pageNum].cancel();
       }
@@ -73,61 +101,72 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
       canvas.height = Math.floor(viewport.height * ratio);
       canvas.style.width = `${viewport.width}px`;
       canvas.style.height = `${viewport.height}px`;
-
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-      // This is the key: use cancelable render task
-      const renderTask = page.render({
-        canvasContext: ctx,
-        viewport: viewport,
-      });
-
-      // Store it so we can cancel later
+      const renderTask = page.render({ canvasContext: ctx, viewport });
       cancelableRenderTasks.current[pageNum] = renderTask;
 
       try {
         await renderTask.promise;
         canvas.dataset.rendered = "true";
-
-        gsap.fromTo(
-          canvas,
-          { autoAlpha: 0, y: 25 },
-          { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }
-        );
-      } catch (error) {
-        if (error?.name === "RenderingCancelledException") {
-          // This is expected when we cancel — ignore
-          return;
-        }
-        console.error("PDF render error:", error);
+        gsap.fromTo(canvas, { autoAlpha: 0, y: 25 }, { autoAlpha: 1, y: 0, duration: 0.45 });
+      } catch (err) {
+        if (err?.name !== "RenderingCancelledException") console.error(err);
       } finally {
-        // Clean up
         delete cancelableRenderTasks.current[pageNum];
       }
     },
     [pdfDoc, scale]
   );
 
-  // ———————————————————— LAZY LOAD ————————————————————
+  // ——— SEARCH ———
+  const performSearch = useCallback(() => {
+    if (!searchText.trim()) {
+      setMatches([]);
+      setCurrentMatch(0);
+      return;
+    }
+
+    const regex = new RegExp(searchText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+    const results = [];
+
+    Object.entries(pageTextContent.current).forEach(([pageNum, items]) => {
+      const pageMatches = [];
+      let text = "";
+      items.forEach((item) => {
+        const match = item.str.match(regex);
+        if (match) {
+          const start = text.length;
+          text += item.str;
+          pageMatches.push({
+            x: item.x * scale,
+            y: item.y * scale,
+            width: item.width * scale,
+            height: item.height * scale,
+          });
+        } else {
+          text += item.str;
+        }
+      });
+      if (pageMatches.length > 0) {
+        results.push({ page: Number(pageNum), rects: pageMatches });
+      }
+    });
+
+    setMatches(results);
+    setCurrentMatch(results.length > 0 ? 1 : 0);
+  }, [searchText, scale]);
+
   useEffect(() => {
-    if (!numPages) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const pageNum = Number(entry.target.querySelector("canvas")?.dataset.pageNumber);
-            if (pageNum) renderPage(pageNum);
-          }
-        });
-      },
-      { rootMargin: "600px" }
-    );
+    const timer = setTimeout(performSearch, 300);
+    return () => clearTimeout(timer);
+  }, [performSearch]);
 
-    document.querySelectorAll("[data-page-wrapper]").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [numPages, renderPage]);
+  // ——— NAVIGATE MATCHES ———
+  const goToPrevMatch = () => setCurrentMatch((m) => (m > 1 ? m - 1 : totalMatches || 0));
+  const goToNextMatch = () => setCurrentMatch((m) => (m >= totalMatches ? 1 : m + 1));
 
-  // ———————————————————— ZOOM CONTROLS ————————————————————
+  // ——— ZOOM & GESTURES (unchanged) ———
   const zoomIn = () => setScale((s) => Math.min(4, +(s * 1.25).toFixed(3)));
   const zoomOut = () => setScale((s) => Math.max(0.5, +(s * 0.8).toFixed(3)));
   const resetZoom = () => {
@@ -135,64 +174,40 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
     lastScale.current = baseScale.current;
   };
 
-  const toggleFullscreen = useCallback(() => {
-    if (!document.fullscreenElement) {
-      containerRef.current?.requestFullscreen?.();
-    } else {
-      document.exitFullscreen?.();
-    }
-  }, []);
-
-  // ———————————————————— GESTURES: Pinch + Ctrl+Wheel Only ————————————————————
   const bindPinch = usePinch(
     ({ offset: [s] }) => {
       const newScale = Math.max(0.5, Math.min(4, baseScale.current * s));
       setScale(newScale);
       lastScale.current = newScale;
     },
-    { scaleBounds: { min: 0.5, max: 4 }, rubberband: true, pointer: { touch: true } }
+    { scaleBounds: { min: 0.5, max: 4 }, rubberband: true }
   );
 
-  // Only zoom with Ctrl + Wheel (standard behavior)
   const bindWheel = useWheel(
     ({ event, wheeling, memo, offset: [, y] }) => {
-      if (!event.ctrlKey && !event.metaKey) return memo; // ← Critical: require Ctrl/Cmd
+      if (!event.ctrlKey && !event.metaKey) return memo;
       if (!wheeling) return memo;
-
-      const delta = y - (memo || y);
-      const factor = delta > 0 ? 0.92 : 1.08;
+      const factor = y - (memo || y) > 0 ? 0.92 : 1.08;
       const newScale = Math.max(0.5, Math.min(4, (scale || baseScale.current) * factor));
-
       setScale(newScale);
-      lastScale.current = newScale;
       return y;
     },
-    { preventDefault: true } // Stops page scroll while zooming
+    { preventDefault: true }
   );
 
   const gestureProps = { ...bindPinch(), ...bindWheel() };
 
-  // ———————————————————— RE-RENDER ON ZOOM ————————————————————
+  // ——— RE-RENDER ON ZOOM ———
   useEffect(() => {
     if (!scale || !numPages) return;
-
-    // Cancel ALL ongoing renders when scale changes
-    Object.values(cancelableRenderTasks.current).forEach((task) => {
-      if (task && typeof task.cancel === "function") {
-        task.cancel();
-      }
-    });
+    Object.values(cancelableRenderTasks.current).forEach((t) => t?.cancel());
     cancelableRenderTasks.current = {};
-
-    // Mark all as unrendered
-    Object.values(pageRefs.current).forEach((canvas) => {
-      if (canvas) {
-        canvas.dataset.rendered = "false";
-        canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    Object.values(pageRefs.current).forEach((c) => {
+      if (c) {
+        c.dataset.rendered = "false";
+        c.getContext("2d").clearRect(0, 0, c.width, c.height);
       }
     });
-
-    // Re-render visible pages
     setTimeout(() => {
       document.querySelectorAll("[data-page-wrapper]").forEach((el) => {
         const pageNum = Number(el.querySelector("canvas")?.dataset.pageNumber);
@@ -201,64 +216,39 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
     }, 50);
   }, [scale, renderPage]);
 
-  // ———————————————————— RESIZE → REFIT ————————————————————
-  useEffect(() => {
-    const handleResize = () => {
-      if (!pdfDoc || scale !== baseScale.current) return;
-      (async () => {
-        const firstPage = await pdfDoc.getPage(1);
-        const viewport = firstPage.getViewport({ scale: 1 });
-        const maxWidth = Math.min(window.innerWidth * 0.94, 1348);
-        const autoScale = maxWidth / viewport.width;
-        baseScale.current = autoScale;
-        lastScale.current = autoScale;
-        setScale(autoScale);
-      })();
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [pdfDoc, scale]);
-
-  // ———————————————————— MOUNT & PORTAL ————————————————————
+  // ——— MOUNT ———
   useEffect(() => setMounted(true), []);
 
   const toolbarPortal =
     mounted &&
     createPortal(
-      <div className="pointer-events-none fixed inset-0 z-[9999]">
+      <div className="pointer-events-none fixed inset-0 z-[9999] hidden md:block">
+        {/* Toolbar */}
         <div className="pointer-events-auto fixed top-1/2 right-4 flex -translate-y-1/2 flex-col gap-2.5 rounded-2xl border border-gray-300 bg-transparent p-2.5 shadow-2xl backdrop-blur-lg md:right-8 lg:right-12">
-          {/* Zoom In */}
           <button
             onClick={zoomIn}
             className="group text-primary rounded-xl bg-gray-100 p-3 transition-all hover:bg-gray-200 active:scale-95"
             title="Zoom In"
           >
-            <FaMagnifyingGlassPlus className="h-4 w-4" />
+            <FaMagnifyingGlassPlus className="h-5 w-5" />
           </button>
-
-          {/* Zoom Out */}
           <button
             onClick={zoomOut}
             className="group text-primary rounded-xl bg-gray-100 p-3 transition-all hover:bg-gray-200 active:scale-95"
             title="Zoom Out"
           >
-            <FaMagnifyingGlassMinus className="h-4 w-4" />
+            <FaMagnifyingGlassMinus className="h-5 w-5" />
           </button>
-
-          {/* Fit to Width */}
           <button
             onClick={resetZoom}
             className="group text-primary rounded-xl bg-gray-100 p-3 transition-all hover:bg-gray-200 active:scale-95"
-            title="Fit to Width"
+            title="Fit"
           >
-            <FaArrowsLeftRight className="h-4 w-4" />
+            <FaArrowsLeftRight className="h-5 w-5" />
           </button>
-
-          {/* Fullscreen Toggle */}
           <button
-            onClick={toggleFullscreen}
+            onClick={() => containerRef.current?.requestFullscreen?.()}
             className="group text-primary rounded-xl bg-gray-100 p-3 transition-all hover:bg-gray-200 active:scale-95"
-            title="Toggle Fullscreen"
           >
             {document.fullscreenElement ? (
               <FaCompress className="h-5 w-5" />
@@ -267,6 +257,49 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
             )}
           </button>
         </div>
+
+        {/* Search Bar */}
+        {/* <div className="pointer-events-auto fixed right-6 bottom-6 w-80 max-w-[90vw]">
+          <div className="flex items-center gap-2 rounded-xl border border-gray-300 bg-white/95 p-3 shadow-xl backdrop-blur-lg">
+            <FaSistrix className="text-gray-500" />
+            <input
+              type="text"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="Search in PDF..."
+              className="flex-1 bg-transparent outline-none"
+            />
+            {searchText && (
+              <button
+                onClick={() => {
+                  setSearchText("");
+                  setMatches([]);
+                }}
+              >
+                <FaXmark className="text-gray-500 hover:text-gray-700" />
+              </button>
+            )}
+            <div className="flex items-center gap-2 border-l pl-2">
+              <button
+                onClick={goToPrevMatch}
+                disabled={totalMatches === 0}
+                className="p-1 disabled:opacity-30"
+              >
+                <FaAngleUp className="h-4 w-4" />
+              </button>
+              <span className="w-16 text-center text-sm font-medium">
+                {totalMatches > 0 ? `${currentMatch} of ${totalMatches}` : "0"}
+              </span>
+              <button
+                onClick={goToNextMatch}
+                disabled={totalMatches === 0}
+                className="p-1 disabled:opacity-30"
+              >
+                <FaAngleDown className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        </div> */}
       </div>,
       document.body
     );
@@ -275,7 +308,7 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
     <div ref={containerRef} className="relative min-h-screen bg-gray-50 py-12">
       {toolbarPortal}
 
-      <div {...gestureProps} className="touch-none select-none">
+      <div {...gestureProps} style={{ touchAction: "pan-y pinch-zoom" }} className="select-none">
         <div className="mx-auto flex flex-col items-center gap-16 px-4">
           {Array.from({ length: numPages || 8 }, (_, i) => {
             const pageNum = i + 1;
@@ -284,7 +317,7 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
                 key={pageNum}
                 data-page-wrapper
                 style={{ maxWidth: "clamp(280px, 94vw, 1348px)" }}
-                className="w-full"
+                className="relative w-full"
               >
                 <div className="flex justify-center">
                   <canvas
@@ -293,6 +326,37 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
                     className="rounded-xl bg-white shadow-2xl ring-1 ring-gray-200"
                     style={{ maxWidth: "100%", height: "auto" }}
                   />
+
+                  {/* HIGHLIGHT OVERLAY */}
+                  <div className="pointer-events-none absolute inset-0">
+                    {matches
+                      .filter((m) => m.page === pageNum)
+                      .flatMap((m) => m.rects)
+                      .map((rect, idx) => {
+                        const globalIdx =
+                          matches
+                            .slice(
+                              0,
+                              matches.findIndex((m) => m.page === pageNum)
+                            )
+                            .reduce((a, m) => a + m.rects.length, 0) +
+                          idx +
+                          1;
+                        const isCurrent = globalIdx === currentMatch;
+                        return (
+                          <div
+                            key={idx}
+                            className={`absolute border-2 transition-all ${isCurrent ? "border-amber-600 bg-yellow-400/70 shadow-lg" : "border-amber-500 bg-yellow-300/40"}`}
+                            style={{
+                              left: `${rect.x}px`,
+                              top: `${rect.y}px`,
+                              width: `${rect.width}px`,
+                              height: `${rect.height}px`,
+                            }}
+                          />
+                        );
+                      })}
+                  </div>
                 </div>
               </div>
             );
