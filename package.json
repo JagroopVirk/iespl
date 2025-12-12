@@ -21,6 +21,7 @@
     "formidable": "^3.5.4",
     "gsap": "^3.13.0",
     "nodemailer": "^7.0.5",
+    "pdfjs-dist": "^5.4.449",
     "prettier-plugin-css-order": "^2.1.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "react": "^19.0.0",
