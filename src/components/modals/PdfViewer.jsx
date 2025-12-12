@@ -28,10 +28,9 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
   useEffect(() => {
     (async () => {
       const pdfjs = await import("pdfjs-dist/build/pdf.mjs");
-      pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-        "pdfjs-dist/build/pdf.worker.mjs",
-        import.meta.url
-      ).toString();
+
+      // THIS IS THE MAGIC LINE — fixes production forever
+      pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
       const loadingTask = pdfjs.getDocument(file);
       const pdf = await loadingTask.promise;
@@ -41,11 +40,8 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
 
       const firstPage = await pdf.getPage(1);
       const viewport = firstPage.getViewport({ scale: 1 });
-      const pageWidth = viewport.width;
-
-      // FIXED: Use exact clamp like your CSS rule → never overflows
-      const maxWidth = Math.min(window.innerWidth * 0.94, 1348); // 94% for padding
-      const autoScale = maxWidth / pageWidth;
+      const maxWidth = Math.min(window.innerWidth * 0.94, 1348);
+      const autoScale = maxWidth / viewport.width;
 
       baseScale.current = autoScale;
       lastScale.current = autoScale;
