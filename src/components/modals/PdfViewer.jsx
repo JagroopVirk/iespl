@@ -47,10 +47,7 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
     (async () => {
       const pdfjs = await import("pdfjs-dist/build/pdf.mjs");
 
-      pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-        "pdfjs-dist/build/pdf.worker.min.mjs",
-        import.meta.url
-      ).toString();
+      pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
       const loadingTask = pdfjs.getDocument(file);
       const pdf = await loadingTask.promise;
