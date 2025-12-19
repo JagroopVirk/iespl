@@ -3,9 +3,9 @@
 import Layout from "@/layouts/Layout.astro";
 import seoData from "@/data/js/seo/index";
 import PdfViewer from "@/components/modals/PdfViewer.jsx";
+import Loader from "@/components/other/Loader.astro";
 
 const { meta, faqSchema, gtm, pageLink, schema } = seoData;
-const pdfUrl = "/pdfFiles/IES-brochure.pdf";
 ---
 
 <Layout
@@ -24,7 +24,10 @@ const pdfUrl = "/pdfFiles/IES-brochure.pdf";
 >
   <!-- <PdfViewer client:load /> -->
   <section class="maxwidth">
-    <PdfViewer file="/pdfFiles/IES-brochure.pdf" client:load />
+    <div class="relative">
+      <Loader id="pdf-loader" />
+      <PdfViewer file="/pdfFiles/IES-brochure.pdf" client:load />
+    </div>
   </section>
 </Layout>
 

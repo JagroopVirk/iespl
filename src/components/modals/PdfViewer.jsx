@@ -9,6 +9,7 @@ import {
   FaArrowsLeftRight,
   FaExpand,
   FaCompress,
+  FaDownload,
   FaSistrix, // ← Fixed: FaSistrix → FaSearch
   FaXmark,
   FaAngleUp,
@@ -31,6 +32,9 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
   const lastScale = useRef(1);
   const cancelableRenderTasks = useRef({});
 
+  // Loading state
+  const [isLoading, setIsLoading] = useState(true);
+
   // ——— SEARCH STATE ———
   const [searchText, setSearchText] = useState("");
   const [matches, setMatches] = useState([]); // [{page: 1, rects: [...]}, ...]
@@ -42,7 +46,11 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
   useEffect(() => {
     (async () => {
       const pdfjs = await import("pdfjs-dist/build/pdf.mjs");
-      pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+
+      pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+        "pdfjs-dist/build/pdf.worker.min.mjs",
+        import.meta.url
+      ).toString();
 
       const loadingTask = pdfjs.getDocument(file);
       const pdf = await loadingTask.promise;
@@ -109,6 +117,12 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
       try {
         await renderTask.promise;
         canvas.dataset.rendered = "true";
+        // ✅ hide loader once first page is ready
+        if (pageNum === 1) {
+          setIsLoading(false);
+          document.getElementById("pdf-loader")?.classList.add("opacity-0", "pointer-events-none");
+        }
+
         gsap.fromTo(canvas, { autoAlpha: 0, y: 25 }, { autoAlpha: 1, y: 0, duration: 0.45 });
       } catch (err) {
         if (err?.name !== "RenderingCancelledException") console.error(err);
@@ -172,6 +186,16 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
   const resetZoom = () => {
     setScale(baseScale.current);
     lastScale.current = baseScale.current;
+  };
+
+  // download file
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = file;
+    link.download = file.split("/").pop() || "document.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const bindPinch = usePinch(
@@ -255,6 +279,13 @@ export default function PdfViewer({ file = "/pdfFiles/IES-brochure.pdf" }) {
             ) : (
               <FaExpand className="h-5 w-5" />
             )}
+          </button>
+          <button
+            onClick={handleDownload}
+            className="group text-primary rounded-xl bg-gray-100 p-3 transition-all hover:bg-gray-200 active:scale-95"
+            title="Download"
+          >
+            <FaDownload className="h-5 w-5" />
           </button>
         </div>
 
